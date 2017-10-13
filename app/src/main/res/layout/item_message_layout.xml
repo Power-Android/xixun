@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="5dp"
-    android:paddingTop="5dp" >
+    android:paddingTop="5dp"
+    android:id="@+id/rl_mseeage">
 
     <ImageView
         android:id="@+id/item_message_face"
@@ -42,11 +43,13 @@
 
     <TextView
         android:id="@+id/item_message_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_message_nicheng"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="3dp"
+        android:singleLine="true"
+        android:layout_toLeftOf="@+id/item_message_content"
         android:layout_toRightOf="@+id/item_message_face"
         android:textColor="@color/black"
         android:textSize="@dimen/text_big_size" />

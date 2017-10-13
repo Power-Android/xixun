@@ -18,6 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
          android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
         android:layout_toRightOf="@+id/image_gridView"
         android:textColor="@color/black"
         android:textSize="@dimen/text_mid2_size" 

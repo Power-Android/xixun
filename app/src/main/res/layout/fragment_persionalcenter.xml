@@ -48,6 +48,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
                             android:layout_toRightOf="@+id/my_head"
+                            android:text="萨芬的话"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_big_size" />
 
@@ -63,10 +64,12 @@
 
                         <ImageView
                             android:id="@+id/my_sex"
+                            android:src="@drawable/my_boy"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignBottom="@+id/my_name"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="2dp"
                             android:layout_toRightOf="@+id/my_name" />
 
                         <ImageView

@@ -34,7 +34,7 @@ public class YueBanFragment extends Fragment implements View.OnClickListener {
     SharedPreferences sp,spLocation;
     private String mycenter = "mycenter";
     private ClickImageView iv_to_youji, iv_to_yueban, iv_to_daren;
-    private String province;
+    private String province_id = "", province;
     private LinearLayout title;
 
     @Nullable
@@ -80,6 +80,7 @@ public class YueBanFragment extends Fragment implements View.OnClickListener {
                     Intent intent = new Intent(getActivity(), YueBanActivity.class);
                     intent.putExtra("typename", "yueban");
                     intent.putExtra("listtype", 1);
+                    intent.putExtra("province_id",province_id);
                     startActivity(intent);
             }
         });
@@ -111,6 +112,7 @@ public class YueBanFragment extends Fragment implements View.OnClickListener {
         switch (requestCode){
             case 1:
                 if(data!=null) {
+                    province_id = data.getStringExtra("province_id");
                     province = data.getStringExtra("province");
                     locaton_tv.setText(province);
                 }

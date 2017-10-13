@@ -110,10 +110,7 @@ OnRefreshListener2<ListView>{
 			public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 				if(TextUtils.equals(adapterList.get(position-1).getType(), "1")){//约伴、行程
-					if(TextUtils.equals(adapterList.get(position-1).getState(), "0")){//未读
 						setType(adapterList.get(position-1).getId());
-					}
-					
 					Intent intent = new Intent(getActivity(),
 							TripDetailActivity.class);
 					intent.putExtra("id", adapterList.get(position - 1).getCid());

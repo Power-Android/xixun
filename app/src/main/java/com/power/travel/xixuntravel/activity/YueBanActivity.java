@@ -77,6 +77,7 @@ public class YueBanActivity extends BaseActivity implements PullToRefreshBase.On
     private TextView filtrate_tv, search;
     private ImageView ad_iv;
 //	private TextView locaton_tv;
+    private String province_id1;
 
     DisplayImageOptions options;
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
@@ -105,19 +106,19 @@ public class YueBanActivity extends BaseActivity implements PullToRefreshBase.On
 //				LogUtil.e(TAG, "数据的个数"+adapterList.size());
                 page = page + 1;
             } else if (msg.what == 0) {// 失败
-                ToastUtil.showToast(YueBanActivity.this, info);
+                ToastUtil.showToast(getApplicationContext(), info);
             } else if (msg.what == -1) {//
-                ToastUtil.showToast(YueBanActivity.this, info);
+                ToastUtil.showToast(getApplicationContext(), info);
             } else if (msg.what == 4) {// 关注 成功
                 changeData("1");
                 adapter.notifyDataSetChanged();
             } else if (msg.what == -4) {// 关注 失败
-                ToastUtil.showToast(YueBanActivity.this, info);
+                ToastUtil.showToast(getApplicationContext(), info);
             } else if (msg.what == 5) {// 取消关注 成功
                 changeData("0");
                 adapter.notifyDataSetChanged();
             } else if (msg.what == -5) {// 取消关注 失败
-                ToastUtil.showToast(YueBanActivity.this, info);
+                ToastUtil.showToast(getApplicationContext(), info);
             }
 
         }
@@ -147,10 +148,10 @@ public class YueBanActivity extends BaseActivity implements PullToRefreshBase.On
                 travelpage = travelpage + 1;
             } else if (msg.what == 0) {// 失败
                 ToastUtil
-                        .showToast(YueBanActivity.this, info);
+                        .showToast(getApplicationContext(), info);
             } else if (msg.what == -1) {//
                 ToastUtil
-                        .showToast(YueBanActivity.this, info);
+                        .showToast(getApplicationContext(), info);
 
             }
         }
@@ -188,6 +189,7 @@ public class YueBanActivity extends BaseActivity implements PullToRefreshBase.On
         initView();
         initListener();
         listtype = getIntent().getIntExtra("listtype",1);
+        province_id1 = getIntent().getStringExtra("province_id");
         getADInfo();
         switch (listtype) {
             case 1:
@@ -383,7 +385,12 @@ public class YueBanActivity extends BaseActivity implements PullToRefreshBase.On
                     data.put("page", page);
                     data.put("is_at", is_at);
                     data.put("is_carpool", is_carpool);
-                    data.put("province", province_id);
+                    if (TextUtils.equals(province_id1,"99999")){
+                        data.put("province", "99999");
+                    }else {
+                        data.put("province", province_id1);
+
+                    }
                     data.put("city", city_id);
                     data.put("area", country_id);
                     data.put("sex", sex);

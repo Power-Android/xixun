@@ -159,7 +159,6 @@ public class TripDetailActivity extends FragmentActivity implements GradationScr
 		initListener();
 		initListeners();
 		initgetIntent();
-		getData();
 	}
 
 	private void setData1() {
@@ -324,7 +323,8 @@ public class TripDetailActivity extends FragmentActivity implements GradationScr
 		mid = intent.getStringExtra("mid");
 //		allTripModel=(AllTripModel)intent.getExtras().getSerializable("model");
 //		id = allTripModel.getId();
-		
+		getData();
+
 	}
 	
 	/**

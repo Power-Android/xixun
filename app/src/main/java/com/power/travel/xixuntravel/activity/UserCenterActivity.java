@@ -334,11 +334,14 @@ public class UserCenterActivity extends BaseActivity implements
 		}else {
 			praise_iv.setImageDrawable(getResources().getDrawable(R.drawable.praise_black));
 		}
-		if (mMasterModel.getCityName().equals("中国")){
-			usercenter_distance.setText(mMasterModel.getCityName());
-		}else {
-			usercenter_distance.setText(mMasterModel.getCityName() + "市");
+		if (mMasterModel.getCityName() != null){
+			if (mMasterModel.getCityName().equals("中国")){
+				usercenter_distance.setText(mMasterModel.getCityName());
+			}else {
+				usercenter_distance.setText(mMasterModel.getCityName() + "市");
+			}
 		}
+
 		usercenter_sign.setText(mMasterModel.getSignature());
 	}
 

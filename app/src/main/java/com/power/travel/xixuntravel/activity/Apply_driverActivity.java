@@ -367,9 +367,12 @@ public class Apply_driverActivity extends BaseActivity implements
 
 		case 2:// 如果是调用相机拍照时
 			try {
-				File temp = new File(Environment.getExternalStorageDirectory()
-						+ "/xiaoma.jpg");
-				startPhotoZoom(Uri.fromFile(temp));
+				if (data != null){
+					File temp = new File(Environment.getExternalStorageDirectory()
+							+ "/xiaoma.jpg");
+					startPhotoZoom(Uri.fromFile(temp));
+				}
+
 			} catch (Exception e) {
 			}
 

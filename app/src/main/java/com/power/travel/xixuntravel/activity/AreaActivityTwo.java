@@ -111,13 +111,12 @@ public class AreaActivityTwo extends BaseActivity implements AdapterView.OnItemC
                 province_id = adapterList.get(position).getId();
                 Intent intent=new Intent();
                 intent.putExtra("province", province);
+                intent.putExtra("province_id",province_id);
                 setResult(102, intent);
                 finish();
                 break;
         }
     }
-
-
 
     private void getData(final String upid) {
         pd.show();

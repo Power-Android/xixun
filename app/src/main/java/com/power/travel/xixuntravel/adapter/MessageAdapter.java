@@ -12,12 +12,14 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.power.travel.xixuntravel.R;
+import com.power.travel.xixuntravel.activity.TripDetailActivity;
 import com.power.travel.xixuntravel.model.MessageModel;
 import com.power.travel.xixuntravel.utils.StringUtils;
 import com.power.travel.xixuntravel.views.AnimateFirstDisplayListener;
 import com.power.travel.xixuntravel.weight.MyGridView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.text.TextUtils;
@@ -27,6 +29,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -79,7 +82,7 @@ public class MessageAdapter extends BaseAdapter implements OnClickListener {
 		super.notifyDataSetChanged();
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 
 		ViewHolder holder = null;
 
@@ -106,6 +109,7 @@ public class MessageAdapter extends BaseAdapter implements OnClickListener {
 					.findViewById(R.id.item_message_videoplay);
 			holder.gridview = (MyGridView) convertView
 					.findViewById(R.id.image_gridView);
+			holder.rl_mseeage = convertView.findViewById(R.id.rl_mseeage);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -118,16 +122,16 @@ public class MessageAdapter extends BaseAdapter implements OnClickListener {
 		holder.title.setText(list.get(position).getNickname());
 		holder.content.setText(list.get(position).getContent());
 		
-		if(TextUtils.equals(list.get(position).getState(), "0")){//未读
+//		if(TextUtils.equals(list.get(position).getState(), "0")){//未读
 			holder.message_type.setVisibility(View.VISIBLE);
 			if(TextUtils.equals(list.get(position).getType(), "1")){//约伴
 				holder.message_type.setText("来源于约伴");
 			}else{//游记
 				holder.message_type.setText("来源于游记");
 			}
-		}else{//已读
-			holder.message_type.setVisibility(View.GONE);
-		}
+//		}else{//已读
+//			holder.message_type.setVisibility(View.GONE);
+//		}
 		
 		if(TextUtils.equals(list.get(position).getIf_guide(), "1")){//
 			holder.ifguide.setVisibility(View.VISIBLE);
@@ -180,7 +184,17 @@ public class MessageAdapter extends BaseAdapter implements OnClickListener {
 //		}
 		
 		holder.time.setText(StringUtils.getStrTimeMonthDaySF(list.get(position).getAddtime()));
-
+		holder.rl_mseeage.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if (TextUtils.equals(list.get(mPosition).getType(),"1")){
+					Intent intent = new Intent(context,
+							TripDetailActivity.class);
+					intent.putExtra("id", list.get(mPosition).getCid());
+					context.startActivity(intent);
+				}
+			}
+		});
 		return convertView;
 	}
 
@@ -188,6 +202,7 @@ public class MessageAdapter extends BaseAdapter implements OnClickListener {
 		TextView time,title,content,message_type;
 		ImageView face,ifguide,ifdriver,item_message_pic,item_message_videoplay;
 		MyGridView gridview;
+		RelativeLayout rl_mseeage;
 	}
 
 	@Override
