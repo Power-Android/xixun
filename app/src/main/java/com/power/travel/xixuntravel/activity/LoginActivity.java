@@ -125,6 +125,8 @@ public class LoginActivity extends BaseActivity implements Callback,
 		mLocationClient.registerLocationListener( myListener );    //注册监听函数
 		initLocation();
 		mLocationClient.start();
+
+
 	}
 
 	private void initUM() {
@@ -279,11 +281,17 @@ public class LoginActivity extends BaseActivity implements Callback,
 		} else if (v == login_forgetpwd) {// 忘记密码
 			startActivityForResult(new Intent(this, ForgetPwdActivity.class), 1);
 		}else if(v==login_qq){//QQ登陆
+			//删除授权
+			SharedPreferences preferences=getSharedPreferences("configa", Context.MODE_PRIVATE);
+			Boolean bool=  preferences.getBoolean("shouquan",true);
+
+
 			type="1";
 			share = list[0];
 			config.setSinaAuthType(UMShareConfig.AUTH_TYPE_SSO);
 			umShareAPI.setShareConfig(config);
 			umShareAPI.getPlatformInfo(this,share,authListener);
+
 		}else if(v==login_weixin){//微信
 			type="2";
 			share = list[1];

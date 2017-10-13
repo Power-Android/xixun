@@ -1,5 +1,6 @@
 package com.power.travel.xixuntravel.activity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -59,7 +60,9 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,6 +91,8 @@ public class Apply_driverActivity extends BaseActivity implements
 	private boolean pic3 = false;
 	SharedPreferences sp;
 	private ProgressDialogUtils pd;
+	 private Uri photoUri;
+	public static final int PHOTO_REQUEST_TAKEPHOTO=2;
 
 	private LinearLayout addaddress_wheel;
 	private TextView addaddress_wheel_cancel, addaddress_wheel_title,
@@ -367,10 +372,18 @@ public class Apply_driverActivity extends BaseActivity implements
 
 		case 2:// 如果是调用相机拍照时
 			try {
-				if (data != null){
-					File temp = new File(Environment.getExternalStorageDirectory()
-							+ "/xiaoma.jpg");
-					startPhotoZoom(Uri.fromFile(temp));
+				Uri uri=null;
+
+				if (data != null && data.getData() != null) {
+					uri = data.getData();
+				}
+
+				if (uri == null) {
+					if (photoUri != null) {
+						uri = photoUri;
+					}
+
+					startPhotoZoom(uri);
 				}
 
 			} catch (Exception e) {
@@ -598,17 +611,19 @@ public class Apply_driverActivity extends BaseActivity implements
 					.findViewById(R.id.item_popupwindows_cancel);
 			bt1.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
-					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// 调用相机
+					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+					SimpleDateFormat timeStampFormat = new SimpleDateFormat(
+							"yyyy_MM_dd_HH_mm_ss");
+					String filename = timeStampFormat.format(new Date());
+					ContentValues values = new ContentValues();
+					values.put(MediaStore.Images.Media.TITLE, filename);
 
-					// 指定拍照照片存放位置为pfile文件夹
-					// createImageFile()下文的方法用来指定文件的路径以及名称
+					photoUri = getContentResolver().insert(
+							MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
-					// 下面这句指定调用相机拍照后的照片存储的路径
-					intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri
-							.fromFile(new File(Environment
-									.getExternalStorageDirectory(),
-									"xiaoma.jpg")));
-					startActivityForResult(intent, 2);
+					intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+
+					startActivityForResult(intent, PHOTO_REQUEST_TAKEPHOTO);
 					dismiss();
 				}
 			});

@@ -96,12 +96,15 @@ public class SettingActivity extends BaseActivity {
 		if(v==back){
 			finish();
 		}else if(v==exit){//退出
+
 			Editor edit=sp.edit();
 			edit.clear();
 			edit.commit();
+
 			exit.setVisibility(View.GONE);
 //			MyApplication.getInstance().delectActivity(MainActivity.class);
-
+			SharedPreferences.Editor editors = getSharedPreferences("configa", MODE_PRIVATE).edit();
+			editors.putBoolean("shouquan", true);
 			
 			  SharedPreferences.Editor editor = getSharedPreferences("config", MODE_PRIVATE).edit();
               editor.putBoolean("exit", true);

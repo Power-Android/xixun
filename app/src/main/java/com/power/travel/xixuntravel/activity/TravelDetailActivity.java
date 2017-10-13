@@ -43,6 +43,7 @@ import com.power.travel.xixuntravel.model.MasterModel;
 import com.power.travel.xixuntravel.model.TravelDetailCommentModel;
 import com.power.travel.xixuntravel.net.HttpClientPostUpload;
 import com.power.travel.xixuntravel.net.HttpUrl;
+import com.power.travel.xixuntravel.utils.EventMessage;
 import com.power.travel.xixuntravel.utils.LogUtil;
 import com.power.travel.xixuntravel.utils.ProgressDialogUtils;
 import com.power.travel.xixuntravel.utils.StringUtils;
@@ -60,6 +61,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.rong.eventbus.EventBus;
 
 /**
  * 游记跟消息详情

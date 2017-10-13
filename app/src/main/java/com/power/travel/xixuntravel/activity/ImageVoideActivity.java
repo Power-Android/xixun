@@ -28,6 +28,7 @@ import com.power.travel.xixuntravel.model.AllTravelModel;
 import com.power.travel.xixuntravel.model.MyTravelModel;
 import com.power.travel.xixuntravel.net.HttpClientPostUpload;
 import com.power.travel.xixuntravel.net.HttpUrl;
+import com.power.travel.xixuntravel.utils.EventMessage;
 import com.power.travel.xixuntravel.utils.LogUtil;
 import com.power.travel.xixuntravel.utils.ProgressDialogUtils;
 import com.power.travel.xixuntravel.utils.StringUtils;
@@ -42,6 +43,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import de.greenrobot.event.EventBus;
+import io.rong.eventbus.ThreadMode;
 
 /***
  * 我的游记视频展示
@@ -120,6 +122,8 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.image_video_layout);
 		MyApplication.getInstance().addActivity(this);
+		//注册
+		EventBus.getDefault().register(this);
 		getData();// 接收参数
 		initView();// 初始化控件
 		setData();
@@ -291,12 +295,15 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 
 	@Override
 	protected void onDestroy() {
+		 EventBus.getDefault().unregister(this);
 		if (mVideoView != null) {
 			mVideoView.release();
 			mVideoView = null;
 		}
 		super.onDestroy();
 	}
+
+
 
 	@Override
 	public void onPrepared(MediaPlayer mp) {

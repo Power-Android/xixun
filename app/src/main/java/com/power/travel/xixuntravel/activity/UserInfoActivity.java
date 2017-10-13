@@ -1,18 +1,27 @@
 package com.power.travel.xixuntravel.activity;
 
+import android.Manifest;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,7 +46,9 @@ import com.power.travel.xixuntravel.net.HttpClientPostUpload;
 import com.power.travel.xixuntravel.net.HttpUrl;
 import com.power.travel.xixuntravel.net.UploadUtil;
 import com.power.travel.xixuntravel.utils.CameraUtil;
+import com.power.travel.xixuntravel.utils.FileUtils;
 import com.power.travel.xixuntravel.utils.LogUtil;
+import com.power.travel.xixuntravel.utils.PhotoUtils;
 import com.power.travel.xixuntravel.utils.ProgressDialogUtils;
 import com.power.travel.xixuntravel.utils.StringUtils;
 import com.power.travel.xixuntravel.utils.ToastUtil;
@@ -46,12 +57,16 @@ import com.power.travel.xixuntravel.views.AnimateFirstDisplayListener;
 import com.power.travel.xixuntravel.weight.RoundImageView;
 import com.power.travel.xixuntravel.widget.WheelView;
 import com.power.travel.xixuntravel.widget.adapters.ArrayWheelAdapter;
+import com.yixia.weibo.sdk.util.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -82,7 +97,16 @@ public class UserInfoActivity extends BaseActivity {
 	private String[] mProvinceDatas;// 所有省
 	private String mCurrentProviceName;// 当前省的名称
 	SharedPreferences sp;
-
+	private static final int CODE_GALLERY_REQUEST = 0xa0;
+	private static final int CODE_CAMERA_REQUEST = 30;
+	private static final int CODE_RESULT_REQUEST = 31;
+	private static final int CAMERA_PERMISSIONS_REQUEST_CODE = 32;
+	private static final int STORAGE_PERMISSIONS_REQUEST_CODE = 33;
+	private File fileUri = new File(Environment.getExternalStorageDirectory().getPath() + "/photo.jpg");
+	private File fileCropUri = new File(Environment.getExternalStorageDirectory().getPath() + "/crop_photo.jpg");
+	private Uri imageUri;
+	private Uri cropImageUri;
+	Uri photoUri;
 	DisplayImageOptions options;
 	private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 
@@ -294,67 +318,152 @@ public class UserInfoActivity extends BaseActivity {
 			startActivityForResult(intent, 13);
 		}
 	}
-
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch (requestCode) {
+		super.onActivityResult(requestCode, resultCode, data);
 
-		case 1:// 如果是直接从相册获取
+		if (resultCode == RESULT_OK) {
+			switch (requestCode) {
+				case CODE_CAMERA_REQUEST://拍照完成回调
+					Uri uri=null;
+
+					if (data != null && data.getData() != null) {
+						uri = data.getData();
+					}
+
+					if (uri == null) {
+						if (photoUri != null) {
+							uri = photoUri;
+						}
+					}
+//					cropImageUri = Uri.fromFile(fileCropUri);
+//					 ToastUtil.showToast(this,cropImageUri.toString());
+					startPhotoZoom(uri);
+					//PhotoUtils.cropImageUri(this, imageUri, cropImageUri, 1, 1, output_X, output_Y, CODE_RESULT_REQUEST);
+
+					break;
+				case 1:// 如果是直接从相册获取
 			try {
 				startPhotoZoom(data.getData());
 			} catch (Exception e) {
 			}
 
 			break;
+				case CODE_GALLERY_REQUEST://访问相册完成回调
+					if (hasSdcard()) {
+						cropImageUri = Uri.fromFile(fileCropUri);
 
-		case 2:// 如果是调用相机拍照时
-			try {
-				if (data != null){
-					File temp = new File(Environment.getExternalStorageDirectory()
-							+ "/xiaoma.jpg");
-					startPhotoZoom(Uri.fromFile(temp));
-				}
+						Uri newUri = Uri.parse(PhotoUtils.getPath(this, data.getData()));
 
-			} catch (Exception e) {
+						if (Build.VERSION.SDK_INT >=24)
+							newUri = FileProvider.getUriForFile(this, "com.power.travel.xixuntravel.FileProvider", new File(newUri.getPath()));
+					//	PhotoUtils.cropImageUri(this, newUri, cropImageUri, 1, 1, output_X, output_Y, CODE_RESULT_REQUEST);
+					} else {
+						//ToastUtils.showShort(this, "设备没有SD卡！");
+					}
+					break;
+				case CODE_RESULT_REQUEST:
+					Bitmap bitmap = PhotoUtils.getBitmapFromUri(cropImageUri, this);
+					String s = cropImageUri.toString();
+					break;
+				case 3:// 取得裁剪后的图片
+					/**
+					 * 非空判断大家一定要验证，如果不验证的话， 在剪裁之后如果发现不满意，要重新裁剪，丢弃
+					 * 当前功能时，会报NullException，小马只 在这个地方加下，大家可以根据不同情况在合适的 地方做判断处理类似情况
+					 */
+					if (data != null) {
+						setPicToView(data);
+					}
+					break;
+				case 11:// 修改昵称
+					nickname_tv.setText(sp.getString(XZContranst.nickname, ""));
+					break;
+				case 12:// 修改职业
+					profession_tv.setText(sp.getString(XZContranst.work, ""));
+					break;
+				case 13:// 修改签名
+					signature_tv.setText(sp.getString(XZContranst.signature, ""));
+					break;
+				case 14:// 修改省市区
+					if(data!=null){
+						province=data.getStringExtra("province");
+						province_id=data.getStringExtra("province_id");
+						city=data.getStringExtra("city");
+						city_id=data.getStringExtra("city_id");
+						country=data.getStringExtra("country");
+						country_id=data.getStringExtra("country_id");
+						area_tv.setText(province+city+country);
+						editInfo(6,province+city+country);
+					}
+					break;
+				default:
+					break;
 			}
-
-			break;
-
-		case 3:// 取得裁剪后的图片
-			/**
-			 * 非空判断大家一定要验证，如果不验证的话， 在剪裁之后如果发现不满意，要重新裁剪，丢弃
-			 * 当前功能时，会报NullException，小马只 在这个地方加下，大家可以根据不同情况在合适的 地方做判断处理类似情况
-			 */
-			if (data != null) {
-				setPicToView(data);
+			super.onActivityResult(requestCode, resultCode, data);
 			}
-			break;
-		case 11:// 修改昵称
-			nickname_tv.setText(sp.getString(XZContranst.nickname, ""));
-			break;
-		case 12:// 修改职业
-			profession_tv.setText(sp.getString(XZContranst.work, ""));
-			break;
-		case 13:// 修改签名
-			signature_tv.setText(sp.getString(XZContranst.signature, ""));
-			break;
-		case 14:// 修改省市区
-			if(data!=null){
-				province=data.getStringExtra("province");
-				province_id=data.getStringExtra("province_id");
-				city=data.getStringExtra("city");
-				city_id=data.getStringExtra("city_id");
-				country=data.getStringExtra("country");
-				country_id=data.getStringExtra("country_id");
-				area_tv.setText(province+city+country);
-				editInfo(6,province+city+country);
-			}
-			break;
-		default:
-			break;
 		}
-		super.onActivityResult(requestCode, resultCode, data);
-	}
+
+//
+//	@Override
+//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//		switch (requestCode) {
+//
+//		case 1:// 如果是直接从相册获取
+//			try {
+//				startPhotoZoom(data.getData());
+//			} catch (Exception e) {
+//			}
+//
+//			break;
+//
+//		case 2:// 如果是调用相机拍照时
+//			try {
+//				if (data != null){
+//					File temp = new File(Environment.getExternalStorageDirectory()
+//							+ "/xiaoma.jpg");
+//					startPhotoZoom(Uri.fromFile(temp));
+//				}
+//
+//			} catch (Exception e) {
+//			}
+//
+//			break;
+
+//		case 3:// 取得裁剪后的图片
+//			/**
+//			 * 非空判断大家一定要验证，如果不验证的话， 在剪裁之后如果发现不满意，要重新裁剪，丢弃
+//			 * 当前功能时，会报NullException，小马只 在这个地方加下，大家可以根据不同情况在合适的 地方做判断处理类似情况
+//			 */
+//			if (data != null) {
+//				setPicToView(data);
+//			}
+//			break;
+//		case 11:// 修改昵称
+//			nickname_tv.setText(sp.getString(XZContranst.nickname, ""));
+//			break;
+//		case 12:// 修改职业
+//			profession_tv.setText(sp.getString(XZContranst.work, ""));
+//			break;
+//		case 13:// 修改签名
+//			signature_tv.setText(sp.getString(XZContranst.signature, ""));
+//			break;
+//		case 14:// 修改省市区
+//			if(data!=null){
+//				province=data.getStringExtra("province");
+//				province_id=data.getStringExtra("province_id");
+//				city=data.getStringExtra("city");
+//				city_id=data.getStringExtra("city_id");
+//				country=data.getStringExtra("country");
+//				country_id=data.getStringExtra("country_id");
+//				area_tv.setText(province+city+country);
+//				editInfo(6,province+city+country);
+//			}
+//			break;
+//		default:
+//			break;
+//		}
+//		super.onActivityResult(requestCode, resultCode, data);
+//	}
 
 	private void Jmup(String name, int type) {
 		Intent intent = new Intent(this, UserInfo_ChangeActivity.class);
@@ -394,17 +503,18 @@ public class UserInfoActivity extends BaseActivity {
 					.findViewById(R.id.item_popupwindows_cancel);
 			bt1.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
-					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// 调用相机
-
-					// 指定拍照照片存放位置为pfile文件夹
-					// createImageFile()下文的方法用来指定文件的路径以及名称
-
-					// 下面这句指定调用相机拍照后的照片存储的路径
-					intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri
-							.fromFile(new File(Environment
-									.getExternalStorageDirectory(),
-									"xiaoma.jpg")));
-					startActivityForResult(intent, 2);
+//					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// 调用相机
+//
+//					// 指定拍照照片存放位置为pfile文件夹
+//					// createImageFile()下文的方法用来指定文件的路径以及名称
+//
+//					// 下面这句指定调用相机拍照后的照片存储的路径
+//					intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri
+//							.fromFile(new File(Environment
+//									.getExternalStorageDirectory(),
+//									"xiaoma.jpg")));
+//					startActivityForResult(intent, 2);
+					autoObtainCameraPermission();
 					dismiss();
 				}
 			});
@@ -427,6 +537,7 @@ public class UserInfoActivity extends BaseActivity {
 
 		}
 	}
+
 
 	// 选性别年龄
 	public class PopAgeOrSex extends PopupWindow {
@@ -500,6 +611,80 @@ public class UserInfoActivity extends BaseActivity {
 				}
 			});
 		}
+	}
+	//调用相机
+	private void autoObtainCameraPermission() {
+
+		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		SimpleDateFormat timeStampFormat = new SimpleDateFormat(
+				"yyyy_MM_dd_HH_mm_ss");
+		String filename = timeStampFormat.format(new Date());
+		ContentValues values = new ContentValues();
+		values.put(MediaStore.Images.Media.TITLE, filename);
+
+		photoUri = getContentResolver().insert(
+				MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+
+		startActivityForResult(intent,  CODE_CAMERA_REQUEST);
+//		if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+//				|| ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+//
+//			if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+//				//ToastUtils.showShort(this, "您已经拒绝过一次");
+//			}
+//			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE}, CAMERA_PERMISSIONS_REQUEST_CODE);
+//		} else {//有权限直接调用系统相机拍照
+//			if (hasSdcard()) {
+//				imageUri = Uri.fromFile(fileUri);
+//				if (Build.VERSION.SDK_INT >= 24)
+//					imageUri = FileProvider.getUriForFile(UserInfoActivity.this, "com.power.travel.xixuntravel.FileProvider", fileUri);//通过FileProvider创建一个content类型的Uri
+//				PhotoUtils.takePicture(this, imageUri, CODE_CAMERA_REQUEST);
+//			} else {
+////				ToastUtils.showShort(this, "设备没有SD卡！");
+//			}
+//		}
+	}
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+		switch (requestCode) {
+			case CAMERA_PERMISSIONS_REQUEST_CODE: {//调用系统相机申请拍照权限回调
+				if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					if (hasSdcard()) {
+						imageUri = Uri.fromFile(fileUri);
+						if (Build.VERSION.SDK_INT >= 24)
+							imageUri = FileProvider.getUriForFile(UserInfoActivity.this, "com.power.travel.xixuntravel.FileProvider", fileUri);//通过FileProvider创建一个content类型的Uri
+						PhotoUtils.takePicture(this, imageUri, CODE_CAMERA_REQUEST);
+					} else {
+						ToastUtil.showToast(this,"设备没有SD卡");
+					}
+				} else {
+
+					ToastUtils.showToast(this, "请允许打开相机！！");
+				}
+				break;
+
+
+			}
+			case STORAGE_PERMISSIONS_REQUEST_CODE://调用系统相册申请Sdcard权限回调
+				if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					PhotoUtils.openPic(this, CODE_GALLERY_REQUEST);
+				} else {
+
+					ToastUtils.showToast(this, "请允许打操作SDCard！！");
+				}
+				break;
+		}
+	}
+	/**
+	 * 检查设备是否存在SDCard的工具方法
+	 */
+	public static boolean hasSdcard() {
+		String state = Environment.getExternalStorageState();
+		return state.equals(Environment.MEDIA_MOUNTED);
 	}
 
 	/**
