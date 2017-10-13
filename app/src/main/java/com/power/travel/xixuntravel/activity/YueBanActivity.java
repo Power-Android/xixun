@@ -386,7 +386,7 @@ public class YueBanActivity extends BaseActivity implements PullToRefreshBase.On
                     data.put("is_at", is_at);
                     data.put("is_carpool", is_carpool);
                     if (TextUtils.equals(province_id1,"99999")){
-                        data.put("province", "99999");
+                        data.put("province", "");
                     }else {
                         data.put("province", province_id1);
 

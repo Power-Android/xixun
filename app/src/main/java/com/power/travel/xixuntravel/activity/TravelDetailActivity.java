@@ -406,7 +406,7 @@ public class TravelDetailActivity extends BaseActivity
   }
         
 		RelativeLayout.LayoutParams imagebtn_params = new RelativeLayout.LayoutParams(
-				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		imagebtn_params.width = vWidth;
 		imagebtn_params.height = vHeight;
 		mVideoView.setLayoutParams(imagebtn_params);

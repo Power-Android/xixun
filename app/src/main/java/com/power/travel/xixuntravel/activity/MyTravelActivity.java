@@ -77,9 +77,9 @@ public class MyTravelActivity extends BaseActivity implements
 				}
 				page=page+1;
 			} else if (msg.what == 0) {// 失败
-				ToastUtil.showToast(getApplicationContext(), info);
+//				ToastUtil.showToast(getApplicationContext(), info);
 			} else if (msg.what == -1) {//
-				ToastUtil.showToast(getApplicationContext(), info);
+//				ToastUtil.showToast(getApplicationContext(), info);
 
 			}else if (msg.what == 2) {//
 				for(int i=0;i<adapterList.size();i++){

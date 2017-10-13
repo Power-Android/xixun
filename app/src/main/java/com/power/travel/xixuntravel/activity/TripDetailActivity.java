@@ -63,9 +63,9 @@ public class TripDetailActivity extends FragmentActivity implements GradationScr
 
 	private ImageView back,sender_sex,sender_head,sender_head_bg,title_iv;
 	private TextView title,sender_name,sender_sign,tripdetail_title,tripdetail_time,tripdetail_see,
-	tripdetail_comment,tripdetail_content,tripdetail_sdtime,comment_num;
+	tripdetail_comment,tripdetail_content,tripdetail_sdtime,comment_num,youche_layout;
 	private EditText tripdetail_comment_edit;
-	private RelativeLayout sdtime_layout,yueban_layout,youche_layout,pinche_layout,
+	private RelativeLayout sdtime_layout,yueban_layout,pinche_layout,
 	addaddress_title;
 	private LinearLayout comment_layout;
 	private MyListView tripdetail_listview;
@@ -252,7 +252,7 @@ public class TripDetailActivity extends FragmentActivity implements GradationScr
 		comment_num= (TextView) findViewById(R.id.tripdetail_comment_num);
 		sdtime_layout=(RelativeLayout)findViewById(R.id.tripdetail_sdtime_layout);
 		yueban_layout=(RelativeLayout)findViewById(R.id.tripdetail_yueban_layout);
-		youche_layout=(RelativeLayout)findViewById(R.id.tripdetail_youche_layout);
+		youche_layout=(TextView)findViewById(R.id.tripdetail_youche_layout);
 		pinche_layout=(RelativeLayout)findViewById(R.id.tripdetail_pinche_layout);
 		addaddress_title=(RelativeLayout)findViewById(R.id.addaddress_title);
 		tripdetail_listview=(MyListView)findViewById(R.id.tripdetail_listview);
@@ -381,11 +381,12 @@ public class TripDetailActivity extends FragmentActivity implements GradationScr
 		}else{
 			yueban_layout.setVisibility(View.GONE);
 		}
-		if(TextUtils.equals(allTripModel.getIs_car(), "1")){
+		/*if(TextUtils.equals(allTripModel.getIs_car(), "1")){
 			youche_layout.setVisibility(View.VISIBLE);
 		}else{
 			youche_layout.setVisibility(View.GONE);
-		}
+		}*/
+		youche_layout.setText(allTripModel.getAddress());
 		if(TextUtils.equals(allTripModel.getIs_carpool(), "1")){
 			pinche_layout.setVisibility(View.VISIBLE);
 		}else{

@@ -22,6 +22,7 @@ public class HttpUrl {
 	public static String Service_about=Url+"/Api/Service/Service_about.html";// 5公司简介 7联系我们
 	public static String forgotpass=Url+"/Api/OauthMember/forgotpass.html";//找回密码
 	public static String changepwd=Url+"/Api/OauthMember/modifyPass.html";//修改密码
+	public static String openidReg=Url+"/Api/OauthMember/openidReg";//绑定三方，创建密码
 	public static String apply_guide=Url+"/Api/OauthMember/apply_guide";//申请导游
 	public static String apply_driver=Url+"/Api/OauthMember/apply_driver";//申请司机
 	public static String knowledge=Url+"/Api/Service/knowledge.html";//常识

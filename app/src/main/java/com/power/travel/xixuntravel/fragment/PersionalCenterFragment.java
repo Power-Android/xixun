@@ -96,9 +96,9 @@ public class PersionalCenterFragment extends Fragment implements OnClickListener
 				my_message.setText("消息"+ msg_totall);
 				my_attention.setText("关注"+ followcount);
 			} else if (msg.what == 0) {
-				ToastUtil.showToast(getActivity().getApplicationContext(), info);
+//				ToastUtil.showToast(getActivity().getApplicationContext(), info);
 			} else if (msg.what == -1) {
-				ToastUtil.showToast(getActivity().getApplicationContext(), info);
+//				ToastUtil.showToast(getActivity().getApplicationContext(), info);
 			} else if (msg.what == 2) {
 				setData();
 			}

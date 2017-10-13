@@ -12,6 +12,7 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.webkit.WebView;
@@ -101,11 +102,16 @@ public class ViewsoptDetailActivity extends BaseActivity {
 	private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();// 自己写的一个类
 	ImageLoader imageLoader = ImageLoader.getInstance();
 	List<ViewsportDetailCommentModel> list = new ArrayList<ViewsportDetailCommentModel>();
+	List<ViewsportDetailCommentModel> list1 = new ArrayList<ViewsportDetailCommentModel>();
+
 	ViewspotDetailCommentAdapter adapter;
 	MapView mMapView = null;
 	private BaiduMap mBaiduMap;
 	private Marker mMarker;
 	BitmapDescriptor bdB;
+
+	private int a = 1;
+	private int page;
 
 	public static List<Activity> activityList = new LinkedList<Activity>();
 	private static final String APP_FOLDER_NAME = "BNSDKSimpleDemo";
@@ -151,9 +157,25 @@ public class ViewsoptDetailActivity extends BaseActivity {
 			super.handleMessage(msg);
 
 			if (msg.what == 1) {// 成功
-				adapter = new ViewspotDetailCommentAdapter(
+				/*adapter = new ViewspotDetailCommentAdapter(
 						ViewsoptDetailActivity.this, list);
-				comment_listview.setAdapter(adapter);
+				comment_listview.setAdapter(adapter);*/
+
+				/*list = JSON.parseArray(jsonarry.toString(),
+						ViewsportDetailCommentModel.class);*/
+				if (list != null){
+					list1.addAll(list);
+				}
+				if (adapter == null){
+					inflater = LayoutInflater.from(ViewsoptDetailActivity.this);
+					footView = (LinearLayout) inflater.inflate(R.layout.layout_item_detail_foot,null);
+					adapter = new ViewspotDetailCommentAdapter(ViewsoptDetailActivity.this,list1);
+					load_more_tv = (TextView) footView.findViewById(R.id.load_more_tv);
+					comment_listview.addFooterView(footView);
+					comment_listview.setAdapter(adapter);
+				}else {
+					adapter.notifyDataSetChanged();
+				}
 			} else if (msg.what == 0) {// 失败
 				// ToastUtil.showToast(getApplicationContext(), info);
 			} else if (msg.what == -1) {//
@@ -162,6 +184,10 @@ public class ViewsoptDetailActivity extends BaseActivity {
 			}
 		}
 	};
+	private LayoutInflater inflater;
+	private LinearLayout footView;
+	private TextView load_more_tv;
+	private JSONArray jsonarry;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -267,7 +293,29 @@ public class ViewsoptDetailActivity extends BaseActivity {
 		id = intent.getStringExtra("id");
 	}
 
+	/**
+	 * 点击按钮事件
+	 * @param view
+	 */
+	public void loadMore(View view) {
+		load_more_tv.setText("正在加载...");   //设置按钮文字loading
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				++a;
+				if (list != null){
+					getCommentData();
+					adapter.notifyDataSetChanged(); //数据集变化后,通知adapter
+				}else {
+					ToastUtil.showToast(ViewsoptDetailActivity.this,"没有更多数据了哦...");
+				}
+				load_more_tv.setText("加载更多");    //恢复按钮文字
+			}
+		}, 1000);
+	}
+
 	private void setData() {
+
 		// 添加地图中心点
 		if (!TextUtils.isEmpty(mViewsportDetailModel.getCoordinate_y())
 				&& !TextUtils.isEmpty(mViewsportDetailModel.getCoordinate_x())) {
@@ -730,6 +778,7 @@ public class ViewsoptDetailActivity extends BaseActivity {
 				JSONObject data = new JSONObject();
 				try {
 					data.put("sid", id);
+					data.put("page",a);
 				} catch (JSONException e1) {
 					e1.printStackTrace();
 				}
@@ -749,11 +798,11 @@ public class ViewsoptDetailActivity extends BaseActivity {
 
 					status = jsonj.getString("status");
 					info = jsonj.getString("info");
-					JSONArray jsonarry = jsonj.getJSONArray("data");
-					if (!jsonarry.isNull(0)) {
+					jsonarry = jsonj.getJSONArray("data");
+//					if (!jsonarry.isNull(0)) {
 						list = JSON.parseArray(jsonarry.toString(),
 								ViewsportDetailCommentModel.class);
-					}
+//					}
 
 				} catch (JSONException e) {
 					e.printStackTrace();

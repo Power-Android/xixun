@@ -259,7 +259,9 @@ public class UserInfoActivity extends BaseActivity {
 		profession_tv.setText(sp.getString(XZContranst.work, ""));
 		age_tv.setText(sp.getString(XZContranst.age, ""));
 //		area_tv.setText(sp.getString(XZContranst.address, ""));
-		if (!TextUtils.isEmpty(sp.getString(XZContranst.cityName, ""))){
+		if (TextUtils.equals(sp.getString(XZContranst.cityName, ""),"null")){
+			area_tv.setText("");
+		}else {
 			area_tv.setText(sp.getString(XZContranst.cityName, ""));
 		}
 		signature_tv.setText(sp.getString(XZContranst.signature, ""));

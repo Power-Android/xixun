@@ -79,7 +79,7 @@
         android:layout_marginBottom="3dp"
         android:text="达人"
         android:textColor="@color/white"
-        android:textSize="7sp" />
+        android:textSize="8sp" />
 
     <TextView
         android:id="@+id/item_master_address"

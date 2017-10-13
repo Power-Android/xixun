@@ -44,11 +44,17 @@ import com.umeng.socialize.UMShareConfig;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.UserInfo;
+
 public class LoginActivity extends BaseActivity implements Callback,
-        OnClickListener {
+        OnClickListener , RongIM.UserInfoProvider{
 
 	private ImageView back,login_qq,login_weixin,login_weibo;
 	private TextView title, login_forgetpwd;
@@ -74,6 +80,11 @@ public class LoginActivity extends BaseActivity implements Callback,
 			super.handleMessage(msg);
 
 			if (msg.what == 1) {// 成功
+				LogUtil.e(TAG, "token得知"+sp.getString(XZContranst.token, ""));
+				if(!TextUtils.isEmpty(sp.getString(XZContranst.token, ""))){
+					connectRongServer(sp.getString(XZContranst.token, ""));
+					RongIM.setUserInfoProvider(LoginActivity.this, true);
+				}
 //				ToastUtil.showToast(getApplicationContext(), info);
 				
 //				if (TextUtils.isEmpty(mycenter)) {
@@ -127,6 +138,59 @@ public class LoginActivity extends BaseActivity implements Callback,
 		mLocationClient.start();
 
 
+	}
+
+	private void connectRongServer(String token){
+		RongIM.connect(token, new RongIMClient.ConnectCallback() {
+			@Override
+			public void onTokenIncorrect() {
+				Log.e(TAG, "--onTokenIncorrect");
+			}
+
+			@Override
+			public void onSuccess(String userid) {
+				Log.e(TAG, "--onSuccess" + userid);
+				SharedPreferences.Editor editor = getSharedPreferences("config", MODE_PRIVATE).edit();
+				editor.putString("loginid", userid);
+				editor.putBoolean("exit", false);
+				editor.putString("loginToken", sp.getString(XZContranst.token, ""));
+				editor.putString("loginnickname", sp.getString(XZContranst.nickname, ""));
+				editor.putString("loginPortrait", sp.getString(XZContranst.face, ""));
+				editor.apply();
+				userIdList = new ArrayList<Friend>();
+				//id  名字  头像
+				userIdList.add(new Friend(userid,sp.getString(XZContranst.nickname, ""),sp.getString(XZContranst.face, "")));
+				/**
+				 * 设置当前用户信息，
+				 * @param userInfo 当前用户信息
+				 */
+				RongIM.getInstance().setCurrentUserInfo(getUserInfo(userid));
+				/**
+				 * 设置消息体内是否携带用户信息。
+				 * @param state 是否携带用户信息，true 携带，false 不携带。
+				 */
+				RongIM.getInstance().setMessageAttachedUserInfo(true);
+
+			}
+
+			@Override
+			public void onError(RongIMClient.ErrorCode errorCode) {
+
+				Log.e(TAG, "--onError" + errorCode);
+			}
+		});
+	}
+
+	@Override
+	public UserInfo getUserInfo(String userId) {
+
+		for (com.power.travel.xixuntravel.model.Friend i : userIdList) {
+			if (i.getUserId().equals(userId)) {
+				Log.e(TAG, "---------返回的用户信息-----------" + i.getPortraitUri());
+				return new UserInfo(i.getUserId(),i.getUserName(), Uri.parse(i.getPortraitUri()));
+			}
+		}
+		return null;
 	}
 
 	private void initUM() {

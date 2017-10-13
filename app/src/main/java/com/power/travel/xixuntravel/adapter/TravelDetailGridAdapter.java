@@ -161,7 +161,7 @@ public class TravelDetailGridAdapter extends BaseAdapter {
 			imageLoader.displayImage(url, viewHolder.imageView, options,
 					animateFirstListener);
 		} else {
-			imagebtn_params.height = dm.widthPixels-40;
+			imagebtn_params.height = dm.heightPixels;
 			viewHolder.imageView2.setLayoutParams(imagebtn_params);
 			viewHolder.imageView.setVisibility(View.GONE);
 			viewHolder.imageView2.setVisibility(View.VISIBLE);

@@ -13,8 +13,8 @@
       <com.power.travel.xixuntravel.weight.MyImageViewSize
         android:id="@+id/iv_user_img2"
         android:layout_width="fill_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/app_name"
-        android:scaleType="centerCrop" />
+        android:scaleType="fitXY" />
 
 </RelativeLayout>

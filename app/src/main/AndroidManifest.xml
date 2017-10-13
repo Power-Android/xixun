@@ -514,10 +514,9 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <!--解决7.0照相机崩溃问题-->
+        <!-- 解决7.0照相机崩溃问题 -->
 
-
-
+        <activity android:name=".activity.ChuangJianPwdActivity"></activity>
     </application>
 
 </manifest>

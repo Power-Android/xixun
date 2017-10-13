@@ -90,7 +90,9 @@ public class Regist_BangDingActivity extends BaseActivity implements
 	DisplayImageOptions options;
 	private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 	private java.util.List<Friend> userIdList;
-	
+	private Intent intent1;
+
+
 	private Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -104,7 +106,7 @@ public class Regist_BangDingActivity extends BaseActivity implements
 			} else if (msg.what == 0) {// 失败
 				ToastUtil.showToast(getApplicationContext(), info);
 			} else if (msg.what == -1) {// 其他情况
-				ToastUtil.showToast(getApplicationContext(), info);
+
 			} else if (msg.what == 9) {// 上传头像
 //				regist_head.setImageBitmap(photo);
 				uploadHead();
@@ -131,7 +133,14 @@ public class Regist_BangDingActivity extends BaseActivity implements
 				setResult(301, intent);
 				finish();
 			} else if(msg.what==-3){//绑定是失败
-				ToastUtil.showToast(getApplicationContext(), info);
+				Intent intent = new Intent(Regist_BangDingActivity.this,ChuangJianPwdActivity.class);
+				intent.putExtra("openid",openid);
+				intent.putExtra("type",type);
+				intent.putExtra("mobile",regist_account.getText().toString());
+				intent.putExtra("nickname",nicheng);
+				intent.putExtra("face",touxiang);
+				startActivityForResult(intent,5);
+				finish();
 			}
 			if (pd != null && Regist_BangDingActivity.this != null) {
 				pd.dismiss();
@@ -352,6 +361,13 @@ public class Regist_BangDingActivity extends BaseActivity implements
 			setResult(101, intent);
 			finish();
 			break;
+
+			case 5:
+				if (data != null){
+//					intent1 = data;
+					handler.sendEmptyMessage(3);
+				}
+
 		default:
 			break;
 		}
