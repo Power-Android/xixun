@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    <dimen name="activity_title_high">45dp</dimen>
+     <dimen name="activity_title_size">19sp</dimen><!-- title字体 -->
+     <dimen name="text_mbig_size">17sp</dimen><!-- 按钮的字体 例如 注册中的下一步-->
+     <dimen name="text_big_size">16sp</dimen><!-- 主要使用的字体大小 对应-->
+     <dimen name="text_mid2_size">15sp</dimen><!-- 主要使用的字体大小 对应46-->
+      <dimen name="text_mid1.5_size">14.5sp</dimen><!-- 主要使用的字体大小 对应44-->
+    <dimen name="text_mid_size">14sp</dimen><!-- 主要使用的字体大小 对应40 42-->
+    <dimen name="text_small_size">13sp</dimen><!-- 注册界面 注册协议用-->
+    <dimen name="text_toosmall2_size">12sp</dimen>
+     <dimen name="text_toosmall1_size">11sp</dimen>
+    <dimen name="text_toosmall_size">10sp</dimen>
+     <dimen name="round_textSize">60sp</dimen>
+     <dimen name="round_textSize2">15sp</dimen>
+
+</resources>

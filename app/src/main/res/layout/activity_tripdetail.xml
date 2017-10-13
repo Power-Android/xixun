@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xmlbackground"
+        android:orientation="vertical" >
+
+        <com.power.travel.xixuntravel.weight.GradationScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/info_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#90000000" >
+
+                    <ImageView
+                        android:id="@+id/sender_head_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:scaleType="centerCrop" 
+                        android:background="@drawable/background_zhe"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:padding="10dp" >
+
+                        <ImageView
+                            android:id="@+id/sender_head"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/circle_face" />
+
+                        <TextView
+                            android:id="@+id/sender_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/sender_head"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="10dp"
+                            android:singleLine="true"
+                            android:layout_toRightOf="@+id/sender_head"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_big_size" />
+
+                        <ImageView
+                            android:id="@+id/sender_sex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/sender_name"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/sender_name" />
+
+                        <TextView
+                            android:id="@+id/sender_sign"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/sender_name"
+                            android:layout_marginTop="5dp"
+                             android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/sender_head"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_mid2_size" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext_graybg"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp" >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tripdetail_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:maxEms="12"
+                            android:singleLine="true"
+                            android:ellipsize="end"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" />
+
+                        <RelativeLayout
+                            android:id="@+id/item_alltrip_attentin_layout"
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp">
+                            <ImageView
+                                android:id="@+id/item_alltrip_attentin_type"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerHorizontal="true"
+                                android:src="@drawable/my_travel_praise" />
+                            <TextView
+                                android:layout_below="@+id/item_alltrip_attentin_type"
+                                android:id="@+id/item_alltrip_attentin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="关注"
+                                android:layout_centerHorizontal="true"
+                                android:textColor="@color/text_color_gray2"
+                                android:textSize="@dimen/text_toosmall2_size" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/tripdetail_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_color_gray2"
+                            android:textSize="@dimen/text_mid2_size" />
+
+                        <TextView
+                            android:id="@+id/tripdetail_see"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/tripdetail_time"
+                            android:textColor="@color/text_color_gray2"
+                            android:textSize="@dimen/text_mid2_size" />
+
+                        <TextView
+                            android:id="@+id/tripdetail_comment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/tripdetail_see"
+                            android:textColor="@color/text_color_gray2"
+                            android:textSize="@dimen/text_mid2_size" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tripdetail_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_big_size" />
+
+                    <RelativeLayout
+                        android:id="@+id/tripdetail_sdtime_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center_vertical"
+                        android:visibility="gone" >
+
+                        <ImageView
+                            android:id="@+id/my_trip_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:clickable="true"
+                            android:src="@drawable/public_trips_trip" >
+                        </ImageView>
+
+                        <TextView
+                            android:id="@+id/tripdetail_sdtime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/my_trip_iv"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_mid2_size" >
+                        </TextView>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/tripdetail_yueban_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:visibility="gone" >
+
+                        <ImageView
+                            android:id="@+id/my_travel_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:clickable="true"
+                            android:src="@drawable/trips_public_yueban" >
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/my_travel_iv"
+                            android:text="约伴"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_mid2_size" >
+                        </TextView>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/tripdetail_youche_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:visibility="gone" >
+
+                        <ImageView
+                            android:id="@+id/my_apply_guide_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:clickable="true"
+                            android:src="@drawable/trips_public_car" >
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/my_apply_guide_iv"
+                            android:text="有车"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" >
+                        </TextView>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/tripdetail_pinche_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:visibility="gone" >
+
+                        <ImageView
+                            android:id="@+id/my_apply_driver_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:clickable="true"
+                            android:src="@drawable/trips_public_car_no" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/my_apply_driver_iv"
+                            android:text="拼车"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" />
+                    </RelativeLayout>
+
+                    <com.power.travel.xixuntravel.weight.MyListView
+                        android:id="@+id/tripdetail_listview"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="15dp"
+                        android:cacheColorHint="#00000000"
+                        android:divider="@null"
+                        android:dividerHeight="5dp"
+                        android:fadingEdge="none"
+                        android:fastScrollEnabled="false"
+                        android:footerDividersEnabled="true"
+                        android:headerDividersEnabled="false"
+                        android:listSelector="@android:color/transparent"
+                        android:scrollbars="none"
+                        android:smoothScrollbar="true" 
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </com.power.travel.xixuntravel.weight.GradationScrollView>
+
+        <LinearLayout
+            android:id="@+id/tripdetail_comment_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <EditText
+                android:id="@+id/tripdetail_comment_edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="7dp"
+                android:layout_toLeftOf="@+id/tripdetail_comment_layout2"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_linewhitebg2"
+                android:focusable="false"
+                android:hint="说点什么吧"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_mid_size" />
+
+            <LinearLayout
+                android:id="@+id/tripdetail_comment_layout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_weight="4"
+                android:background="@drawable/edittext_linewhitebg2"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp" >
+
+                <TextView
+                    android:id="@+id/tripdetail_comment_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid_size" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/traveldetail_comment" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/item_title_layout2" />
+
+</RelativeLayout>

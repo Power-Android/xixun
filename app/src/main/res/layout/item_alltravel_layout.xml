@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/item_alltravel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp">
+
+        <LinearLayout
+            android:id="@+id/iv_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="visible">
+            <ImageView
+                android:id="@+id/item_iv1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:paddingRight="2dp"
+                android:paddingLeft="2dp" />
+            <ImageView
+                android:id="@+id/item_iv2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingRight="2dp"
+                android:paddingLeft="2dp"
+                android:layout_gravity="center" />
+            <ImageView
+                android:id="@+id/item_iv3"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/item_alltravel_pic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/item_alltravel_pic2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+      <!--   <com.tibettraver.weight.VideoViewFullScreen
+            android:id="@+id/tem_alltravel_videoview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             android:layout_centerInParent="true"
+            android:visibility="gone" /> -->
+
+        <ImageView
+            android:id="@+id/item_alltravel_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/item_alltravel_pic"
+            android:layout_alignTop="@+id/item_alltravel_pic"
+            android:layout_centerInParent="true"
+            android:src="@drawable/play_big"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/item_userimg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_alltravel"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/tablayout_top_bg"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/item_alltravel_head"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/circle_face"
+            android:padding="2dp" />
+
+        <TextView
+            android:id="@+id/item_alltravel_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_mid2_size" />
+    </LinearLayout>
+
+</RelativeLayout>

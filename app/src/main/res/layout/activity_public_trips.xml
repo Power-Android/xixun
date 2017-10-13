@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/xmlbackground_color"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xmlbackground"
+        android:orientation="vertical" >
+
+        <include layout="@layout/item_title_layout" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/edittext_whitebg"
+                    android:orientation="vertical" >
+
+                    <EditText
+                        android:id="@+id/trips_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="为您的行程取一个标题吧"
+                        android:padding="10dp"
+                        android:maxLines="3"
+                        android:ellipsize="end"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_mid2_size" />
+
+                    <View style="@style/LineStyle" />
+
+                    <EditText
+                        android:id="@+id/trips_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:gravity="top"
+                        android:hint="详细描述一下行程吧"
+                        android:minLines="4"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_mid2_size" />
+
+                    <com.power.travel.xixuntravel.weight.MyGridView
+                        android:id="@+id/noScrollgridview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:horizontalSpacing="10dp"
+                        android:numColumns="4"
+                        android:scrollbars="none"
+                        android:verticalSpacing="10dp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/edittext_whitebg"
+                    android:orientation="vertical"
+                    android:padding="10dp" >
+
+                    <ImageView
+                        android:id="@+id/trip_start_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:clickable="true"
+                        android:src="@drawable/trips_public_start" >
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/trip_start_iv"
+                        android:layout_alignTop="@+id/trip_start_iv"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/trip_start_iv"
+                        android:gravity="center_vertical"
+                        android:text="出发地"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_big_size" >
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/trips_province"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/edittext_more_bg"
+                            android:drawableRight="@drawable/more_down"
+                            android:padding="5dp"
+                            android:text="省"
+                            android:textColor="@color/text_color_gray1"
+                            android:textSize="@dimen/text_mid_size" 
+                            android:singleLine="true"/>
+
+                        <TextView
+                            android:id="@+id/trips_city"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/edittext_more_bg"
+                            android:drawableRight="@drawable/more_down"
+                            android:padding="5dp"
+                            android:text="市"
+                            android:textColor="@color/text_color_gray1"
+                            android:textSize="@dimen/text_mid_size" 
+                            android:singleLine="true"/>
+
+                        <TextView
+                            android:id="@+id/trips_country"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/edittext_more_bg"
+                            android:drawableRight="@drawable/more_down"
+                            android:padding="5dp"
+                            android:text="区"
+                            android:textColor="@color/text_color_gray1"
+                            android:textSize="@dimen/text_mid_size" 
+                            android:singleLine="true"/>
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/trips_start_ed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/trip_start_iv"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edittext_linewhitebg"
+                        android:hint="详细地址"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_mid2_size" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/edittext_graybg"
+                    android:orientation="vertical"
+                    android:padding="10dp" >
+
+                    <RelativeLayout
+                        android:id="@+id/trip_trip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical" >
+
+                        <ImageView
+                            android:id="@+id/my_trip_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:clickable="true"
+                            android:src="@drawable/public_trips_trip" >
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                          
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/my_trip_iv"
+                            android:text="行程"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" >
+                        </TextView>
+  						<TextView
+                            android:id="@+id/trip_time_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/my_trip_iv2"
+                            android:textColor="@color/black"
+                            android:layout_marginRight="5dp"
+                            android:textSize="@dimen/text_mid1.5_size" >
+                        </TextView>
+                        <ImageView
+                             android:id="@+id/my_trip_iv2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:clickable="false"
+                            android:src="@drawable/right" />
+                    </RelativeLayout>
+
+                    <View
+                        style="@style/LineStyle"
+                        android:layout_marginTop="10dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/my_travel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical" >
+
+                        <ImageView
+                            android:id="@+id/my_travel_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:clickable="true"
+                            android:src="@drawable/trips_public_yueban" >
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/my_travel_iv"
+                            android:text="约伴"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" >
+                        </TextView>
+
+                        <CheckBox
+                            android:id="@+id/trips_public_yueban"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@null"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp" />
+                    </RelativeLayout>
+
+                    <View
+                        style="@style/LineStyle"
+                        android:layout_marginTop="10dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/my_apply_guide"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical" >
+
+                        <ImageView
+                            android:id="@+id/my_apply_guide_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:clickable="true"
+                            android:src="@drawable/trips_public_car" >
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/my_apply_guide_iv"
+                            android:text="有车"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" >
+                        </TextView>
+
+                        <CheckBox
+                            android:id="@+id/trips_public_car"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@null"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp" />
+                    </RelativeLayout>
+
+                    <View
+                        style="@style/LineStyle"
+                        android:layout_marginTop="10dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/my_apply_driver"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical" >
+
+                        <ImageView
+                            android:id="@+id/my_apply_driver_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:clickable="true"
+                            android:src="@drawable/trips_public_car_no" >
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/my_apply_driver_iv"
+                            android:text="拼车"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" >
+                        </TextView>
+
+                        <CheckBox
+                            android:id="@+id/trips_public_pincar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@null"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

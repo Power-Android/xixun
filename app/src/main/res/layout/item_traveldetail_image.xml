@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    android:gravity="center"
+    android:layout_gravity="center">
+
+    <!-- 用户图片，用gridview，最多4张图片，标题可有/可无-ui -->
+
+    <com.power.travel.xixuntravel.weight.MyGridView
+        android:id="@+id/image_gridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="1dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="1dp"
+        android:visibility="gone" />
+
+    <com.power.travel.xixuntravel.video.SurfaceVideoView
+        android:id="@+id/videoview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:fitsSystemWindows="true"
+        android:saveEnabled="true"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/loading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" 
+        android:visibility="gone"/>
+
+</RelativeLayout>

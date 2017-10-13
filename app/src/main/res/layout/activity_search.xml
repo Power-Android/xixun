@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/xmlbackground_color"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xmlbackground"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/addaddress_title"
+            style="@style/Title_RelativeLayoutStyle"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" >
+
+            <ImageView
+                android:id="@+id/back"
+                style="@style/Title_ImageViewBack"
+                android:layout_centerVertical="true"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@+id/back_tv"
+                android:layout_toRightOf="@+id/back"
+                android:background="@drawable/edittext_search_bg"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/type_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="10dp"
+                    android:text="全部"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_small_size" />
+
+                <ImageView
+                    android:id="@+id/search_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/type_tv"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/search_gray" />
+
+                <EditText
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/search_shanchu"
+                    android:layout_toRightOf="@+id/search_iv"
+                    android:background="@null"
+                    android:hint="搜索  游记/旅行地/人"
+                    android:imeOptions="actionSearch"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid2_size" />
+
+                <ImageView
+                    android:id="@+id/search_shanchu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/hc_3x_271"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/back_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:drawablePadding="5dp"
+                android:padding="10dp"
+                android:text="取消"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_mid_size" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/history_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/edittext_graybg"
+                    android:orientation="vertical"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:id="@+id/history_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="历史搜索"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_mid2_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/line_gray" />
+
+                    <com.power.travel.xixuntravel.weight.MyListView
+                        android:id="@+id/history_listview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@color/line_gray"
+                        android:dividerHeight="1dp"
+                        android:fadingEdge="none"
+                        android:fastScrollEnabled="false"
+                        android:footerDividersEnabled="false"
+                        android:headerDividersEnabled="false"
+                        android:listSelector="@android:color/transparent"
+                        android:scrollbars="none"
+                        android:smoothScrollbar="true" >
+                    </com.power.travel.xixuntravel.weight.MyListView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/line_gray" />
+
+                    <TextView
+                        android:id="@+id/history_clear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:padding="10dp"
+                        android:text="清空历史搜索"
+                        android:textColor="@color/text_gray_color3"
+                        android:textSize="@dimen/text_mid2_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/travel_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext_graybg"
+                    android:orientation="vertical"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="游记"
+                        android:textColor="@color/text_color_gray1"
+                        android:textSize="@dimen/text_big_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@color/edittext_bg_color_shen" />
+
+                    <com.power.travel.xixuntravel.weight.MyListView
+                        android:id="@+id/travelListView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:cacheColorHint="#00000000"
+                        android:divider="@color/edittext_bg_color_shen"
+                        android:dividerHeight="1dp"
+                        android:fadingEdge="none"
+                        android:fastScrollEnabled="false"
+                        android:footerDividersEnabled="false"
+                        android:headerDividersEnabled="true"
+                        android:listSelector="@android:color/transparent"
+                        android:smoothScrollbar="true" >
+                    </com.power.travel.xixuntravel.weight.MyListView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@color/edittext_bg_color_shen" />
+
+                    <TextView
+                        android:id="@+id/travelmore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="查看更多"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_mid_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/trip_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext_graybg"
+                    android:orientation="vertical"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="行程"
+                        android:textColor="@color/text_color_gray1"
+                        android:textSize="@dimen/text_big_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@color/edittext_bg_color_shen" />
+
+                    <com.power.travel.xixuntravel.weight.MyListView
+                        android:id="@+id/tripListView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:cacheColorHint="#00000000"
+                        android:divider="@color/edittext_bg_color_shen"
+                        android:dividerHeight="1dp"
+                        android:fadingEdge="none"
+                        android:fastScrollEnabled="false"
+                        android:footerDividersEnabled="false"
+                        android:headerDividersEnabled="true"
+                        android:listSelector="@android:color/transparent"
+                        android:smoothScrollbar="true" >
+                    </com.power.travel.xixuntravel.weight.MyListView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@color/edittext_bg_color_shen" />
+
+                    <TextView
+                        android:id="@+id/tripmore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="查看更多"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_mid_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/member_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext_graybg"
+                    android:orientation="vertical"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="用户"
+                        android:textColor="@color/text_color_gray1"
+                        android:textSize="@dimen/text_big_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@color/edittext_bg_color_shen" />
+
+                    <com.power.travel.xixuntravel.weight.MyListView
+                        android:id="@+id/memberListView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:cacheColorHint="#00000000"
+                        android:divider="@color/edittext_bg_color_shen"
+                        android:dividerHeight="1dp"
+                        android:fadingEdge="none"
+                        android:fastScrollEnabled="false"
+                        android:footerDividersEnabled="false"
+                        android:headerDividersEnabled="true"
+                        android:listSelector="@android:color/transparent"
+                        android:smoothScrollbar="true" >
+                    </com.power.travel.xixuntravel.weight.MyListView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@color/edittext_bg_color_shen" />
+
+                    <TextView
+                        android:id="@+id/membermore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="查看更多"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_mid_size" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

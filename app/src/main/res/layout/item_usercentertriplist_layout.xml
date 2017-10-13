@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/edittext_graybg"
+    android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/ll_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp" >
+
+            <ImageView
+                android:id="@+id/item_trip_face"
+                android:layout_width="90dp"
+                android:layout_height="90dp" />
+
+            <TextView
+                android:id="@+id/item_trip_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/item_trip_face"
+                android:text="昵称"
+                android:maxEms="3"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_big_size" />
+
+            <TextView
+                android:id="@+id/item_trip_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_trip_title"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@+id/item_trip_face"
+                android:text="时间"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_mid2_size" />
+
+            <TextView
+                android:id="@+id/item_trip_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_trip_time"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@+id/item_trip_face"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="内容"
+                android:textColor="@color/text_color_gray1"
+                android:textSize="@dimen/text_mid_size" />
+        </RelativeLayout>
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="8dp"-->
+        <!--android:background="@drawable/xmlbackground_color"/>-->
+
+</LinearLayout>

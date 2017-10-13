@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/xmlbackground_color"
+    android:orientation="vertical" >
+
+    <include layout="@layout/item_title_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xmlbackground"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/info_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/edittext_graybg"
+            android:padding="10dp" >
+
+            <ImageView
+                android:id="@+id/usercenter_head"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+
+            <TextView
+                android:id="@+id/usercenter_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:maxEms="3"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:layout_toRightOf="@+id/usercenter_head"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_big_size" />
+
+            <TextView
+                android:id="@+id/usercenter_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/usercenter_name"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/usercenter_head"
+                android:textColor="@color/text_color_gray2"
+                android:textSize="@dimen/text_mid2_size" />
+
+            <TextView
+                android:id="@+id/usercenter_sign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/usercenter_id"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/usercenter_head"
+                android:textColor="@color/text_color_gray2"
+                android:textSize="@dimen/text_mid2_size" />
+
+            <ImageView
+                android:id="@+id/usercenter_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/usercenter_name" />
+
+            <ImageView
+                android:id="@+id/praise_iv"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/praise_black"
+                android:layout_toRightOf="@+id/usercenter_ifdriver"/>
+
+            <ImageView
+                android:id="@+id/usercenter_ifguide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/usercenter_name"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="1dp"
+                android:layout_toRightOf="@+id/usercenter_sex"
+                android:src="@drawable/alltrip_guider"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/usercenter_ifdriver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/usercenter_name"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="1dp"
+                android:layout_toRightOf="@+id/usercenter_ifguide"
+                android:src="@drawable/driver"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/usercenter_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/usercenter_name"
+                android:layout_alignParentRight="true"
+                android:drawableLeft="@drawable/distance"
+                android:drawablePadding="3dp"
+                android:maxEms="6"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_mid_size" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_graybg"
+                android:orientation="horizontal" >
+
+                <RadioGroup
+                    android:id="@+id/usercenter_radiogroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/tablayout_usercenter_top_bg"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/tab_rb_yueban"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/tab_btn_selectedbg_yueban_left"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="约伴"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_mid2_size" />
+
+                    <RadioButton
+                        android:id="@+id/tab_rb_travel"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="游记"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_mid2_size" />
+                </RadioGroup>
+            </LinearLayout>
+
+
+
+            <com.handmark.pulltorefresh.library.PullToRefreshListView
+                android:id="@+id/us_yueban_listview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:cacheColorHint="#00000000"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:dividerHeight="8dp"
+                android:fastScrollEnabled="false"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:listSelector="@android:color/transparent"
+                android:scrollbars="none"
+                android:smoothScrollbar="true" >
+            </com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+            <com.handmark.pulltorefresh.library.PullToRefreshListView
+                android:id="@+id/us_travel_listview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/edittext_graybg"
+                android:layout_marginTop="8dp"
+                android:cacheColorHint="#00000000"
+                android:divider="@null"
+                android:dividerHeight="8dp"
+                android:fadingEdge="none"
+                android:fastScrollEnabled="false"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:listSelector="@android:color/transparent"
+                android:scrollbars="none"
+                android:smoothScrollbar="true" >
+            </com.handmark.pulltorefresh.library.PullToRefreshListView>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

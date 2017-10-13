@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/hsv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/edittext_whitebg"
+    android:orientation="vertical"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/ll_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp" >
+
+            <!--<ImageView-->
+                <!--android:id="@+id/item_trip_face"-->
+                <!--android:layout_width="90dp"-->
+                <!--android:layout_height="90dp" />-->
+            <ImageView
+                android:id="@+id/item_trip_face"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/circle_face" />
+
+            <TextView
+                android:id="@+id/item_trip_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/item_trip_face"
+                android:text="昵称"
+                android:textColor="@color/tab_text_select_color"
+                android:textSize="@dimen/text_big_size" />
+
+            <RelativeLayout
+                android:id="@+id/item_trip_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_below="@+id/item_trip_title"
+                android:layout_toRightOf="@+id/item_trip_face">
+                <TextView
+                    android:id="@+id/item_trip_dath"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="旅行天数"
+                    android:textColor="@color/text_color_gray2" />
+
+                <TextView
+                    android:id="@+id/item_alltrip_ifyueban"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/text_huang_bg"
+                    android:layout_toLeftOf="@+id/item_alltrip_ifyuecar"
+                    android:layout_alignBottom="@+id/item_trip_dath"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="约伴"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_toosmall_size" />
+
+                <TextView
+                    android:id="@+id/item_alltrip_ifyuecar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="2dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:background="@drawable/textview_graybg"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignBottom="@+id/item_trip_dath"
+                    android:drawableLeft="@drawable/trip_car"
+                    android:text="租车"
+                    android:textColor="@color/text_color_gray2"
+                    android:textSize="@dimen/text_toosmall_size" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="5dp"
+                android:background="@color/text_color_gray2"
+                android:layout_toRightOf="@+id/item_trip_face"
+                android:layout_below="@+id/item_trip_rl"
+                android:layout_marginRight="40dp"/>
+
+            <ImageView
+                android:id="@+id/time_icon"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/clock__easyicon"
+                android:layout_below="@+id/item_trip_face"
+                android:layout_toRightOf="@+id/item_trip_face" />
+
+            <TextView
+                android:id="@+id/item_trip_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_trip_face"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/time_icon"
+                android:text="出发时间："
+                android:textColor="@color/tab_text_select_color"
+                android:textSize="@dimen/text_mid2_size" />
+
+            <ImageView
+                android:id="@+id/location_iv"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/pin_easyicon"
+                android:layout_below="@+id/time_icon"
+                android:layout_toRightOf="@+id/item_trip_face"
+                android:layout_marginTop="13dp" />
+
+            <TextView
+                android:id="@+id/item_trip_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_trip_time"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/location_iv"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="目  的  地：西藏"
+                android:textColor="@color/tab_text_select_color"
+                android:textSize="@dimen/text_mid2_size" />
+
+            <ImageView
+                android:id="@+id/clock_mudi_iv"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/clock_easyicon_two"
+                android:layout_below="@+id/item_trip_content"
+                android:layout_toRightOf="@+id/item_trip_face"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:id="@+id/item_go_where"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:layout_below="@+id/item_trip_content"
+                android:layout_toRightOf="@+id/clock_mudi_iv"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="出发地点："
+                android:textSize="@dimen/text_mid2_size"
+                android:textColor="@color/tab_text_select_color"/>
+
+            <TextView
+                android:id="@+id/item_trip_canceltype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/item_trip_rl"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/item_trip_rl"
+                android:background="@drawable/edittext_cirle2bg"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp"
+                android:text="取消"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_small_size" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_action"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/recover"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/edittext_bg_color"
+                android:padding="10dp"
+                android:text="恢复"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_big_size"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/gray1"
+                android:padding="10dp"
+                android:text="取消"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_big_size"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/delet"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/red3"
+                android:padding="10dp"
+                android:text="删除"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_big_size" />
+            <Button
+                android:id="@+id/none"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/red3"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_big_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</HorizontalScrollView>

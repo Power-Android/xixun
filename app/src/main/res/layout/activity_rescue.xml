@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/xmlbackground_color"
+    android:orientation="vertical" >
+
+    <include layout="@layout/item_title_layout" />
+
+    <RadioGroup
+        android:id="@+id/main_radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/tablayout_top_bg"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/tab_rb_news"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/tab_btn_selectedbg"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="紧急通告"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_mid2_size" />
+
+        <RadioButton
+            android:id="@+id/tab_rb_phone"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="救援电话"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_mid2_size" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/tab_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/xmlbackground_color"
+    android:orientation="vertical" >
+
+    <include layout="@layout/item_title_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xmlbackground"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical" >
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/edittext_graybg"
+                android:scrollbars="none" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:id="@+id/sender_head"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/circle_face" />
+
+                        <TextView
+                            android:id="@+id/sender_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/traveldetail_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_big_size" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@color/black3" >
+
+                        <include
+                            android:id="@+id/activity_dyn_image_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            layout="@layout/item_traveldetail_image" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:id="@+id/traveldetail_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_color_gray2"
+                            android:textSize="@dimen/text_mid_size" />
+
+                        <LinearLayout
+                            android:id="@+id/traveldetail_praise_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@+id/traveldetail_commentnum"
+                            android:drawableLeft="@drawable/recommend_nozan"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp" >
+
+                            <ImageView
+                                android:id="@+id/traveldetail_praise_iv"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:focusable="false"
+                                android:src="@drawable/traveldetail_nopraise" />
+
+                            <TextView
+                                android:id="@+id/traveldetail_praise_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:textColor="@color/text_color_gray2"
+                                android:textSize="@dimen/text_mid_size" />
+                        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/traveldetail_commentnum_iv"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/traveldetail_commentnum"
+                            android:src="@drawable/traveldetail_comment" />
+                        <TextView
+                            android:id="@+id/traveldetail_commentnum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/text_color_gray2"
+                            android:layout_alignParentRight="true"
+                            android:textSize="@dimen/text_mid_size"/>
+                        <!--<TextView-->
+                            <!--android:id="@+id/traveldetail_commentnum"-->
+                            <!--android:layout_width="20dp"-->
+                            <!--android:layout_height="20dp"-->
+                            <!--android:layout_alignParentRight="true"-->
+                            <!--android:drawableLeft="@drawable/traveldetail_comment"-->
+                            <!--android:drawablePadding="5dp"-->
+                            <!--android:textColor="@color/text_color_gray2"-->
+                            <!--android:textSize="@dimen/text_mid_size" />-->
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/gray_comment"
+                        android:orientation="horizontal" >
+
+                        <com.power.travel.xixuntravel.weight.MyListView
+                            android:id="@+id/traveldetail_commentlistview"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:cacheColorHint="#00000000"
+                            android:divider="@color/line_gray_comment"
+                            android:dividerHeight="1dp"
+                            android:fadingEdge="none"
+                            android:fastScrollEnabled="false"
+                            android:footerDividersEnabled="false"
+                            android:headerDividersEnabled="false"
+                            android:listSelector="@android:color/transparent"
+                            android:scrollbars="none"
+                            android:smoothScrollbar="true" />
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/traveldetail_comment_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="7dp"
+                android:layout_toLeftOf="@+id/traveldetail_comment"
+                android:background="@drawable/edittext_linewhitebg2"
+                android:hint="回复"
+                android:maxHeight="60dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_mid_size" />
+
+            <TextView
+                android:id="@+id/traveldetail_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignBottom="@+id/traveldetail_comment_edit"
+                android:background="@drawable/edittext_linewhitebg2"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text="回复"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_mid_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

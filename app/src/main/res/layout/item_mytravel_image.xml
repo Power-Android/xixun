@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <!-- 用户图片，用gridview，最多4张图片，标题可有/可无-ui -->
+
+    <com.power.travel.xixuntravel.weight.MyGridView
+        android:id="@+id/image_gridView"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="1dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="1dp" />
+<!-- com.tibettraver.weight.CollapsibleTextView -->
+    <TextView
+        android:id="@+id/image_text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/image_gridView"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_mid2_size" 
+        android:maxLines="2"
+        android:ellipsize="end"/>
+
+    <TextView
+        android:id="@+id/image_text_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/image_gridView"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/image_gridView"        
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_small_size" />
+    
+
+
+</RelativeLayout>

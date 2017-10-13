@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/xmlbackground_color"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xmlbackground"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/addaddress_title"
+            style="@style/Title_RelativeLayoutStyle" >
+
+            <ImageView
+                android:id="@+id/back"
+                style="@style/Title_ImageViewBack"
+                android:layout_centerVertical="true" >
+            </ImageView>
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="10dp"
+                android:text="标题"
+                android:textColor="@color/title_text_color"
+                android:textSize="@dimen/activity_title_size" />
+
+            <TextView
+                android:id="@+id/changename_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:padding="10dp"
+                android:text="发送"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_big_size" 
+                android:visibility="gone"/>
+        </RelativeLayout>
+        <SurfaceView
+            android:id="@+id/surfaceview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:layout_gravity="center"/>
+
+        <ProgressBar
+            android:id="@+id/update_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="4dp" />
+
+        <TextView
+            android:id="@+id/start_record"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/circle_video_normal" 
+            android:text="按住拍"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_big_size"/>
+
+        <LinearLayout
+            android:id="@+id/ll_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="48dp"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" 
+                 android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:text="00:00"
+                android:textColor="#fff"
+                android:textSize="24sp" 
+                 android:visibility="gone"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

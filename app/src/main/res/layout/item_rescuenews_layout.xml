@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/title_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/item_rescuenews_right"
+            android:paddingTop="8dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="8dp"
+            android:text="标题"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_mid2_size" >
+        </TextView>
+
+        <ImageView
+            android:id="@+id/item_rescuenews_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
+            android:src="@drawable/right" />
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/item_rescuenews_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/item_rescuenews_right"
+        android:layout_below="@+id/title"
+        android:paddingBottom="8dp"
+        android:paddingRight="5dp"
+        android:gravity="left"
+        android:text="内容"
+        android:visibility="gone"
+        android:textColor="@color/text_color_gray2"
+        android:textSize="@dimen/text_mid_size" />
+
+</LinearLayout>

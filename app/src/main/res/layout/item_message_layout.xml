@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp" >
+
+    <ImageView
+        android:id="@+id/item_message_face"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:id="@+id/item_message_nicheng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/item_message_face"
+        android:textColor="@color/text_color_gray1"
+        android:textSize="@dimen/text_big_size" />
+
+    <ImageView
+        android:id="@+id/item_message_ifguide"
+        android:layout_width="16sp"
+        android:layout_height="16sp"
+        android:layout_alignBottom="@+id/item_message_nicheng"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/item_message_nicheng"
+        android:src="@drawable/alltrip_guider"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/item_message_ifdriver"
+        android:layout_width="16sp"
+        android:layout_height="16sp"
+        android:layout_alignBottom="@+id/item_message_nicheng"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/item_message_ifguide"
+        android:src="@drawable/driver"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/item_message_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_message_nicheng"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_toRightOf="@+id/item_message_face"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_big_size" />
+
+    <TextView
+        android:id="@+id/item_message_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_message_title"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_toRightOf="@+id/item_message_face"
+        android:textColor="@color/text_color_gray1"
+        android:textSize="@dimen/text_mid2_size" />
+
+    <TextView
+        android:id="@+id/item_message_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/item_message_time"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/item_message_time"
+        android:textColor="@color/text_color_gray2"
+        android:textSize="@dimen/text_toosmall2_size" />
+
+    <RelativeLayout
+        android:id="@+id/item_message_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <ImageView
+            android:id="@+id/item_message_pic"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/item_message_videoplay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/play_big"
+                android:visibility="gone" />
+        </RelativeLayout>
+        <!-- 用户发表带图帖子-ui -->
+
+        <include
+            android:id="@+id/activity_dyn_image_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/item_message_image" />
+    </RelativeLayout>
+
+</RelativeLayout>

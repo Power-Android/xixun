@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_contacts">添加好友</string>
+    <string name="Login">登录</string>
+    <string name="hint">提示</string>
+    <string name="record_camera_exit_dialog_message">是否放弃这段视频？</string>
+    <string name="record_camera_cancel_dialog_yes">确定</string>
+    <string name="record_camera_cancel_dialog_no">取消</string>
+    <string name="record_camera_progress_message">正在转码…</string>
+    <string name="record_video_transcoding_faild">视频转码失败</string>
+    <!-- Aming 10月重构版 -->
+    <string name="start_chat">发起聊天</string>
+    <string name="network_not_available">网络不可用</string>
+    <string name="login_api_fail">登录请求接口失败</string>
+    <string name="sync_userinfo_api_fail">同步用户信息接口请求失败</string>
+    <string name="get_token_api_fail">获取token请求接口失败</string>
+    <string name="sync_group_api_fail">同步群组信息请求接口失败</string>
+    <string name="phone_or_psw_error">手机或者密码错误</string>
+    <string name="phone_number_is_null">手机号不能为空</string>
+    <string name="Illegal_phone_number">非法手机号</string>
+    <string name="main_name">融云</string>
+    <string name="main_conversation">会话</string>
+    <string name="main_group">广场</string>
+    <string name="main_chatroom">通讯录</string>
+    <string name="main_customer">意见反馈</string>
+    <string name="private_chat">发起聊天</string>
+    <string name="group_chat">创建群组</string>
+    <string name="password_cannot_contain_spaces">密码不能包含空格</string>
+    <string name="phone_number_available">手机号可用</string>
+    <string name="phone_number_has_been_registered">手机号已被注册</string>
+    <string name="messge_send">短信已发出,请注意查收</string>
+    <string name="message_frequency">短信发送频率超限</string>
+    <string name="captcha_overdue">验证码过期,请重新请求</string>
+    <string name="verification_code_error">验证码错误</string>
+    <string name="register_success">注册成功</string>
+    <string name="forgot_password">找回密码</string>
+    <string name="new_user">新用户</string>
+    <!--actionbar title -->
+    <string name="de_actionbar_myacc">"个人账号"</string>
+    <string name="de_actionbar_sub_group">"群组"</string>
+    <string name="de_actionbar_sub_private">"我的私人会话"</string>
+    <string name="de_actionbar_sub_discussion">"我的讨论组"</string>
+    <string name="de_actionbar_sub_system">"系统消息"</string>
+    <string name="de_actionbar_sub_defult">"聊天"</string>
+    <string name="de_actionbar_set_public">"公众号"</string>
+    <string name="de_actionbar_system">"系统消息"</string>
+    <string name="de_dialog_item_message_delete">删除消息</string>
+    <string name="divided_string">、</string>
+    <string name="join_group">加入了群组</string>
+    <string name="to_join_group">加入了群组</string>
+    <string name="invitation">邀请</string>
+    <string name="version_number">V2.1.0</string>
+    <string name="remove_group_before_str">将</string>
+    <string name="remove_group_after_str">移出了群组</string>
+    <string name="my_groups">群组</string>
+    <string name="update_log">更新日志</string>
+    <string name="code_is_null">验证码为空</string>
+    <string name="name_is_null">昵称不能为空</string>
+    <string name="name_contain_spaces">昵称不能包含空格</string>
+    <string name="remove_group_members">确认移除以下群成员?</string>
+    <string name="add_successful">添加成功</string>
+    <string name="remove_successful">移除成功</string>
+    <string name="least_one_friend">至少选择一位好友</string>
+    <string name="not_send_code">未向服务端获取验证码</string>
+    <string name="get_code">获取验证码</string>
+    <string name="clear_success">清除成功</string>
+    <string name="clear_failure">清除失败</string>
+    <string name="change_group_info">更改群组信息</string>
+    <string name="new_group_name">新的群名称</string>
+    <string name="update_success">更改成功</string>
+    <string name="quit_success">退出成功</string>
+    <string name="you">你</string>
+    <string name="request_friends">请求添加你为好友</string>
+    <string name="edit_phone">请输入 11 位手机号</string>
+    <string name="original_password">初始密码不能为空</string>
+    <string name="new_password_not_null">新密码不能为空</string>
+    <string name="confirm_password_not_null">确认密码不能为空</string>
+    <string name="original_password_mistake">初始密码不正确</string>
+    <string name="passwords_do_not_match">两次密码不一致</string>
+    <string name="original_password_text">初始密码</string>
+    <string name="new_password">新密码</string>
+    <string name="confirm_new_password">确认新密码</string>
+    <string name="group_info">群组信息</string>
+    <string name="group_member_size">全部群成员</string>
+    <string name="group_name">群名称</string>
+    <string name="confirm_quit_group">确认退出群组?</string>
+    <string name="confirm_dismiss_group">确认解散群组?</string>
+    <string name="clean_history">是否清除会话聊天记录?</string>
+    <string name="set_top">会话置顶</string>
+    <string name="messsage_notice">消息免打扰</string>
+    <string name="clean_message">清空聊天信息</string>
+    <string name="send_message">发起聊天</string>
+    <string name="quit_group">删除并退出</string>
+    <string name="dismiss_group">解散并退出</string>
+    <string name="user_details">用户详情</string>
+    <string name="black_state">黑名单状态</string>
+    <string name="nickname">昵称</string>
+    <string name="code">短信验证码</string>
+    <string name="send_code">发送验证码</string>
+    <string name="register">注册</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="confirm">确认</string>
+    <string name="forget_password">忘记密码</string>
+    <string name="Done">完成</string>
+    <string name="exit_app">确定退出应用?</string>
+    <string name="No_friends">暂无好友</string>
+    <string name="Search">搜索</string>
+    <string name="new_friends">新的朋友</string>
+    <string name="group">群组</string>
+    <string name="public_service">公众号</string>
+    <string name="chatroom">聊天室</string>
+    <string name="groups">群聊</string>
+    <string name="chatroom1">聊天室 I</string>
+    <string name="add_success">加入成功</string>
+    <string name="not_group_members">非群组成员不能查看群组详情</string>
+    <string name="check_network">请检查网络</string>
+    <string name="chatroom2">聊天室 II</string>
+    <string name="chatroom3">聊天室 III</string>
+    <string name="chatroom4">聊天室 IV</string>
+    <string name="agreed_friend">已同意好友关系</string>
+    <string name="agree">接&#160;&#160;&#160;受</string>
+    <string name="request">已请求</string>
+    <string name="ignore">已忽略</string>
+    <string name="added">已添加</string>
+    <string name="deleted">已删除</string>
+    <string name="mobile_phone">手机号</string>
+    <string name="change_password">密码修改</string>
+    <string name="select_group_member">选择群组成员</string>
+    <string name="remove_group_member">移除群组成员</string>
+    <string name="add_group_member">添加群组成员</string>
+    <string name="edit_group_name">填写群名称(2-10字)</string>
+    <string name="create_group">创建群组</string>
+    <string name="created_group">创建了群组</string>
+    <string name="change_group_name">修改群名称为</string>
+    <string name="quit_groups">退出了群组</string>
+    <string name="dismiss_groups">解散了群组</string>
+
+    <string name="dismiss_success">解散成功</string>
+    <string name="group_name_not_is_null">群组昵称不能为空</string>
+    <string name="create_group_success">群组创建成功</string>
+    <string name="group_header_api_fail">群组头像接口请求失败</string>
+    <string name="group_create_api_fail">群组创建接口请求失败</string>
+    <string name="phone_unregister">此号码未被注册</string>
+    <string name="group_portrait">群头像</string>
+    <string name="add_friend">加为好友</string>
+    <string name="add_text">加好友信息...</string>
+    <string name="request_success">请求成功</string>
+    <string name="can_not_add_yourself">自己不能添加自己为好友</string>
+    <string name="new_name">新昵称</string>
+    <string name="portrait_update_success">头像更新成功</string>
+    <string name="chat">会话</string>
+    <string name="contacts">通讯录</string>
+    <string name="discover">发现</string>
+    <string name="me">我</string>
+    <string name="mine_about">关于 SealTalk</string>
+    <string name="mine_service">意见反馈</string>
+    <string name="mine_setting">帐号设置</string>
+    <string name="account_setting">帐号设置</string>
+    <string name="exit_login">退出登录</string>
+    <string name="clear_cache">清除缓存</string>
+    <string name="privacy">隐私</string>
+    <string name="new_message">接收新消息通知</string>
+    <string name="message_show_details">通知显示消息详情</string>
+
+    <string name="launched_location_sharing">发起了位置共享</string>
+    <string name="location_sharing_ended">位置共享已结束</string>
+    <string name="location">位置</string>
+    <string name="send_location">发送位置</string>
+    <string name="real_time_location_sharing">实时位置共享</string>
+    <string name="fetching">获取中……</string>
+    <string name="geographical_position">地理位置</string>
+    <string name="you_are_sharing_location">你正在共享位置</string>
+    <string name="person_is_sharing_loaction">人正在共享位置</string>
+    <string name="persons_are_sharing_loaction">人正在共享位置</string>
+    <string name="location_sharing_exit_promt">退出当前页面将会终止实时位置共享,确定退出？</string>
+    <string name="prompt">提示</string>
+    <string name="launched_a_location_sharing">我发起了位置共享</string>
+    <string name="sdk_version_update">SDK版本</string>
+    <string name="sealtalk_version_update">SealTalk版本</string>
+    <string name="all_group_member">全部群成员</string>
+    <string name="group_announcement">群公告</string>
+    <string name="group_code">群二维码</string>
+    <string name="total_member">群成员</string>
+    <string name="select_contact">选择联系人</string>
+    <string name="current_password">原密码</string>
+    <string name="password_hint">6-16个字符,区分大小写</string>
+    <string name="start_voice">语音通话</string>
+    <string name="start_video">视频聊天</string>
+    <string name="browser_download">浏览器打开</string>
+    <string name="loacation_download">本地下载</string>
+    <string name="update_app_model_prepare">准备下载</string>
+    <string name="update_app_model_progress">正在下载 %1$d%2$s</string>
+    <string name="update_app_model_success">下载成功(点击安装)</string>
+    <string name="update_app_model_error">下载失败(点击浏览器下载)</string>
+    <string name="downloading_apk">正在后台下载...</string>
+    <string name="empty_group_notice">请编辑群公告</string>
+    <string name="group_notice_exist_confirm">退出本次编辑</string>
+    <string name="group_notice_post_confirm">该公告会通知全部群成员，是否发布？</string>
+    <string name="group_notice_prefix">\@所有人\n</string>
+    <string name="search_friend">添加好友</string>
+    <string name="setdisplayname">设置备注</string>
+    <string name="new_and_old_password">新旧密码一致</string>
+    <string name="nickname_show">昵称:</string>
+    <string name="function_introduce">功能介绍</string>
+    <!--设置-->
+    <string name="new_message_notice">新消息提醒</string>
+    <string name="new_message_show">新消息通知</string>
+    <string name="new_message_voice">声音</string>
+    <string name="new_message_vibration">震动</string>
+    <string name="new_message_prompt_voice">新消息提示音</string>
+    <string name="new_message_follow_system">跟随系统</string>
+    <string name="friend_confirmation">加我好友时需要验证</string>
+    <string name="the_blacklist">黑名单</string>
+    <string name="join_the_blacklist">加入黑名单</string>
+    <string name="blacklist_empty">黑名单为空</string>
+    <string name="portrait">头像</string>
+    <string name="my_username">昵称</string>
+
+    <string name="dv_document">开发者文档</string>
+    <string name="rongcloud_web">官方网站</string>
+    <string name="new_version_update">当前版本</string>
+    <string name="de_notification_start">开始时间</string>
+    <string name="de_notification_end">结束时间</string>
+
+
+    <string name="password_is_null">密码不能为空</string>
+    <string name="no_read_message">"···"</string>
+
+    <!--register activity -->
+    <string name="login_success">"登录成功"</string>
+    <string name="de_notification_information">开启后，在设定时间段内收到新消息时不会响铃或振动。</string>
+    <string name="password">密码</string>
+    <string name="phone_number">手机号</string>
+    <string name="de_group_list_default_discussion_name">讨论组</string>
+    <string name="de_message_content_draft">[草稿]</string>
+    <string name="de_message_at_me">[有人@我]</string>
+
+    <string name="set_privacy">隐私</string>
+    <string name="set_set">设置</string>
+    <string name="set_rongcloud">关于 SealTalk</string>
+    <string name="set_logout">注销</string>
+    <string name="de_save">"保存"</string>
+
+    <string name="app_name">西寻旅游</string>
+    <string name="imageview_content_description"></string>
+    <string name="app_tip">提示</string>
+    <string name="update_no">已经是最新版本</string>
+    <string name="update_title">软件更新</string>
+    <string name="update_info">检测到新版本，立即更新吗?</string>
+    <string name="update_updatebtn">更新</string>
+    <string name="update_later">稍后更新</string>
+    <string name="update_updating">正在更新</string>
+    <string name="update_cancel">取消下载</string>
+    <string name="title_alert">提示</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="notnetwork">网络连接失败， 请确认网络连接!</string>
+    <string name="banquan">Copyright©xizanglvxingcn.All Rights Reserved</string>
+    <string name="desc_shrinkup">收起</string>
+    <string name="desc_spread">全文</string>
+    <!-- 星期 -->
+    <string name="Mon">一</string>
+    <string name="Tue">二</string>
+    <string name="Wed">三</string>
+    <string name="Thu">四</string>
+    <string name="Fri">五</string>
+    <string name="Sat">六</string>
+    <string name="Sun">日</string>
+
+    <!-- 百度导航 -->
+    <string-array name="sdkapi_items">
+        <item>关键字搜索</item>
+        <item>周边搜索</item>
+        <item>手机语音识别</item>
+        <item>外部语音流识别</item>
+        <item>TTS</item>
+        <item>反GEO</item>
+        <item>线路规划demo1</item>
+        <item>线路规划demo2</item>
+        <item>离线数据管理</item>
+        <item>自定义图层</item>
+    </string-array>
+    <string name="search_start">搜索</string>
+    <string name="search_tips">离线检索需要使用"导航离线数据下载"demo下载数据之后才能正常使用！检索范围固定为广东省-深圳市，其他城市请修改demo源代码。</string>
+    <string name="antigeo_tips">离线反geo需要使用"导航离线数据下载"demo下载数据之后才能正常使用！</string>
+    <string name="asr_tips">语音识别需要使用"导航离线数据下载"demo下载广东数据之后才能正常使用！其他城市请修改demo源代码。</string>
+    <string name="suggest_start">提示</string>
+    <string name="search_hint">请输入关键字</string>
+    <string name="record_recording">\u2026正在录音\u2026</string>
+    <string name="record_recognizing">\u2026正在识别\u2026</string>
+    <string name="voiceinput">外部语音流识别</string>
+    <string name="voicenormal">手机语音流识别</string>
+    <string name="keyword_search">关键字搜索</string>
+    <string name="space_search">周边搜索</string>
+    <string name="search_result">搜索结果</string>
+    <string name="search_empty">识别结果为空</string>
+    <string name="search_fail">识别无效</string>
+    <string name="record_start">点击开启</string>
+
+    <!-- 离线数据管理 -->
+    <string name="title_route_guide_demo">1. GPS导航(RouteGuideDemo)</string>
+    <string name="title_route_plan_demo">2. 路线规划(RoutePlanDemo)</string>
+    <string name="title_cruiser">3. 电子狗(CruiserDemo)</string>
+    <string name="title_layer">4. 自定义地图图层(MapLayerDemo)</string>
+    <string name="title_offline_data">5. 导航离线数据下载(DownloadDemo)</string>
+    <string name="title_keyword_search">6. POI搜索-关键字(KeySearchDemo)</string>
+    <string name="title_nearby">7. POI搜索-分类(CatalogSearchDemo)</string>
+    <string name="title_degeo">8. 反GEO(ReverseGeoDemo)</string>
+    <string name="title_tts">9. TTS-Text To Speech(TTSDemo)</string>
+    <string name="title_asr">10. 语音识别(VoiceDemo)</string>
+    <string name="title_asr_input">11. 外部语音识别(VoiceInputDemo)</string>
+    <string name="title_key_verify_demo">12. 密钥验证(KeyVerifyDemo)</string>
+    <string name="title_charset_change_demo">13. 简体繁体转换(CharsetChangeDemo)</string>
+    <string name="online">在线</string>
+    <string name="offline">离线</string>
+
+    <!-- 繁体简体切换 -->
+    <string name="change_to_simplified">地图切换为简体</string>
+    <string name="change_to_traditional">地图切换为繁体</string>
+    <string name="change_to_simplified_tips">已切换为简体，请在地图图层页看效果</string>
+    <string name="change_to_traditional_tips">已切换为繁体，请在地图图层页看效果</string>
+    <!-- 百度导航 -->
+
+    <string name="login_with_wechat">用微信登录</string>
+    <string name="login_with_qzone">用QQ空间登录</string>
+    <string name="login_with_other_plat">其他帐号登录</string>
+    <string name="userid_found">用户信息已存在，正在跳转登录操作…</string>
+    <string name="logining">使用%s帐号登录中…</string>
+    <string name="auth_cancel">授权操作已取消</string>
+    <string name="auth_error">授权操作遇到错误，请阅读Logcat输出</string>
+    <string name="auth_complete">授权成功，正在跳转登录操作…</string>
+    <string name="if_register_needed">如果您需要注册功能…</string>
+    <string name="after_auth">一般来说第三方登录时，第三方平台已经为您完成用户身份校验，您可以放心让用户登录。\n\n但如果您需要判断用户是否为新用户，可以在授权操作完成后，将用户的信息通过字段“HashMap userInfo”携带给login方法。客户端通过“String userId”执行登录请求，如果服务端判定此userId为未注册用户，可以将userInfo发送给注册接口，获取用户在此平台上的昵称、头像等数据，然后执行注册</string>
+</resources>

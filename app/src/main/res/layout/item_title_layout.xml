@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:id="@+id/addaddress_title"
+        style="@style/Title_RelativeLayoutStyle" >
+
+        <!--<ImageView
+            android:id="@+id/back"
+            style="@style/Title_ImageViewBack"
+            android:layout_centerVertical="true" >
+        </ImageView>-->
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_back"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="7dp"
+            android:text="标题"
+            android:textColor="@color/title_text_color"
+            android:textSize="@dimen/text_big_size" />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:text="确认"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_mid2_size"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/title_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:paddingBottom="2dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="2dp"
+            android:text="发布行程"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_small_size"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/title_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/my_message"
+            android:visibility="gone" />
+        <ImageView
+            android:id="@+id/title_iv2"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/chat_iv_white"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/title_iv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/unread_count_bg"
+            android:layout_alignRight="@+id/title_iv"
+            android:layout_gravity="right"
+            android:layout_marginTop="2dp"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</FrameLayout>

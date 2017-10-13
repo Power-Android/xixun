@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/edittext_graybg"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="10dp" >
+
+    <ImageView
+        android:id="@+id/item_viewsport_face"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:id="@+id/item_viewsport_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/item_viewsport_face"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/item_viewsport_face"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_big_size" />
+
+    <TextView
+        android:id="@+id/item_viewsport_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_viewsport_title"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@+id/item_viewsport_face"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/text_color_gray1"
+        android:textSize="@dimen/text_mid_size" />
+
+    <TextView
+        android:id="@+id/item_viewsport_star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/item_viewsport_face"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/item_viewsport_face"
+        android:background="@drawable/text_huang_bg"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_toosmall2_size"
+        android:paddingLeft="7dp"
+        android:paddingRight="7dp"/>
+
+    <TextView
+        android:id="@+id/item_viewsport_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/item_viewsport_face"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/item_viewsport_star"
+        android:background="@drawable/text_huang2_bg"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_toosmall2_size"
+        android:paddingLeft="7dp"
+        android:paddingRight="7dp"/>
+
+    <TextView
+        android:id="@+id/item_viewsport_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="3dp"
+        android:layout_alignBottom="@+id/item_viewsport_face"
+        android:layout_alignParentRight="true"
+        android:drawableLeft="@drawable/distance"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_toosmall2_size" />
+
+</RelativeLayout>

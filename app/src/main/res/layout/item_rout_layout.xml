@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="10dp" >
+
+    <ImageView
+        android:id="@+id/item_route_pic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/item_route_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="标题"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_big_size" />
+
+</RelativeLayout>

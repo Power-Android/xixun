@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/xmlbackground_color" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xmlbackground"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/addaddress_title"
+            style="@style/Title_RelativeLayoutStyle" >
+
+            <ImageView
+                android:id="@+id/back"
+                style="@style/Title_ImageViewBack"
+                android:layout_centerVertical="true" >
+            </ImageView>
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="10dp"
+                android:text="标题"
+                android:textColor="@color/title_text_color"
+                android:textSize="@dimen/text_big_size" />
+
+            <TextView
+                android:id="@+id/changename_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:padding="10dp"
+                android:text="确定"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_mid2_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/edittext_graybg" >
+
+            <TextView
+                android:id="@+id/changename_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:gravity="top"
+                android:paddingBottom="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_big_size" />
+
+            <EditText
+                android:id="@+id/changename_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_toRightOf="@+id/changename_tv"
+                android:background="@null"
+                android:gravity="top"
+                android:hint=""
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_big_size" />
+
+            <ImageView
+                android:id="@+id/changename_delect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/changename_ed"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/changename_ed"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/delect"
+                android:visibility="gone" >
+            </ImageView>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

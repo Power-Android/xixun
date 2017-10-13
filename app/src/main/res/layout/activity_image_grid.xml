@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/erji_title"
+         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/title_layout_bg_color" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="相册"
+             android:textColor="@color/title_text_color"
+            android:textSize="@dimen/activity_title_size" />
+
+        <TextView
+            android:id="@+id/erji_quxiao"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+          android:textColor="@color/white"
+            android:text="取消"
+            android:textSize="@dimen/text_big_size" />
+    </RelativeLayout>
+
+
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/erji_title"
+            android:layout_above="@+id/erji_bottom"
+            android:layout_margin="8dp"
+            android:horizontalSpacing="8dp"
+            android:numColumns="3"
+            android:scrollbars="none"
+            android:verticalSpacing="8dp" >
+        </GridView>
+
+        <LinearLayout
+             android:id="@+id/erji_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp" 
+                android:background="#ff495a"
+                />
+
+            <Button
+                android:id="@+id/wancheng" 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bt_nobgd"
+                android:textColor="#ff495a"
+                android:padding="10dp"
+                android:textSize="20sp"
+                android:text="完成" />
+        </LinearLayout>
+
+</RelativeLayout>

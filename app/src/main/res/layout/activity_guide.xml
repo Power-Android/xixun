@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/xmlbackground_color"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xmlbackground"
+        android:orientation="vertical" >
+
+        <include layout="@layout/item_title_layout" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_more_bg"
+                android:drawableRight="@drawable/more_down"
+                android:padding="5dp"
+                android:text="性别"
+                android:textColor="@color/text_color_gray1"
+                android:textSize="@dimen/text_mid_size" />
+
+            <TextView
+                android:id="@+id/worktime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_more_bg"
+                android:drawableRight="@drawable/more_down"
+                android:padding="5dp"
+                android:text="工龄"
+                android:textColor="@color/text_color_gray1"
+                android:textSize="@dimen/text_mid_size" />
+
+            <TextView
+                android:id="@+id/age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_more_bg"
+                android:drawableRight="@drawable/more_down"
+                android:padding="5dp"
+                android:text="年龄"
+                android:textColor="@color/text_color_gray1"
+                android:textSize="@dimen/text_mid_size" />
+
+            <TextView
+                android:id="@+id/nation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_more_bg"
+                android:drawableRight="@drawable/more_down"
+                android:padding="5dp"
+                android:text="民族"
+                android:textColor="@color/text_color_gray1"
+                android:textSize="@dimen/text_mid_size" />
+        </LinearLayout>
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/knowledge_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"
+            android:dividerHeight="10dp"
+            android:fadingEdge="none"
+            android:fastScrollEnabled="false"
+            android:footerDividersEnabled="true"
+            android:headerDividersEnabled="false"
+            android:listSelector="@android:color/transparent"
+            android:smoothScrollbar="true" >
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
+    </LinearLayout>
+
+</LinearLayout>

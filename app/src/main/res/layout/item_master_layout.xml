@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/edittext_graybg"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="10dp" >
+
+    <ImageView
+        android:id="@+id/item_master_face"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:id="@+id/item_master_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_alignTop="@+id/item_master_face"
+        android:layout_marginLeft="5dp"
+        android:maxEms="4"
+        android:ellipsize="middle"
+        android:singleLine="true"
+        android:layout_toRightOf="@+id/item_master_face"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_big_size" />
+
+    <ImageView
+        android:layout_marginTop="3dp"
+        android:id="@+id/item_master_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/item_master_face"
+        android:layout_alignBottom="@+id/item_master_nickname"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/my_boy"
+        android:layout_toRightOf="@+id/item_master_nickname" />
+
+    <ImageView
+        android:layout_marginTop="3dp"
+        android:id="@+id/item_master_attentin"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:src="@drawable/praise_black"
+        android:layout_alignTop="@+id/item_master_face"
+        android:layout_toRightOf="@+id/item_master_master"
+        android:layout_alignBottom="@+id/item_master_nickname"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/item_master_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_master_nickname"
+        android:layout_toLeftOf="@+id/item_master_chat"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:layout_toRightOf="@+id/item_master_face"
+        android:textColor="@color/text_color_gray1"
+        android:textSize="@dimen/text_mid2_size" />
+
+    <TextView
+        android:id="@+id/item_master_master"
+        android:layout_width="25dp"
+        android:layout_height="10dp"
+        android:layout_alignBottom="@+id/item_master_nickname"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/item_master_sex"
+        android:layout_alignTop="@+id/item_master_sex"
+        android:background="@drawable/master_logo"
+        android:gravity="center_horizontal|bottom"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:text="达人"
+        android:textColor="@color/white"
+        android:textSize="7sp" />
+
+    <TextView
+        android:id="@+id/item_master_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/item_master_face"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toRightOf="@+id/item_master_face"
+        android:textColor="@color/text_color_gray2"
+        android:textSize="@dimen/text_mid_size" />
+
+    <ImageView
+        android:id="@+id/item_master_chat"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:clickable="true"
+        android:src="@drawable/chat_chat_iv"
+        android:layout_alignBottom="@+id/item_master_title"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/item_master_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="3dp"
+        android:layout_alignBottom="@+id/item_master_face"
+        android:layout_alignParentRight="true"
+        android:drawableLeft="@drawable/distance"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_mid_size" />
+
+</RelativeLayout>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/xmlbackground_color"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xmlbackground"
+        android:orientation="vertical" >
+
+        <include layout="@layout/item_title_layout" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/edittext_graybg"
+                    android:orientation="vertical" >
+
+                    <RelativeLayout
+                        android:id="@+id/guidename_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_gray_topcorners_bg"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingBottom="15dp"
+                            android:paddingLeft="12dp"
+                            android:paddingTop="15dp"
+                            android:text="姓名："
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" >
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/guidename_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/guidename_right"
+                            android:paddingBottom="15dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="15dp"
+                            android:textColor="@color/text_color_gray1"
+                            android:textSize="@dimen/text_big_size" >
+                        </TextView>
+
+                        <ImageView
+                            android:id="@+id/guidename_right"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:clickable="false"
+                            android:src="@drawable/right" />
+                    </RelativeLayout>
+
+                    <View
+                        style="@style/LineStyle"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/guidesex_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingBottom="15dp"
+                            android:paddingLeft="12dp"
+                            android:paddingTop="15dp"
+                            android:text="性别："
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" >
+                        </TextView>
+
+                        <CheckBox
+                            android:id="@+id/apply_guide_sex"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@null"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp" />
+                    </RelativeLayout>
+
+                    <View
+                        style="@style/LineStyle"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/guideworkage_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_gray_bg"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingBottom="15dp"
+                            android:paddingLeft="12dp"
+                            android:paddingTop="15dp"
+                            android:text="工龄："
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" >
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/guideworkage_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/guideworkage_right"
+                            android:paddingBottom="15dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="15dp"
+                            android:textColor="@color/text_color_gray1"
+                            android:textSize="@dimen/text_big_size" >
+                        </TextView>
+
+                        <ImageView
+                            android:id="@+id/guideworkage_right"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:clickable="false"
+                            android:src="@drawable/right" />
+                    </RelativeLayout>
+
+                    <View
+                        style="@style/LineStyle"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/guidenation_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_gray_bottomcorners_bg"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingBottom="15dp"
+                            android:paddingLeft="12dp"
+                            android:paddingTop="15dp"
+                            android:text="民族："
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" >
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/guidenation_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/guidenation_right"
+                            android:paddingBottom="15dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="15dp"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" >
+                        </TextView>
+
+                        <ImageView
+                            android:id="@+id/guidenation_right"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:clickable="false"
+                            android:src="@drawable/right" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/edittext_graybg"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="12dp"
+                        android:paddingTop="15dp"
+                        android:text="备注："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_big_size" >
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/feedback_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/edittext_bg_feedback"
+                        android:gravity="top"
+                        android:minLines="5"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_big_size"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="12dp"
+                        android:paddingTop="15dp"
+                        android:text="上传资料："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_big_size" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="12dp" >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:id="@+id/guide_card"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:src="@drawable/btn_selectpic_bg" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_margin="10dp"
+                                android:text="上传导游证"
+                                android:textColor="@color/text_color_gray1"
+                                android:textSize="@dimen/text_mid_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:id="@+id/identity_card"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_marginLeft="15dp"
+                                android:src="@drawable/btn_selectpic_bg" />
+                             <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_margin="10dp"
+                                android:text="上传身份证"
+                                android:textColor="@color/text_color_gray1"
+                                android:textSize="@dimen/text_mid_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/apply_guide"
+                    style="@style/btn_text_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                     android:layout_marginBottom="20dp"
+                    android:background="@drawable/btn_red_bg"
+                    android:text="提交" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

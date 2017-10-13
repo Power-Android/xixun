@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_transparent" >
+
+    <LinearLayout
+        android:id="@+id/addaddress_wheel_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/edittext_bg_color"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_gray4" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/edittext_bg_color" >
+
+            <TextView
+                android:id="@+id/addaddress_wheel_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:padding="15dp"
+                android:text="取消"
+                android:textColor="@drawable/text_red_color"
+                android:textSize="@dimen/text_mid2_size" />
+
+            <TextView
+                android:id="@+id/addaddress_wheel_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:padding="15dp"
+                android:text="工龄"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_big_size" />
+
+            <TextView
+                android:id="@+id/addaddress_wheel_sure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:padding="15dp"
+                android:text="确定"
+                android:textColor="@drawable/text_red_color"
+                android:textSize="@dimen/text_mid2_size" />
+        </RelativeLayout>
+
+        <com.power.travel.xixuntravel.widget.WheelView
+            android:id="@+id/id_wheelview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/edittext_bg_color" >
+        </com.power.travel.xixuntravel.widget.WheelView>
+    </LinearLayout>
+
+</RelativeLayout>

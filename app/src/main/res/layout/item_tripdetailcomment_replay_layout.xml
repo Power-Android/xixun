@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp"
+        android:text="昵称"
+        android:textColor="@color/btn_color_red_normal"
+        android:textSize="@dimen/text_mid2_size" >
+    </TextView>
+    
+      <TextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp"
+        android:text="昵称"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_mid2_size" >
+    </TextView>
+
+</LinearLayout>

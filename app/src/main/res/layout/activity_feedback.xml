@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/xmlbackground_color"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xmlbackground"
+        android:orientation="vertical" >
+
+        <include layout="@layout/item_title_layout" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="@drawable/edittext_graybg"
+            android:orientation="vertical" >
+            
+            <EditText 
+                android:id="@+id/feedback_content"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                 android:padding="10dp"
+                android:minLines="10"
+                android:gravity="top"
+                android:background="@drawable/edittext_bg_feedback"
+                android:hint="描述一下你遇到的问题"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_big_size"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/upload"
+            style="@style/btn_text_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/btn_red_bg"
+            android:text="提交" />
+    </LinearLayout>
+
+</LinearLayout>

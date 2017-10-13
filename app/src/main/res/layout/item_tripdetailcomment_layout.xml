@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <ImageView
+        android:id="@+id/item_traveldetailcomment_head"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/circle_face" />
+
+    <TextView
+        android:id="@+id/item_traveldetailcomment_sendname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/item_traveldetailcomment_head"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="评论人"
+        android:textColor="@color/text_color_gray2"
+        android:textSize="@dimen/text_mid2_size" />
+
+    <ImageView
+        android:id="@+id/item_traveldetailcomment_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/item_traveldetailcomment_sendname"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/item_traveldetailcomment_sendname" />
+
+    <TextView
+        android:id="@+id/item_traveldetailcomment_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_traveldetailcomment_sendname"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_toRightOf="@+id/item_traveldetailcomment_head"
+        android:text="评论内容"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_mid2_size" />
+
+    <TextView
+        android:id="@+id/item_tripdetailcomment_replay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/item_traveldetailcomment_comment"
+        android:layout_gravity="center"
+        android:drawablePadding="3dp"
+        android:drawableLeft="@drawable/tripdetailcomment_comment"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="回复"
+        android:textColor="@color/tab_text_select_color"
+        android:textSize="@dimen/text_mid_size" />
+
+    <TextView
+        android:id="@+id/item_traveldetailcomment_sendtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/item_tripdetailcomment_replay"
+        android:layout_gravity="center"
+        android:layout_toRightOf="@+id/item_traveldetailcomment_head"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="评论时间"
+        android:textColor="@color/text_color_gray2"
+        android:textSize="@dimen/text_mid_size" />
+
+    <com.power.travel.xixuntravel.weight.MyListView
+        android:id="@+id/item_tripdetailcomment_replaylist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_f0"
+        android:layout_below="@+id/item_traveldetailcomment_sendtime"
+        android:layout_marginTop="3dp"
+        android:layout_toRightOf="@+id/item_traveldetailcomment_head" >
+    </com.power.travel.xixuntravel.weight.MyListView>
+
+</RelativeLayout>

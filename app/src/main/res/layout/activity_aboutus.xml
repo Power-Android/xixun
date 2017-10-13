@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/xmlbackground_color"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xmlbackground"
+        android:orientation="vertical" >
+
+        <include layout="@layout/item_title_layout" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/lgoo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="西藏旅游"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_big_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/edittext_graybg"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/function_introduction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_gray_topcorners_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="15dp"
+                    android:text="公司简介"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_big_size" >
+                </TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:clickable="false"
+                    android:src="@drawable/right" />
+            </RelativeLayout>
+
+            <View
+                style="@style/LineStyle"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <RelativeLayout
+                android:id="@+id/feedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_gray_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="15dp"
+                    android:text="意见与反馈"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_big_size" >
+                </TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:clickable="false"
+                    android:src="@drawable/right" />
+            </RelativeLayout>
+
+            <View
+                style="@style/LineStyle"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <RelativeLayout
+                android:id="@+id/contact_us"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:background="@drawable/btn_gray_bottomcorners_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="15dp"
+                    android:text="联系我们"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_big_size" >
+                </TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:clickable="false"
+                    android:src="@drawable/right" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/tv_code"
+                android:layout_centerHorizontal="true"
+                android:text="西藏旅游 版权所有"
+                android:textColor="@color/text_color_gray2"
+                android:textSize="@dimen/text_mid2_size" />
+            <TextView
+                android:id="@+id/tv_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="v3.6.0"
+                android:layout_centerHorizontal="true"
+                android:layout_above="@+id/aboutus_tv2"
+                android:textColor="@color/text_color_gray2"
+                android:textSize="@dimen/text_mid2_size"/>
+             <TextView
+                 android:id="@+id/aboutus_tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp"
+                android:text="@string/banquan"
+                android:textColor="@color/text_color_gray2"
+                android:textSize="@dimen/text_mid_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom">
+
+   <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/edittext_bg_color"
+        android:orientation="vertical">
+       <!---->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal" >
+            <LinearLayout
+                android:id="@+id/filtrate_yueban_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/tab_btn_filtrate_normalbg"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/filtrate_yueban_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/filtrate_selected" 
+                    android:visibility="invisible"/>
+
+                <TextView
+                    android:id="@+id/filtrate_yueban"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:text="约伴"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid2_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/filtrate_yueche_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/tab_btn_filtrate_normalbg"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/filtrate_yueche_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/filtrate_selected" 
+                    android:visibility="invisible"/>
+
+                <TextView
+                    android:id="@+id/filtrate_yueche"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:text="约车"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid2_size" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="出发地："
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_big_size" >
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/trips_province"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_filtrate_more_bg"
+                    android:drawableRight="@drawable/more_down_huang"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:text="省"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid_size" />
+
+                <TextView
+                    android:id="@+id/trips_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_filtrate_more_bg"
+                    android:drawableRight="@drawable/more_down_huang"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:text="市"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid_size" />
+
+                <TextView
+                    android:id="@+id/trips_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_filtrate_more_bg"
+                    android:drawableRight="@drawable/more_down_huang"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:text="区"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid_size" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="性    别："
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_big_size" >
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/trips_sex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_filtrate_more_bg"
+                    android:drawableRight="@drawable/more_down_huang"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:text="性别"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid_size" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_filtrate_more_bg"
+                    android:drawableRight="@drawable/more_down_huang"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:text="性别"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid_size"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_filtrate_more_bg"
+                    android:drawableRight="@drawable/more_down_huang"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:text="性别"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid_size"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="年    龄："
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_big_size" >
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/trips_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_filtrate_more_bg"
+                    android:drawableRight="@drawable/more_down_huang"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:text="年龄"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid_size" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_filtrate_more_bg"
+                    android:drawableRight="@drawable/more_down_huang"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:text="年龄"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid_size"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_filtrate_more_bg"
+                    android:drawableRight="@drawable/more_down_huang"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:text="年龄"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid_size"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:visibility="gone"
+            android:id="@+id/trips_car">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="        车："
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_big_size">
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/trips_car_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_filtrate_more_bg"
+                    android:drawableRight="@drawable/more_down_huang"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:text="有无"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid_size" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_filtrate_more_bg"
+                    android:drawableRight="@drawable/more_down_huang"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:text="年龄"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid_size"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_filtrate_more_bg"
+                    android:drawableRight="@drawable/more_down_huang"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:text="年龄"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_mid_size"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <View
+            style="@style/LineStyle"
+            android:layout_marginTop="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:background="@color/edittext_bg_color_shen"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/filtarate_reset"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_filtrate_bg"
+                android:layout_weight="1.0"
+                android:layout_marginRight="0.5dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="重置"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_mid2_size" />
+
+
+            <Button
+                android:id="@+id/filtarate_sure"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                 android:background="@drawable/btn_filtrate_bg"
+                android:layout_weight="1.0"
+                android:layout_marginLeft="0.5dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="确定"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_mid2_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
