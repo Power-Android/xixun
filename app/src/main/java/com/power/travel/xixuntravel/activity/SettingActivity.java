@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.power.travel.xixuntravel.R;
 import com.power.travel.xixuntravel.app.BaseActivity;
@@ -19,6 +20,12 @@ import com.power.travel.xixuntravel.app.MyApplication;
 import com.power.travel.xixuntravel.utils.ProgressDialogUtils;
 import com.power.travel.xixuntravel.utils.ToastUtil;
 import com.power.travel.xixuntravel.utils.XZContranst;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.utils.SocializeUtils;
+
+import java.util.Map;
 
 import io.rong.imkit.RongIM;
 
@@ -100,8 +107,11 @@ public class SettingActivity extends BaseActivity {
 			Editor edit=sp.edit();
 			edit.clear();
 			edit.commit();
-
+			UMShareAPI.get(this).deleteOauth(this, SHARE_MEDIA.QQ, authListener);
 			exit.setVisibility(View.GONE);
+			 //
+
+
 //			MyApplication.getInstance().delectActivity(MainActivity.class);
 			SharedPreferences.Editor editors = getSharedPreferences("configa", MODE_PRIVATE).edit();
 			editors.putBoolean("shouquan", true);
@@ -137,4 +147,51 @@ public class SettingActivity extends BaseActivity {
 			startActivity(new Intent(this,ChangePwdActivity.class));
 		}
 	}
+	//取消授权
+	UMAuthListener authListener = new UMAuthListener() {
+		/**
+		 * @desc 授权开始的回调
+		 * @param platform 平台名称
+		 */
+		@Override
+		public void onStart(SHARE_MEDIA platform) {
+//					SocializeUtils.safeShowDialog(dialog);
+		}
+
+		/**
+		 * @desc 授权成功的回调
+		 * @param platform 平台名称
+		 * @param action 行为序号，开发者用不上
+		 * @param data 用户资料返回
+		 */
+		@Override
+		public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
+//					SocializeUtils.safeCloseDialog(dialog);
+//					Toast.makeText(mContext, "成功了", Toast.LENGTH_LONG).show();
+//					notifyDataSetChanged();
+		}
+
+		/**
+		 * @desc 授权失败的回调
+		 * @param platform 平台名称
+		 * @param action 行为序号，开发者用不上
+		 * @param t 错误原因
+		 */
+		@Override
+		public void onError(SHARE_MEDIA platform, int action, Throwable t) {
+			//	SocializeUtils.safeCloseDialog(dialog);
+			//Toast.makeText(mContext, "失败：" + t.getMessage(), Toast.LENGTH_LONG).show();
+		}
+
+		/**
+		 * @desc 授权取消的回调
+		 * @param platform 平台名称
+		 * @param action 行为序号，开发者用不上
+		 */
+		@Override
+		public void onCancel(SHARE_MEDIA platform, int action) {
+			//SocializeUtils.safeCloseDialog(dialog);
+			Toast.makeText(SettingActivity.this, "取消了", Toast.LENGTH_LONG).show();
+		}
+	};
 }

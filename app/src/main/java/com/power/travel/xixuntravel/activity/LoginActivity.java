@@ -281,10 +281,6 @@ public class LoginActivity extends BaseActivity implements Callback,
 		} else if (v == login_forgetpwd) {// 忘记密码
 			startActivityForResult(new Intent(this, ForgetPwdActivity.class), 1);
 		}else if(v==login_qq){//QQ登陆
-			//删除授权
-			SharedPreferences preferences=getSharedPreferences("configa", Context.MODE_PRIVATE);
-			Boolean bool=  preferences.getBoolean("shouquan",true);
-
 
 			type="1";
 			share = list[0];
