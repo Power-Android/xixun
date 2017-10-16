@@ -134,6 +134,8 @@ public class UserInfoActivity extends BaseActivity {
 				ToastUtil.showToast(getApplicationContext(), info);
 			}else if (msg.what == 3) {// 修改信息成功
 				ToastUtil.showToast(getApplicationContext(), info);
+				area_tv.setText(city);
+
 				editData();
 			}else if (msg.what == -3) {// 修改信息失败
 				ToastUtil.showToast(getApplicationContext(), info);
@@ -171,6 +173,7 @@ public class UserInfoActivity extends BaseActivity {
 			// }
 		}
 	};
+	private Intent data_location;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -186,6 +189,12 @@ public class UserInfoActivity extends BaseActivity {
 			ToastUtil.showToast(getApplicationContext(), XZContranst.no_net);
 		}
 		
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+//		getData();
 	}
 
 	private void initView() {
@@ -283,7 +292,7 @@ public class UserInfoActivity extends BaseActivity {
 			age_tv.setText(mCurrentProviceName);
 			edit.putString(XZContranst.age, mCurrentProviceName);
 		}else if(posi==6){
-			area_tv.setText(province+city+country);
+			area_tv.setText(city);
 //			json.put("province", key);
 //			json.put("city", key);
 //			json.put("area", key);
@@ -322,7 +331,7 @@ public class UserInfoActivity extends BaseActivity {
 	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
+		super.onActivityResult(requestCode, resultCode,data);
 
 		if (resultCode == RESULT_OK) {
 			switch (requestCode) {
@@ -345,12 +354,11 @@ public class UserInfoActivity extends BaseActivity {
 
 					break;
 				case 1:// 如果是直接从相册获取
-			try {
-				startPhotoZoom(data.getData());
-			} catch (Exception e) {
-			}
-
-			break;
+					try {
+						startPhotoZoom(data.getData());
+						} catch (Exception e) {
+						}
+					break;
 				case CODE_GALLERY_REQUEST://访问相册完成回调
 					if (hasSdcard()) {
 						cropImageUri = Uri.fromFile(fileCropUri);
@@ -377,31 +385,37 @@ public class UserInfoActivity extends BaseActivity {
 						setPicToView(data);
 					}
 					break;
-				case 11:// 修改昵称
-					nickname_tv.setText(sp.getString(XZContranst.nickname, ""));
-					break;
-				case 12:// 修改职业
-					profession_tv.setText(sp.getString(XZContranst.work, ""));
-					break;
-				case 13:// 修改签名
-					signature_tv.setText(sp.getString(XZContranst.signature, ""));
-					break;
-				case 14:// 修改省市区
-					if(data!=null){
-						province=data.getStringExtra("province");
-						province_id=data.getStringExtra("province_id");
-						city=data.getStringExtra("city");
-						city_id=data.getStringExtra("city_id");
-						country=data.getStringExtra("country");
-						country_id=data.getStringExtra("country_id");
-						area_tv.setText(province+city+country);
-						editInfo(6,province+city+country);
-					}
-					break;
+
 				default:
 					break;
 			}
 			super.onActivityResult(requestCode, resultCode, data);
+			}
+			if (resultCode == 101){
+				switch (requestCode){
+					case 14:// 修改省市区
+						if(data!=null){
+							province=data.getStringExtra("province");
+							province_id=data.getStringExtra("province_id");
+							city=data.getStringExtra("city");
+							city_id=data.getStringExtra("city_id");
+							country=data.getStringExtra("country");
+							country_id=data.getStringExtra("country_id");
+							editInfo(6,province+city+country);
+						}
+						break;
+					case 11:// 修改昵称
+						nickname_tv.setText(sp.getString(XZContranst.nickname, ""));
+						break;
+					case 12:// 修改职业
+						profession_tv.setText(sp.getString(XZContranst.work, ""));
+						LogUtil.e(TAG,sp.getString(XZContranst.work, ""));
+						break;
+					case 13:// 修改签名
+						signature_tv.setText(sp.getString(XZContranst.signature, ""));
+						break;
+				}
+				super.onActivityResult(requestCode, resultCode, data);
 			}
 		}
 

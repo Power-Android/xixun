@@ -108,6 +108,7 @@ public class SettingActivity extends BaseActivity {
 			edit.clear();
 			edit.commit();
 			UMShareAPI.get(this).deleteOauth(this, SHARE_MEDIA.QQ, authListener);
+			UMShareAPI.get(this).deleteOauth(this, SHARE_MEDIA.WEIXIN, authListener);
 			exit.setVisibility(View.GONE);
 			 //
 

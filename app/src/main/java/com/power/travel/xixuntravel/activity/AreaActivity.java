@@ -143,6 +143,7 @@ public class AreaActivity extends BaseActivity implements OnItemClickListener {
 		case 1:// 省
 			clickType=2;
 			province=adapterList.get(position).getName();
+			LogUtil.e(TAG,"-----省-------"+province);
 			province_id=adapterList.get(position).getId();
 			if (isConnect()) {
 				getData(adapterList.get(position).getId());
@@ -154,6 +155,7 @@ public class AreaActivity extends BaseActivity implements OnItemClickListener {
 		case 2:// 市
 			clickType=3;
 			city=adapterList.get(position).getName();
+			LogUtil.e(TAG,"-----市-------"+city);
 			city_id=adapterList.get(position).getId();
 			if (isConnect()) {
 				getData(adapterList.get(position).getId());
@@ -164,6 +166,7 @@ public class AreaActivity extends BaseActivity implements OnItemClickListener {
 			break;
 		case 3:// 区
 			country=adapterList.get(position).getName();
+			LogUtil.e(TAG,"------区------"+country);
 			country_id=adapterList.get(position).getId();
 			Intent intent=new Intent();
 			intent.putExtra("province", province);

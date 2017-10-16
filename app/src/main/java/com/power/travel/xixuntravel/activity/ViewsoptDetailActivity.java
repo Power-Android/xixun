@@ -537,8 +537,8 @@ public class ViewsoptDetailActivity extends BaseActivity {
 					}
 
 					public void initFailed() {
-						Toast.makeText(getApplicationContext(), "百度导航引擎初始化失败",
-								Toast.LENGTH_SHORT).show();
+						//Toast.makeText(getApplicationContext(), "百度导航引擎初始化失败",
+							//	Toast.LENGTH_SHORT).show();
 					}
 
 				}, null, ttsHandler, null);
