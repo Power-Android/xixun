@@ -506,42 +506,46 @@ public class ViewsoptDetailActivity extends BaseActivity {
 
 		BNOuterTTSPlayerCallback ttsCallback = null;
 
-		BaiduNaviManager.getInstance().init(this, mSDCardPath, APP_FOLDER_NAME,
-				new NaviInitListener() {
-					@Override
-					public void onAuthResult(int status, String msg) {
-						if (0 == status) {
-							authinfo = "key校验成功!";
-						} else {
-							authinfo = "key校验失败, " + msg;
-						}
-						ViewsoptDetailActivity.this
-								.runOnUiThread(new Runnable() {
+		try {
+			BaiduNaviManager.getInstance().init(this, mSDCardPath, APP_FOLDER_NAME,
+                    new NaviInitListener() {
+                        @Override
+                        public void onAuthResult(int status, String msg) {
+                            if (0 == status) {
+                                authinfo = "key校验成功!";
+                            } else {
+                                authinfo = "key校验失败, " + msg;
+                            }
+                            ViewsoptDetailActivity.this
+                                    .runOnUiThread(new Runnable() {
 
-									@Override
-									public void run() {
-										 Toast.makeText(getApplicationContext(),authinfo, Toast.LENGTH_LONG).show();
-									}
-								});
-					}
+                                        @Override
+                                        public void run() {
+                                             Toast.makeText(getApplicationContext(),authinfo, Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                        }
 
-					public void initSuccess() {
-						// Toast.makeText(getApplicationContext(),
-						// "百度导航引擎初始化成功", Toast.LENGTH_SHORT).show();
-						initSetting();
-					}
+                        public void initSuccess() {
+                             Toast.makeText(getApplicationContext(),
+                             "百度导航引擎初始化成功", Toast.LENGTH_SHORT).show();
+                            initSetting();
+                        }
 
-					public void initStart() {
-						// Toast.makeText(getApplicationContext(),
-						// "百度导航引擎初始化开始", Toast.LENGTH_SHORT).show();
-					}
+                        public void initStart() {
+                             Toast.makeText(getApplicationContext(),
+                             "百度导航引擎初始化开始", Toast.LENGTH_SHORT).show();
+                        }
 
-					public void initFailed() {
-						//Toast.makeText(getApplicationContext(), "百度导航引擎初始化失败",
-							//	Toast.LENGTH_SHORT).show();
-					}
+                        public void initFailed() {
+                            Toast.makeText(getApplicationContext(), "百度导航引擎初始化失败",
+                                    Toast.LENGTH_SHORT).show();
+                        }
 
-				}, null, ttsHandler, null);
+                    }, null, ttsHandler, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 

@@ -28,9 +28,10 @@ android {
     defaultConfig {
         applicationId "com.power.travel.xixuntravel"
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.config
     }
@@ -63,4 +64,6 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.code.gson:gson:2.7'
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:multidex:1.0.0'
+    compile files('libs/baidumapapi_util_v4_1_1.jar')
 }

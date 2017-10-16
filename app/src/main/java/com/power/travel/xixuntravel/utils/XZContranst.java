@@ -35,6 +35,7 @@ public interface XZContranst {
 	public static String token="token";//融云token
 	public static String zhendong="zhendong";//
 	public static String sound="sound";//
+	public static String adress="adress";//筛选地址
 	
 	public static int apply_guide_name=10;
 	public static int apply_guide_nation=11;

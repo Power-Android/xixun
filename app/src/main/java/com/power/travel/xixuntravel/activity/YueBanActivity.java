@@ -175,6 +175,7 @@ public class YueBanActivity extends BaseActivity implements PullToRefreshBase.On
 
         }
     };
+    private String provice;
 
     private void changeData(String follow) {
         AllTripModel model = adapterList.get(changePosi);
@@ -385,10 +386,10 @@ public class YueBanActivity extends BaseActivity implements PullToRefreshBase.On
                     data.put("page", page);
                     data.put("is_at", is_at);
                     data.put("is_carpool", is_carpool);
-                    if (TextUtils.equals(province_id1,"99999")){
+                    if (TextUtils.equals(provice,"99999")){
                         data.put("province", "");
                     }else {
-                        data.put("province", province_id1);
+                        data.put("province", provice);
 
                     }
                     data.put("city", city_id);
@@ -455,6 +456,8 @@ public class YueBanActivity extends BaseActivity implements PullToRefreshBase.On
                 XZContranst.MAIN_SHARED_PREFERENCES_LO, Context.MODE_PRIVATE);
         pd = ProgressDialogUtils.show(YueBanActivity.this, "加载数据...");
         back = (ImageView) findViewById(R.id.back);
+
+        provice = sp.getString(XZContranst.adress, "");
 
         mListView = (PullToRefreshListView) findViewById(R.id.yueban_listview);
         mListView.setOnRefreshListener(this);

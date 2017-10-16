@@ -109,6 +109,9 @@ public class AreaActivityTwo extends BaseActivity implements AdapterView.OnItemC
             case 1:// 省
                 province = adapterList.get(position).getName();
                 province_id = adapterList.get(position).getId();
+                SharedPreferences.Editor edit = sp.edit();
+                edit.putString(XZContranst.adress, province_id);
+                edit.commit();
                 Intent intent=new Intent();
                 intent.putExtra("province", province);
                 intent.putExtra("province_id",province_id);
