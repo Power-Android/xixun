@@ -316,6 +316,7 @@ public class ViewsoptDetailActivity extends BaseActivity {
 
 	private void setData() {
 
+
 		// 添加地图中心点
 		if (!TextUtils.isEmpty(mViewsportDetailModel.getCoordinate_y())
 				&& !TextUtils.isEmpty(mViewsportDetailModel.getCoordinate_x())) {
