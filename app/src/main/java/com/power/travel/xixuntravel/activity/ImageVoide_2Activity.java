@@ -139,8 +139,8 @@ public class ImageVoide_2Activity extends Activity implements SurfaceVideoView.O
         content= (TextView) findViewById(R.id.detail_content);
         praise_type= (TextView) findViewById(R.id.detail_zan_type);
         comment_type= (TextView) findViewById(R.id.detail_comment_type);
-        detail_zan = findViewById(R.id.detail_zan);
-        detail_comment = findViewById(R.id.detail_comment);
+        detail_zan = (TextView)findViewById(R.id.detail_zan);
+        detail_comment =(TextView) findViewById(R.id.detail_comment);
 
         praise_type.setOnClickListener(this);
         comment_type.setOnClickListener(this);

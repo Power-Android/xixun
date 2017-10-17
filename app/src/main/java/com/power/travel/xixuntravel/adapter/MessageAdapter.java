@@ -109,7 +109,7 @@ public class MessageAdapter extends BaseAdapter implements OnClickListener {
 					.findViewById(R.id.item_message_videoplay);
 			holder.gridview = (MyGridView) convertView
 					.findViewById(R.id.image_gridView);
-			holder.rl_mseeage = convertView.findViewById(R.id.rl_mseeage);
+			holder.rl_mseeage = (RelativeLayout) convertView.findViewById(R.id.rl_mseeage);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();

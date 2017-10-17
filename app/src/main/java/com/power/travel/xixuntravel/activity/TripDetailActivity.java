@@ -260,9 +260,9 @@ public class TripDetailActivity extends FragmentActivity implements GradationScr
 		tripdetail_comment_edit=(EditText)findViewById(R.id.tripdetail_comment_edit);
 		scrollView=(GradationScrollView)findViewById(R.id.scrollview);
 		//新增关注
-		item_alltrip_attentin_layout = findViewById(R.id.item_alltrip_attentin_layout);
-		item_alltrip_attentin_type = findViewById(R.id.item_alltrip_attentin_type);
-		item_alltrip_attentin = findViewById(R.id.item_alltrip_attentin);
+		item_alltrip_attentin_layout = (RelativeLayout) findViewById(R.id.item_alltrip_attentin_layout);
+		item_alltrip_attentin_type =(ImageView) findViewById(R.id.item_alltrip_attentin_type);
+		item_alltrip_attentin = (TextView)findViewById(R.id.item_alltrip_attentin);
 		item_alltrip_attentin_layout.setOnClickListener(this);
 		
 		options = new DisplayImageOptions.Builder()

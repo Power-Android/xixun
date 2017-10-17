@@ -159,6 +159,7 @@ public class MyTravelAdapter extends BaseAdapter implements OnClickListener {
 		if (v.getId() == R.id.item_mytravel_pic) {
 			MyTravelModel model = list.get(posi);
 			ArrayList<String> mPic_list = null;
+			 Intent it=new Intent(context,ImageVoideActivity.class);
 			Intent mIntent = ImageVoideActivity.newIntent(context, model,
 					mPic_list, 0);
 			context.startActivity(mIntent);

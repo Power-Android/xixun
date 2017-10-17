@@ -141,8 +141,8 @@ public class ImageViewPager_3Activity extends Activity implements View.OnClickLi
         content= (TextView) findViewById(R.id.detail_content);
         praise_type= (TextView) findViewById(R.id.detail_zan_type);
         comment_type= (TextView) findViewById(R.id.detail_comment_type);
-        detail_zan = findViewById(R.id.detail_zan);
-        detail_comment = findViewById(R.id.detail_comment);
+        detail_zan =(TextView) findViewById(R.id.detail_zan);
+        detail_comment = (TextView)findViewById(R.id.detail_comment);
         /**
          * 新增点击事件
          */

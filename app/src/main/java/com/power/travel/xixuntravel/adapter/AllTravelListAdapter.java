@@ -148,10 +148,10 @@ public class AllTravelListAdapter extends BaseAdapter implements
 			holder.alltravel_video = (ImageView) convertView
 					.findViewById(R.id.item_alltravel_video);
 			holder.item_userimg = (LinearLayout)convertView.findViewById(R.id.item_userimg);
-			holder.item_iv1 = convertView.findViewById(R.id.item_iv1);
-			holder.item_iv2 = convertView.findViewById(R.id.item_iv2);
-			holder.item_iv3 = convertView.findViewById(R.id.item_iv3);
-			holder.iv_layout = convertView.findViewById(R.id.iv_layout);
+			holder.item_iv1 = (ImageView) convertView.findViewById(R.id.item_iv1);
+			holder.item_iv2 = (ImageView) convertView.findViewById(R.id.item_iv2);
+			holder.item_iv3 = (ImageView) convertView.findViewById(R.id.item_iv3);
+			holder.iv_layout =(LinearLayout) convertView.findViewById(R.id.iv_layout);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();

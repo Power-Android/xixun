@@ -131,7 +131,7 @@ public class MyTravelActivity extends BaseActivity implements
 		pd = ProgressDialogUtils.show(this, "加载数据...");
 		back = (ImageView) findViewById(R.id.back);
 		title = (TextView) findViewById(R.id.title);
-		title_tv = findViewById(R.id.title_tv);
+		title_tv =(TextView) findViewById(R.id.title_tv);
 		title_tv.setVisibility(View.VISIBLE);
 		title_tv.setOnClickListener(this);
 		title_tv.setText("发布游记");
@@ -199,6 +199,7 @@ public class MyTravelActivity extends BaseActivity implements
 			ToastUtil.showToast(getApplicationContext(), XZContranst.no_net);
 		}
 	}
+
 
 	private void getData(boolean ifshow) {
 		if (ifshow) {

@@ -308,7 +308,7 @@ public class MasterListActivity extends BaseActivity implements
 						.findViewById(R.id.item_master_face);
 				holder.item_master_chat = (ImageView) convertView
 						.findViewById(R.id.item_master_chat);
-				holder.item_master_attentin = convertView.findViewById(R.id.item_master_attentin);
+				holder.item_master_attentin = (ImageView) convertView.findViewById(R.id.item_master_attentin);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();

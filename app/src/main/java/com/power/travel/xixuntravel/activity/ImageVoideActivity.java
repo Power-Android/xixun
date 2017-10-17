@@ -61,7 +61,7 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 	private String TAG="ImageVoideActivity",info;
 	SharedPreferences sp;
 	private ProgressDialogUtils pd;
-	
+    Boolean oolean ;
 	/** 播放控件 */
 	private SurfaceVideoView mVideoView;
 	private View mLoading;
@@ -105,8 +105,9 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 	private TextView detail_zan;
 	private TextView detail_comment;
 	private LinearLayout tiaozhuan_ll;
+    private TextView detail_zan_type;
 
-	// ArrayList<Fragment> listFragment = new ArrayList<Fragment>();
+   //  ArrayList<Fragment> listFragment = new ArrayList<Fragment>();
 
 	public static Intent newIntent(Context mContext,
                                    MyTravelModel model, ArrayList<String> pic_List, int position) {
@@ -127,7 +128,8 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 		getData();// 接收参数
 		initView();// 初始化控件
 		setData();
- 	}
+
+    }
 
 	private void setData() {
 		content.setText(travelModel.getContent());
@@ -149,6 +151,7 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 		back = (ImageView) findViewById(R.id.back);
 		back.setOnClickListener(this);
 		title_iv= (ImageView) findViewById(R.id.title_iv);
+        detail_zan_type = (TextView) findViewById(R.id.detail_zan_type);
 		title_iv.setImageDrawable(getResources().getDrawable(R.drawable.traveldetail_delect));
 		title_iv.setVisibility(View.VISIBLE);
 		title_iv.setOnClickListener(this);
@@ -169,9 +172,9 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 
 		mVideoView.getLayoutParams().height = DeviceUtils.getScreenWidth(this)* 4 / 3;
 
-		detail_zan = findViewById(R.id.detail_zan);
-		detail_comment = findViewById(R.id.detail_comment);
-		tiaozhuan_ll = findViewById(R.id.tiaozhuan_ll);
+		detail_zan = (TextView)findViewById(R.id.detail_zan);
+		detail_comment =(TextView) findViewById(R.id.detail_comment);
+		tiaozhuan_ll = (LinearLayout) findViewById(R.id.tiaozhuan_ll);
 		detail_comment.setOnClickListener(this);
 		detail_zan.setOnClickListener(this);
 		tiaozhuan_ll.setOnClickListener(this);
@@ -212,6 +215,7 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 		if (v == tiaozhuan_ll){
 			Intent intent = new Intent(ImageVoideActivity.this,
 					TravelDetailActivity.class);
+              intent.putExtra("qubie","shipin");
 			intent.putExtra("id", travelModel.getId());
 			startActivity(intent);
 		}

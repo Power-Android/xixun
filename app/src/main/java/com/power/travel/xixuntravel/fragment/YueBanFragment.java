@@ -53,7 +53,7 @@ public class YueBanFragment extends Fragment implements View.OnClickListener {
                 Context.MODE_PRIVATE);
 
         addaddress_title=(LinearLayout)view.findViewById(R.id.title);
-        title = view.findViewById(R.id.title);
+        title = (LinearLayout)view. findViewById(R.id.title);
         title.setOnClickListener(this);
         addaddress_title.setOnClickListener(this);
         locaton_tv = (TextView)view.findViewById(R.id.locaton_tv);

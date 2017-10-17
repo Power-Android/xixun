@@ -91,6 +91,7 @@ public class TravelDetailActivity extends BaseActivity
 	private AllTravelModel allTravelModel;
 	List<TravelDetailCommentModel> list = new ArrayList<TravelDetailCommentModel>();
 	TravelDetailCommentAdapter adapter;
+	 int tag;
 
 	/** 播放控件 */
 	private SurfaceVideoView mVideoView;
@@ -119,11 +120,14 @@ public class TravelDetailActivity extends BaseActivity
 					praise_iv.setImageDrawable(getResources().getDrawable(
 							R.drawable.traveldetail_nopraise));
 					praise_tv.setText(allTravelModel.getZan());
+					tag=1;
+
 				} else {// 不赞变赞
 					allTravelModel.setZanIf("1");
 					allTravelModel.setZan(String.valueOf(Integer
 							.valueOf(allTravelModel.getZan()) + 1));
 					praise_tv.setText(allTravelModel.getZan());
+					tag=2;
 					praise_iv.setImageDrawable(getResources().getDrawable(
 							R.drawable.trip_attention));
 				}
@@ -162,8 +166,10 @@ public class TravelDetailActivity extends BaseActivity
 			}
 		};
 	};
+    private Intent intent;
+    private String qubie;
 
-	@Override
+    @Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setContentView(R.layout.activity_traveldetail);
@@ -235,9 +241,10 @@ public class TravelDetailActivity extends BaseActivity
 	}
 
 	private void initgetIntent() {
-		Intent intent = getIntent();
+        intent = getIntent();
 		id = intent.getStringExtra("id");
-	}
+        qubie = intent.getStringExtra("qubie");
+    }
 
 	@Override
 	public void onClick(View v) {

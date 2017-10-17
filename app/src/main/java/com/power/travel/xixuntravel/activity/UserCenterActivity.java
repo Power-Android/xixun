@@ -246,7 +246,7 @@ public class UserCenterActivity extends BaseActivity implements
 				Context.MODE_PRIVATE);
 		pd = ProgressDialogUtils.show(this, "加载数据...");
 		back = (ImageView) findViewById(R.id.back);
-		title_iv = findViewById(R.id.title_iv2);
+		title_iv =(ImageView) findViewById(R.id.title_iv2);
 		title_iv.setVisibility(View.VISIBLE);
 		title = (TextView) findViewById(R.id.title);
 		title.setText("个人中心");
@@ -258,7 +258,7 @@ public class UserCenterActivity extends BaseActivity implements
 		usercenter_ifdriver= (ImageView) findViewById(R.id.usercenter_ifdriver);
 		usercenter_sign= (TextView) findViewById(R.id.usercenter_sign);
 		usercenter_distance= (TextView) findViewById(R.id.usercenter_distance);
-		praise_iv = findViewById(R.id.praise_iv);
+		praise_iv = (ImageView) findViewById(R.id.praise_iv);
 		praise_iv.setOnClickListener(this);
 		
 		options = new DisplayImageOptions.Builder()

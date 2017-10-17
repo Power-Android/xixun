@@ -163,10 +163,10 @@ public class AllTripListAdapter extends BaseAdapter implements OnClickListener {
 					.findViewById(R.id.item_alltrip_parent);
 			holder.attentin = (TextView) convertView
 					.findViewById(R.id.item_alltrip_attentin);
-			holder.iv_layout = convertView.findViewById(R.id.iv_layout);
-			holder.item_alltrip_pic1 = convertView.findViewById(R.id.item_alltrip_pic1);
-			holder.item_alltrip_pic2 = convertView.findViewById(R.id.item_alltrip_pic2);
-			holder.item_alltrip_pic3 = convertView.findViewById(R.id.item_alltrip_pic3);
+			holder.iv_layout =(LinearLayout) convertView.findViewById(R.id.iv_layout);
+			holder.item_alltrip_pic1 =(ImageView) convertView.findViewById(R.id.item_alltrip_pic1);
+			holder.item_alltrip_pic2 =(ImageView) convertView.findViewById(R.id.item_alltrip_pic2);
+			holder.item_alltrip_pic3 =(ImageView) convertView.findViewById(R.id.item_alltrip_pic3);
 
 			convertView.setTag(holder);
 		} else {
