@@ -684,7 +684,7 @@ public class Apply_guideActivity extends BaseActivity implements
 	/**
 	 * 获取工龄
 	 */
-	private void getWorkageData() {
+	/*private void getWorkageData() {
 		new Thread(new Runnable() {
 
 			@Override
@@ -740,9 +740,9 @@ public class Apply_guideActivity extends BaseActivity implements
 		}).start();
 	}
 
-	/**
+	*//**
 	 * 获取民族
-	 */
+	 *//*
 	private void getnationData() {
 		new Thread(new Runnable() {
 
@@ -791,6 +791,6 @@ public class Apply_guideActivity extends BaseActivity implements
 
 			}
 		}).start();
-	}
+	}*/
 
 }

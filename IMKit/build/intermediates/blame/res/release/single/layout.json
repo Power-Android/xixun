@@ -1,11 +1,11 @@
 [
     {
-        "merged": "E:\\mywork\\xixunTravel\\IMKit\\build\\intermediates\\res\\merged\\release\\layout\\rc_ac_file_preview_content.xml",
-        "source": "E:\\mywork\\xixunTravel\\IMKit\\src\\main\\res\\layout\\rc_ac_file_preview_content.xml"
-    },
-    {
         "merged": "E:\\mywork\\xixunTravel\\IMKit\\build\\intermediates\\res\\merged\\release\\layout\\rc_wi_file_list_adapter.xml",
         "source": "E:\\mywork\\xixunTravel\\IMKit\\src\\main\\res\\layout\\rc_wi_file_list_adapter.xml"
+    },
+    {
+        "merged": "E:\\mywork\\xixunTravel\\IMKit\\build\\intermediates\\res\\merged\\release\\layout\\rc_ac_file_preview_content.xml",
+        "source": "E:\\mywork\\xixunTravel\\IMKit\\src\\main\\res\\layout\\rc_ac_file_preview_content.xml"
     },
     {
         "merged": "E:\\mywork\\xixunTravel\\IMKit\\build\\intermediates\\res\\merged\\release\\layout\\rc_item_group_information_notification_message.xml",
@@ -140,12 +140,12 @@
         "source": "E:\\mywork\\xixunTravel\\IMKit\\src\\main\\res\\layout\\rc_dialog_popup_prompt.xml"
     },
     {
-        "merged": "E:\\mywork\\xixunTravel\\IMKit\\build\\intermediates\\res\\merged\\release\\layout\\rc_camera.xml",
-        "source": "E:\\mywork\\xixunTravel\\IMKit\\src\\main\\res\\layout\\rc_camera.xml"
-    },
-    {
         "merged": "E:\\mywork\\xixunTravel\\IMKit\\build\\intermediates\\res\\merged\\release\\layout\\rc_item_location_message.xml",
         "source": "E:\\mywork\\xixunTravel\\IMKit\\src\\main\\res\\layout\\rc_item_location_message.xml"
+    },
+    {
+        "merged": "E:\\mywork\\xixunTravel\\IMKit\\build\\intermediates\\res\\merged\\release\\layout\\rc_camera.xml",
+        "source": "E:\\mywork\\xixunTravel\\IMKit\\src\\main\\res\\layout\\rc_camera.xml"
     },
     {
         "merged": "E:\\mywork\\xixunTravel\\IMKit\\build\\intermediates\\res\\merged\\release\\layout\\rc_ac_webview.xml",
@@ -160,12 +160,12 @@
         "source": "E:\\mywork\\xixunTravel\\IMKit\\src\\main\\res\\layout\\rc_fr_file_list.xml"
     },
     {
-        "merged": "E:\\mywork\\xixunTravel\\IMKit\\build\\intermediates\\res\\merged\\release\\layout\\rc_location_real_time_activity.xml",
-        "source": "E:\\mywork\\xixunTravel\\IMKit\\src\\main\\res\\layout\\rc_location_real_time_activity.xml"
-    },
-    {
         "merged": "E:\\mywork\\xixunTravel\\IMKit\\build\\intermediates\\res\\merged\\release\\layout\\rc_item_public_service_input_menu.xml",
         "source": "E:\\mywork\\xixunTravel\\IMKit\\src\\main\\res\\layout\\rc_item_public_service_input_menu.xml"
+    },
+    {
+        "merged": "E:\\mywork\\xixunTravel\\IMKit\\build\\intermediates\\res\\merged\\release\\layout\\rc_location_real_time_activity.xml",
+        "source": "E:\\mywork\\xixunTravel\\IMKit\\src\\main\\res\\layout\\rc_location_real_time_activity.xml"
     },
     {
         "merged": "E:\\mywork\\xixunTravel\\IMKit\\build\\intermediates\\res\\merged\\release\\layout\\rc_wi_vo_popup.xml",

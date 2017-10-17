@@ -71,7 +71,7 @@ public class ImageViewPager_ViewspotDetailActivity extends Activity implements O
 //		travelModel=(MyTravelModel)getIntent().getExtras().getSerializable("model");
 	}
 
-	public void photoviewonlistener(View view) {
+	/*public void photoviewonlistener(View view) {
 //		Log.e("", "0000000-0000000----000000");
 		ImageViewPager_ViewspotDetailActivity.this.finish();
 		// imageView.setOnTouchListener(new OnTouchListener() {
@@ -91,7 +91,7 @@ public class ImageViewPager_ViewspotDetailActivity extends Activity implements O
 		// ImageViewPagerActivity.this.finish();
 		// }
 		// });
-	}
+	}*/
 
 	private void initView() {
 		mHeadDotLayout = (LinearLayout) findViewById(R.id.home_head_position);

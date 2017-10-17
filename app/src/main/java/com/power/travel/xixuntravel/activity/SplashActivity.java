@@ -226,7 +226,7 @@ public class SplashActivity extends Activity {
 	
 	/**
 	 * 设置状态栏背景状态 
-	 */
+	 *//*
 	private void setTranslucentStatus() {
 		setStatusBarTranslucent(true);
 //		setNavigationBarTranslucent(true);
@@ -235,30 +235,30 @@ public class SplashActivity extends Activity {
 		tintManager.setStatusBarTintResource(R.color.title_layout_bg_color);// 状态栏的背景颜色(0表示无背景)  
 //		tintManager.setNavigationBarTintEnabled(true);
 //		tintManager.setNavigationBarTintResource(R.color.title_bar_bg);//导航栏背景颜色（0表示无背景）
-	}
+	}*/
 
 	/**
-	 * 设置状态栏是否透明 
-	 * 
+	 * 设置状态栏是否透明
+	 *
 	 * @param isTransparent
-	 */
+	 *//*
 	private void setStatusBarTranslucent(boolean isTransparent) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
 				&& isTransparent) {
 			Window win = getWindow();
 			WindowManager.LayoutParams winParams = win.getAttributes();
-			// 导航栏透明 
+			// 导航栏透明
 			final int sBits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
 			winParams.flags |= sBits;
 			win.setAttributes(winParams);
 		}
-	}
+	}*/
 
 	/**
 	 *设置导航栏是否透明 
 	 * 
 	 * @param isTransparent
-	 */
+	 *//*
 	private void setNavigationBarTranslucent(boolean isTransparent) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
 				&& isTransparent) {
@@ -269,7 +269,7 @@ public class SplashActivity extends Activity {
 			winParams.flags |= nBits;
 			win.setAttributes(winParams);
 		}
-	}
+	}*/
 
 
 	

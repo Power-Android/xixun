@@ -374,7 +374,7 @@ public class Regist_BangDingActivity extends BaseActivity implements
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
-	// 选择相册还是拍照
+	/*// 选择相册还是拍照
 	public class PopupWindows extends PopupWindow {
 
 		public PopupWindows(Context mContext, View parent) {
@@ -425,7 +425,7 @@ public class Regist_BangDingActivity extends BaseActivity implements
 
 					intent.setDataAndType(
 							MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-							"image/*");
+							"image*//*");
 					startActivityForResult(intent, 1);
 					dismiss();
 				}
@@ -437,7 +437,7 @@ public class Regist_BangDingActivity extends BaseActivity implements
 			});
 
 		}
-	}
+	}*/
 
 	/**
 	 * 裁剪图片方法实现

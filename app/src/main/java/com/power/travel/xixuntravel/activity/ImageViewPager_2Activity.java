@@ -71,7 +71,7 @@ public class ImageViewPager_2Activity extends Activity implements OnClickListene
 //		travelModel=(MyTravelModel)getIntent().getExtras().getSerializable("model");
 	}
 
-	public void photoviewonlistener(View view) {
+	/*public void photoviewonlistener(View view) {
 //		Log.e("", "0000000-0000000----000000");
 		ImageViewPager_2Activity.this.finish();
 		// imageView.setOnTouchListener(new OnTouchListener() {
@@ -92,7 +92,7 @@ public class ImageViewPager_2Activity extends Activity implements OnClickListene
 		// }
 		// });
 	}
-
+*/
 	private void initView() {
 		mHeadDotLayout = (LinearLayout) findViewById(R.id.home_head_position);
 		back = (ImageView) findViewById(R.id.back);
