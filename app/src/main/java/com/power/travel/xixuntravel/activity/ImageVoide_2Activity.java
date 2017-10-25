@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.power.travel.xixuntravel.R;
 import com.power.travel.xixuntravel.app.MyApplication;
 import com.power.travel.xixuntravel.event.MyTravelDetailEvent;
@@ -71,21 +72,21 @@ public class ImageVoide_2Activity extends Activity implements SurfaceVideoView.O
             }else if (msg.what == 2) {// 成功点赞
                 ToastUtil.showToast(getApplicationContext(), info);
                 if (TextUtils.equals(travelModel.getZanIf(), "1")) {// 赞变不赞
-                    travelModel.setZanIf("0");
-                    travelModel.setZan(String.valueOf(Integer
-                            .valueOf(travelModel.getZan()) - 1));
-                    ToastUtil.showToast(ImageVoide_2Activity.this, "取消成功");
-                    detail_zan.setText("赞");
-
+                    getData(false);
                 } else {// 不赞变赞
-                    travelModel.setZanIf("1");
-                    travelModel.setZan(String.valueOf(Integer
-                            .valueOf(travelModel.getZan()) + 1));
-                    ToastUtil.showToast(ImageVoide_2Activity.this, "点赞成功");
-                    detail_zan.setText("取消");
+                    getData(false);
                 }
             }else if (msg.what == -2) {// 失败点赞
                 ToastUtil.showToast(getApplicationContext(), info);
+            }else if (msg.what == 4){
+                String zan = travelModel.getZan();
+                praise_type.setText(zan);
+                String is_zan = travelModel.getZanIf();
+                if (TextUtils.equals(is_zan, "1")) {// 赞变不赞
+                    detail_zan.setText("取消");
+                }else {// 不赞变赞
+                    detail_zan.setText("赞");
+                }
             }
             if (pd != null && ImageVoide_2Activity.this != null) {
                 pd.dismiss();
@@ -122,11 +123,9 @@ public class ImageVoide_2Activity extends Activity implements SurfaceVideoView.O
 
     private void getData() {
         mList_pic = getIntent().getStringArrayListExtra("pic_list");
-
         travelModel=(AllTravelModel) getIntent().getExtras().getSerializable("model");
+        String zan = travelModel.getZan();
     }
-
-
 
     private void initView() {
         sp = getSharedPreferences(XZContranst.MAIN_SHARED_PREFERENCES,
@@ -261,7 +260,60 @@ public class ImageVoide_2Activity extends Activity implements SurfaceVideoView.O
             else
                 mVideoView.start();
         }
+        getData(false);
     }
+
+    private void getData(final boolean ifcomment) {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                JSONObject data = new JSONObject();
+                try {
+                    data.put("mid", sp.getString(XZContranst.id, null));
+                    data.put("id", travelModel.getId());
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+
+                String url = HttpUrl.all_triaveldetail;
+                String json = StringUtils.setJSON(data);
+
+                LogUtil.e(TAG, "详情提交的数据" + json);
+                String request = HttpClientPostUpload.Upload(json, url);
+
+                JSONObject jsonj = null;
+                String status = null;
+
+                try {
+                    jsonj = new JSONObject(request);
+                    LogUtil.e(TAG, "详情返回的数据" + jsonj.toString());
+
+                    status = jsonj.getString("status");
+                    info = jsonj.getString("info");
+                    JSONObject jsond = jsonj.getJSONObject("data");
+                    travelModel = JSON.parseObject(jsond.toString(),
+                            AllTravelModel.class);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    LogUtil.e(TAG, "解析错误" + e.toString());
+                }
+
+                if (TextUtils.equals(status, "1")) {
+                    handler.sendEmptyMessage(4);
+
+                } else if (TextUtils.equals(status, "0")) {
+                    handler.sendEmptyMessage(0);
+                } else {
+                    handler.sendEmptyMessage(-1);
+                }
+
+            }
+        }).start();
+    }
+
 
     @Override
     public void onPause() {

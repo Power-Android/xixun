@@ -135,6 +135,28 @@ public class CalendarFragment extends Fragment {
 								Color.TRANSPARENT);
 					}
 				}
+				/*Date start=null,end = null;
+				start=CalendarMainActivity.getStartDate();
+				end=CalendarMainActivity.getEndDate();
+				if(start==null){//都为空
+					start = (Date)calendarGridViewAdapter.getItem(position);
+					CalendarMainActivity.setStartDate(start);
+//					Toast.makeText(getActivity(),"开始"+ConverToString(CalendarMainActivity.startDate), 1).show();
+					calendarGridViewAdapter.Updata(start, end);
+				}else if(start!=null&&end==null){//开始有 结束为空
+					end = (Date)calendarGridViewAdapter.getItem(position);
+					CalendarMainActivity.setEndDate(end);
+//					 Toast.makeText(getActivity(),"结束"+ConverToString(CalendarMainActivity.endDate), 1).show();
+					calendarGridViewAdapter.Updata(start, end);
+					EventBus.getDefault().post(new CalendarEvent(CalendarEvent.REFRESH));
+				}else if(start!=null&&end!=null){//都不为空
+					start = (Date)calendarGridViewAdapter.getItem(position);
+					CalendarMainActivity.setStartDate(start);
+					end=null;
+					CalendarMainActivity.setEndDate(end);
+//					Toast.makeText(getActivity(),"开始"+ConverToString(CalendarMainActivity.startDate), 1).show();
+					calendarGridViewAdapter.Updata(CalendarMainActivity.startDate, CalendarMainActivity.endDate);
+				}*/
 				Date start=null,end = null;
 				start=CalendarMainActivity.getStartDate();
 				end= CalendarMainActivity.getEndDate();
@@ -143,31 +165,54 @@ public class CalendarFragment extends Fragment {
 					start = (Date)calendarGridViewAdapter.getItem(position);
 					if (start.getTime() < nowDate.getTime()){
 						Toast.makeText(getActivity().getApplicationContext(),"请选择当前日期之后的时间",Toast.LENGTH_SHORT).show();
+						LogUtil.e("TAG","------------1------------");
+						start = null;
+						return;
 					}else {
 						CalendarMainActivity.setStartDate(start);
 						calendarGridViewAdapter.Updata(start, end);
+						LogUtil.e("TAG","------------2------------");
+
 					}
 				}else if(start!=null&&end==null){//开始有 结束为空
 					end = (Date)calendarGridViewAdapter.getItem(position);
-					if (end.getTime() < nowDate.getTime() && end.getTime() < start.getTime()){
+					if (end.getTime() < nowDate.getTime() & end.getTime() < start.getTime()){
 						Toast.makeText(getActivity().getApplicationContext(),"请选择当前日期之后的时间",Toast.LENGTH_SHORT).show();
+						LogUtil.e("TAG","------------3------------");
+						end = null;
+						return;
 					}else {
-						CalendarMainActivity.setEndDate(end);
-						calendarGridViewAdapter.Updata(start, end);
-						EventBus.getDefault().post(new CalendarEvent(CalendarEvent.REFRESH));
+						if (end.getTime() < start.getTime()){
+
+							Toast.makeText(getActivity().getApplicationContext(),"请选择当前日期之后的时间",Toast.LENGTH_SHORT).show();
+							LogUtil.e("TAG","------------8------------");
+						}else {
+							CalendarMainActivity.setEndDate(end);
+							calendarGridViewAdapter.Updata(start, end);
+							EventBus.getDefault().post(new CalendarEvent(CalendarEvent.REFRESH));
+							LogUtil.e("TAG","------------4------------");
+
+						}
+
 					}
 				}else if(start!=null&&end!=null){//都不为空
 					start = (Date)calendarGridViewAdapter.getItem(position);
 					if (start.getTime() < nowDate.getTime()){
 						Toast.makeText(getActivity().getApplicationContext(),"请选择当前日期之后的时间",Toast.LENGTH_SHORT).show();
+						LogUtil.e("TAG","------------5------------");
+						return;
 					}else {
 						CalendarMainActivity.setStartDate(start);
 						end=null;
-						if (end.getTime() < nowDate.getTime() && end.getTime() < start.getTime()){
+						if (start.getTime() < nowDate.getTime()){
 							Toast.makeText(getActivity().getApplicationContext(),"请选择当前日期之后的时间",Toast.LENGTH_SHORT).show();
+							LogUtil.e("TAG","------------6------------");
+
+							return;
 						}else {
 							CalendarMainActivity.setEndDate(end);
 							calendarGridViewAdapter.Updata(CalendarMainActivity.startDate, CalendarMainActivity.endDate);
+							LogUtil.e("TAG","------------7------------");
 						}
 					}
 				}

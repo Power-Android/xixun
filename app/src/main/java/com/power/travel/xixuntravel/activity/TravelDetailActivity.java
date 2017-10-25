@@ -118,7 +118,7 @@ public class TravelDetailActivity extends BaseActivity
 					allTravelModel.setZan(String.valueOf(Integer
 							.valueOf(allTravelModel.getZan()) - 1));
 					praise_iv.setImageDrawable(getResources().getDrawable(
-							R.drawable.traveldetail_nopraise));
+							R.drawable.recommend_nozan));
 					praise_tv.setText(allTravelModel.getZan());
 					tag=1;
 
@@ -129,7 +129,7 @@ public class TravelDetailActivity extends BaseActivity
 					praise_tv.setText(allTravelModel.getZan());
 					tag=2;
 					praise_iv.setImageDrawable(getResources().getDrawable(
-							R.drawable.trip_attention));
+							R.drawable.recommend_zan));
 				}
 			} else if (msg.what == -2) {// 失败点赞
 				ToastUtil.showToast(getApplicationContext(), info);
@@ -167,7 +167,6 @@ public class TravelDetailActivity extends BaseActivity
 		};
 	};
     private Intent intent;
-    private String qubie;
 
     @Override
 	protected void onCreate(Bundle arg0) {
@@ -243,7 +242,6 @@ public class TravelDetailActivity extends BaseActivity
 	private void initgetIntent() {
         intent = getIntent();
 		id = intent.getStringExtra("id");
-        qubie = intent.getStringExtra("qubie");
     }
 
 	@Override
@@ -326,10 +324,10 @@ public class TravelDetailActivity extends BaseActivity
 		}
 		if (TextUtils.equals(allTravelModel.getZanIf(), "1")) {// 赞
 			praise_iv.setImageDrawable(getResources().getDrawable(
-					R.drawable.trip_attention));
+					R.drawable.recommend_zan));
 		} else {// 不赞
 			praise_iv.setImageDrawable(getResources().getDrawable(
-					R.drawable.traveldetail_nopraise));
+					R.drawable.recommend_nozan));
 		}
 		praise_tv.setText(allTravelModel.getZan());
 		commentnum.setText(allTravelModel.getComment_count());

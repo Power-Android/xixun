@@ -399,9 +399,11 @@ public class MainActivity extends BaseActivity implements RongIM.UserInfoProvide
 			@Override
 			public void onClick(View v) {
 				if (Build.VERSION.SDK_INT >= 23) {
+					int checkCallPhonePermission1 = ContextCompat.checkSelfPermission(MainActivity.this,Manifest.permission.CAMERA);
 					int checkCallPhonePermission2 = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 					int checkCallPhonePermission3 = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.RECORD_AUDIO);
-					if (checkCallPhonePermission2 != PackageManager.PERMISSION_GRANTED && checkCallPhonePermission3 != PackageManager.PERMISSION_GRANTED) {
+					if (checkCallPhonePermission1 != PackageManager.PERMISSION_GRANTED && checkCallPhonePermission2 != PackageManager.PERMISSION_GRANTED
+							&& checkCallPhonePermission3 != PackageManager.PERMISSION_GRANTED) {
 						ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, 123);
 						return;
 					}

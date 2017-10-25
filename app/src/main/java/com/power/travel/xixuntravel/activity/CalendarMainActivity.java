@@ -87,7 +87,7 @@ public class CalendarMainActivity extends FragmentActivity {
 		});
 	}
 	
-	/*public void onEventMainThread(CalendarEvent event){
+	public void onEventMainThread(CalendarEvent event){
 		switch (event.getType()) {
 		case 1://
 			onBackPressed();
@@ -96,7 +96,7 @@ public class CalendarMainActivity extends FragmentActivity {
 		default:
 			break;
 		}
-	}*/
+	}
 	
 	protected void onDestroy() {
 		super.onDestroy();

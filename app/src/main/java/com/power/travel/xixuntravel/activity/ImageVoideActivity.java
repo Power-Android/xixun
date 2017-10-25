@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.power.travel.xixuntravel.R;
 import com.power.travel.xixuntravel.app.MyApplication;
 import com.power.travel.xixuntravel.event.MyTravelDetailEvent;
@@ -81,21 +82,21 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 			}else if (msg.what == 2) {// 成功点赞
 				ToastUtil.showToast(getApplicationContext(), info);
 				if (TextUtils.equals(travelModel.getZanIf(), "1")) {// 赞变不赞
-					travelModel.setZanIf("0");
-					travelModel.setZan(String.valueOf(Integer
-							.valueOf(travelModel.getZan()) - 1));
-					ToastUtil.showToast(ImageVoideActivity.this, "取消成功");
-					detail_zan.setText("赞");
-
+					getData(false);
 				} else {// 不赞变赞
-					travelModel.setZanIf("1");
-					travelModel.setZan(String.valueOf(Integer
-							.valueOf(travelModel.getZan()) + 1));
-					ToastUtil.showToast(ImageVoideActivity.this, "点赞成功");
-					detail_zan.setText("取消");
+					getData(false);
 				}
 			}else if (msg.what == -2) {// 失败点赞
 				ToastUtil.showToast(getApplicationContext(), info);
+			}else if (msg.what == 4){
+				String zan = travelModel.getZan();
+				praise_type.setText(zan);
+				String is_zan = travelModel.getZanIf();
+				if (TextUtils.equals(is_zan, "1")) {// 赞变不赞
+					detail_zan.setText("取消");
+				}else {// 不赞变赞
+					detail_zan.setText("赞");
+				}
 			}
 			if (pd != null && ImageVoideActivity.this != null) {
 				pd.dismiss();
@@ -106,8 +107,9 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 	private TextView detail_comment;
 	private LinearLayout tiaozhuan_ll;
     private TextView detail_zan_type;
+	private int zan_num;
 
-   //  ArrayList<Fragment> listFragment = new ArrayList<Fragment>();
+	//  ArrayList<Fragment> listFragment = new ArrayList<Fragment>();
 
 	public static Intent newIntent(Context mContext,
                                    MyTravelModel model, ArrayList<String> pic_List, int position) {
@@ -124,7 +126,7 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 		setContentView(R.layout.image_video_layout);
 		MyApplication.getInstance().addActivity(this);
 		//注册
-		EventBus.getDefault().register(this);
+//		EventBus.getDefault().register(this);
 		getData();// 接收参数
 		initView();// 初始化控件
 		setData();
@@ -139,8 +141,8 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 
 	private void getData() {
 		mList_pic = getIntent().getStringArrayListExtra("pic_list");
-	
 		travelModel=(MyTravelModel)getIntent().getExtras().getSerializable("model");
+		String zan = travelModel.getZan();
 	}
 
 
@@ -189,6 +191,58 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 		}
 		
 	}
+
+	private void getData(final boolean ifcomment) {
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+
+				JSONObject data = new JSONObject();
+				try {
+					data.put("mid", sp.getString(XZContranst.id, null));
+					data.put("id", travelModel.getId());
+				} catch (JSONException e1) {
+					e1.printStackTrace();
+				}
+
+				String url = HttpUrl.all_triaveldetail;
+				String json = StringUtils.setJSON(data);
+
+				LogUtil.e(TAG, "详情提交的数据" + json);
+				String request = HttpClientPostUpload.Upload(json, url);
+
+				JSONObject jsonj = null;
+				String status = null;
+
+				try {
+					jsonj = new JSONObject(request);
+					LogUtil.e(TAG, "详情返回的数据" + jsonj.toString());
+
+					status = jsonj.getString("status");
+					info = jsonj.getString("info");
+					JSONObject jsond = jsonj.getJSONObject("data");
+					travelModel = JSON.parseObject(jsond.toString(),
+							MyTravelModel.class);
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+					LogUtil.e(TAG, "解析错误" + e.toString());
+				}
+
+				if (TextUtils.equals(status, "1")) {
+					handler.sendEmptyMessage(4);
+
+				} else if (TextUtils.equals(status, "0")) {
+					handler.sendEmptyMessage(0);
+				} else {
+					handler.sendEmptyMessage(-1);
+				}
+
+			}
+		}).start();
+	}
+
 
 	@Override
 	public void onClick(View v) {
@@ -284,6 +338,7 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 			else
 				mVideoView.start();
 		}
+		getData(false);
 	}
 
 	@Override

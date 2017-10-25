@@ -79,7 +79,6 @@
                     android:layout_marginRight="15dp"
                     android:drawableLeft="@drawable/dianzai_white"
                     android:drawablePadding="5dp"
-                    android:text="1"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_mid2_size" />
 
@@ -91,7 +90,6 @@
                     android:layout_marginTop="5dp"
                     android:drawableLeft="@drawable/my_travel_comment"
                     android:drawablePadding="5dp"
-                    android:text="1"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_mid2_size" />
             </LinearLayout>

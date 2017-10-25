@@ -176,6 +176,8 @@ public class YueBanActivity extends BaseActivity implements PullToRefreshBase.On
         }
     };
     private String provice;
+    private String is_car;
+    private String car;
 
     private void changeData(String follow) {
         AllTripModel model = adapterList.get(changePosi);
@@ -396,6 +398,7 @@ public class YueBanActivity extends BaseActivity implements PullToRefreshBase.On
                     data.put("area", country_id);
                     data.put("sex", sex);
                     data.put("age", age);
+                    data.put("is_car",car);
                 } catch (JSONException e1) {
                     e1.printStackTrace();
                 }
@@ -586,6 +589,7 @@ public class YueBanActivity extends BaseActivity implements PullToRefreshBase.On
             intent.putExtra("sex_str", sex_str);
             intent.putExtra("age", age);
             intent.putExtra("age_str", age_str);
+            intent.putExtra("is_car",is_car);
             startActivityForResult(intent, 11);
             this.overridePendingTransition(R.anim.bottom_to_top,
                     R.anim.alpha_go);
@@ -633,6 +637,8 @@ public class YueBanActivity extends BaseActivity implements PullToRefreshBase.On
                 sex_str=data.getStringExtra("sex_str");
                 age=data.getStringExtra("age");
                 age_str=data.getStringExtra("age_str");
+                is_car = data.getStringExtra("is_car");
+                car = data.getStringExtra("car");
                 setLeft();
 //				scroll.getRefreshableView().smoothScrollTo(0,0);//防止scrollView 跳到listview位置
                 if (!adapterList.isEmpty()) {

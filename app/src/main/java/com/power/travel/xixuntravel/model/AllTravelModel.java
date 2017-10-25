@@ -28,6 +28,15 @@ public class AllTravelModel implements Serializable {
 	private String zanIf;//
 	private String zan;//
 	private String comment;//
+	private String is_zan;
+
+	public String getIs_zan() {
+		return is_zan;
+	}
+
+	public void setIs_zan(String is_zan) {
+		this.is_zan = is_zan;
+	}
 
 	public String getId() {
 		return id;

@@ -48,7 +48,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
                             android:layout_toRightOf="@+id/my_head"
-                            android:text="萨芬的话"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_big_size" />
 

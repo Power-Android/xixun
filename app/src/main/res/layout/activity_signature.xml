@@ -31,7 +31,7 @@
                     android:id="@+id/signature_ed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLength="100"
+                    android:maxLength="30"
                     android:background="@null"
                     android:gravity="top"
                     android:minLines="6"
@@ -46,7 +46,7 @@
                     android:gravity="right"
                     android:paddingBottom="5dp"
                     android:paddingRight="5dp"
-                    android:text="0/100"
+                    android:text="0/30"
                     android:textColor="@color/text_gray_color"
                     android:textSize="@dimen/text_mid_size" />
             </LinearLayout>

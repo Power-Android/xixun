@@ -249,11 +249,15 @@ public class AllTripListAdapter extends BaseAdapter implements OnClickListener {
 		} else {
 			holder.ifyueban.setVisibility(View.INVISIBLE);
 		}
-		if (TextUtils.equals(list.get(position).getIs_carpool(), "1")) {//是否约车
+		if (TextUtils.equals(list.get(position).getIs_carpool(), "1")) {//是否拼车
 			holder.ifyuecar.setVisibility(View.VISIBLE);
 		} else {
 			holder.ifyuecar.setVisibility(View.INVISIBLE);
+		}
+		if (TextUtils.equals(list.get(position).getIs_car(),"1")){//是否有车
 			holder.ifyoucar.setVisibility(View.VISIBLE);
+		}else {
+			holder.ifyoucar.setVisibility(View.INVISIBLE);
 		}
 
 		

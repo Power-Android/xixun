@@ -109,7 +109,7 @@
                                 android:layout_width="15dp"
                                 android:layout_height="15dp"
                                 android:focusable="false"
-                                android:src="@drawable/traveldetail_nopraise" />
+                                android:src="@drawable/recommend_nozan" />
 
                             <TextView
                                 android:id="@+id/traveldetail_praise_tv"

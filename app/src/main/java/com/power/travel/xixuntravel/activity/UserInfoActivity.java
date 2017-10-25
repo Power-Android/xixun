@@ -134,9 +134,9 @@ public class UserInfoActivity extends BaseActivity {
 				ToastUtil.showToast(getApplicationContext(), info);
 			}else if (msg.what == 3) {// 修改信息成功
 				ToastUtil.showToast(getApplicationContext(), info);
-				area_tv.setText(city);
-
 				editData();
+//				area_tv.setText(city);
+
 			}else if (msg.what == -3) {// 修改信息失败
 				ToastUtil.showToast(getApplicationContext(), info);
 			}
@@ -293,6 +293,8 @@ public class UserInfoActivity extends BaseActivity {
 			edit.putString(XZContranst.age, mCurrentProviceName);
 		}else if(posi==6){
 			area_tv.setText(city);
+			LogUtil.e(TAG,"-----------"+city+"----------");
+
 //			json.put("province", key);
 //			json.put("city", key);
 //			json.put("area", key);
@@ -398,9 +400,11 @@ public class UserInfoActivity extends BaseActivity {
 							province=data.getStringExtra("province");
 							province_id=data.getStringExtra("province_id");
 							city=data.getStringExtra("city");
+							LogUtil.e(TAG,"-----------"+city+"----------");
 							city_id=data.getStringExtra("city_id");
 							country=data.getStringExtra("country");
 							country_id=data.getStringExtra("country_id");
+							posi = 6;
 							editInfo(6,province+city+country);
 						}
 						break;

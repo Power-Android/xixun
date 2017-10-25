@@ -25,7 +25,6 @@ import com.power.travel.xixuntravel.app.MyApplication;
 import com.power.travel.xixuntravel.event.MyTravelDetailEvent;
 import com.power.travel.xixuntravel.model.AllTravelModel;
 import com.power.travel.xixuntravel.model.MyTravelModel;
-import com.power.travel.xixuntravel.model.TravelDetailCommentModel;
 import com.power.travel.xixuntravel.net.HttpClientPostUpload;
 import com.power.travel.xixuntravel.net.HttpUrl;
 import com.power.travel.xixuntravel.utils.ConfigApp;
@@ -37,14 +36,10 @@ import com.power.travel.xixuntravel.utils.XZContranst;
 import com.power.travel.xixuntravel.views.PhotoView;
 import com.power.travel.xixuntravel.views.ViewSwitcherHelper;
 import com.power.travel.xixuntravel.weight.HackyViewPager;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
@@ -69,8 +64,6 @@ public class ImageViewPagerActivity extends Activity implements OnClickListener 
 	MyTravelModel travelModel;
 	private String TAG="ImageViewPagerActivity",info;
 	SharedPreferences sp;
-	private AllTravelModel allTravelModel;
-	List<TravelDetailCommentModel> list = new ArrayList<TravelDetailCommentModel>();
 	private ProgressDialogUtils pd;
 	private Handler handler = new Handler() {
 		@Override
@@ -80,34 +73,30 @@ public class ImageViewPagerActivity extends Activity implements OnClickListener 
 				ConfigApp.mDelectMyTravel.setTravelID(travelModel.getId());
 				EventBus.getDefault().post(new MyTravelDetailEvent(MyTravelDetailEvent.REFRESH));
 				finish();
-			}
-			 if(msg.what==111){
-				  sdate();
-
-			 }else if(msg.what==0){//失败
+			} else if(msg.what==0){//失败
 				ToastUtil.showToast(getApplicationContext(), info);
 			}else if(msg.what==-1){//其他
 				ToastUtil.showToast(getApplicationContext(), info);
 			}else if (msg.what == 2) {// 成功点赞
 				ToastUtil.showToast(getApplicationContext(), info);
 				if (TextUtils.equals(travelModel.getZanIf(), "1")) {// 赞变不赞
-					travelModel.setZanIf("0");
-					travelModel.setZan(String.valueOf(Integer
-							.valueOf(travelModel.getZan()) - 1));
-					ToastUtil.showToast(ImageViewPagerActivity.this, "取消成功");
-					detail_zan.setText("赞");
-
+					getData(false);
 				} else {// 不赞变赞
-					travelModel.setZanIf("1");
-					travelModel.setZan(String.valueOf(Integer
-							.valueOf(travelModel.getZan()) + 1));
-					ToastUtil.showToast(ImageViewPagerActivity.this, "点赞成功");
-					detail_zan.setText("取消");
+					getData(false);
 				}
 			}else if (msg.what == -2) {// 失败点赞
 				ToastUtil.showToast(getApplicationContext(), info);
 			} else if (msg.what == -3) {// 评论失败
 				ToastUtil.showToast(getApplicationContext(), info);
+			}else if (msg.what == 4){
+				String zan = travelModel.getZan();
+				praise_type.setText(zan);
+				String is_zan = travelModel.getZanIf();
+				if (TextUtils.equals(is_zan, "1")) {// 赞变不赞
+					detail_zan.setText("取消");
+				}else {// 不赞变赞
+					detail_zan.setText("赞");
+				}
 			}
 			if (pd != null && ImageViewPagerActivity.this != null) {
 				pd.dismiss();
@@ -117,7 +106,6 @@ public class ImageViewPagerActivity extends Activity implements OnClickListener 
 	private TextView detail_zan;
 	private TextView detail_comment;
 	private LinearLayout tiaozhuan_ll;
-	private TextView detail_zan_type;
 
 	// ArrayList<Fragment> listFragment = new ArrayList<Fragment>();
 
@@ -149,24 +137,6 @@ public class ImageViewPagerActivity extends Activity implements OnClickListener 
 
 	}
 
-	@Override
-	protected void onPause() {
-		getDatas(true);
-		super.onPause();
-	}
-
-	private void sdate(){
-	  String zan = allTravelModel.getZan();
-	  if("0".equals(zan)){
-		  detail_zan.setText("赞");
-	  }
-	  else {
-		  detail_zan.setText("取消");
-	  }
-
-	    praise_type.setText(allTravelModel.getZanIf());
-
-  }
 	private void setData() {
 		content.setText(travelModel.getContent());
 		praise_type.setText(travelModel.getZan());
@@ -177,62 +147,66 @@ public class ImageViewPagerActivity extends Activity implements OnClickListener 
 		mList_pic = getIntent().getStringArrayListExtra("pic_list");
 		mSeleteItem = getIntent().getIntExtra("position", 0);
 		travelModel=(MyTravelModel)getIntent().getExtras().getSerializable("model");
+		String zan = travelModel.getZan();
 	}
-private void getDatas(final boolean ifcomment) {
-	pd = ProgressDialogUtils.show(this, "获取数据...");
-	pd.show();
-	new Thread(new Runnable() {
 
-		@Override
-		public void run() {
+	private void getData(final boolean ifcomment) {
+		new Thread(new Runnable() {
 
-			JSONObject data = new JSONObject();
-			try {
-				data.put("mid", sp.getString(XZContranst.id, null));
-				data.put("id", travelModel.getId());
-			} catch (JSONException e1) {
-				e1.printStackTrace();
-			}
+			@Override
+			public void run() {
 
-			String url = HttpUrl.all_triaveldetail;
-			String json = StringUtils.setJSON(data);
-
-			LogUtil.e(TAG, "详情提交的数据" + json);
-			String request = HttpClientPostUpload.Upload(json, url);
-
-			JSONObject jsonj = null;
-			String status = null;
-
-			try {
-				jsonj = new JSONObject(request);
-				LogUtil.e(TAG, "详情返回的数据" + jsonj.toString());
-
-				status = jsonj.getString("status");
-				info = jsonj.getString("info");
-				JSONObject jsond = jsonj.getJSONObject("data");
-				allTravelModel = JSON.parseObject(jsond.toString(),
-						AllTravelModel.class);
-				list = JSON.parseArray(jsond.getString("comment"),
-						TravelDetailCommentModel.class);
-
-			} catch (JSONException e) {
-				e.printStackTrace();
-				LogUtil.e(TAG, "解析错误" + e.toString());
-			}
-
-			if (TextUtils.equals(status, "1")) {
-					handler.sendEmptyMessage(111);
+				JSONObject data = new JSONObject();
+				try {
+					data.put("mid", sp.getString(XZContranst.id, null));
+					data.put("id", travelModel.getId());
+				} catch (JSONException e1) {
+					e1.printStackTrace();
 				}
-		}
-	}).start();
-}
+
+				String url = HttpUrl.all_triaveldetail;
+				String json = StringUtils.setJSON(data);
+
+				LogUtil.e(TAG, "详情提交的数据" + json);
+				String request = HttpClientPostUpload.Upload(json, url);
+
+				JSONObject jsonj = null;
+				String status = null;
+
+				try {
+					jsonj = new JSONObject(request);
+					LogUtil.e(TAG, "详情返回的数据" + jsonj.toString());
+
+					status = jsonj.getString("status");
+					info = jsonj.getString("info");
+					JSONObject jsond = jsonj.getJSONObject("data");
+					travelModel = JSON.parseObject(jsond.toString(),
+							MyTravelModel.class);
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+					LogUtil.e(TAG, "解析错误" + e.toString());
+				}
+
+				if (TextUtils.equals(status, "1")) {
+					handler.sendEmptyMessage(4);
+
+				} else if (TextUtils.equals(status, "0")) {
+					handler.sendEmptyMessage(0);
+				} else {
+					handler.sendEmptyMessage(-1);
+				}
+
+			}
+		}).start();
+	}
+
 	private void initView() {
 		sp = getSharedPreferences(XZContranst.MAIN_SHARED_PREFERENCES,
 				Context.MODE_PRIVATE);
 		mHeadDotLayout = (LinearLayout) findViewById(R.id.home_head_position);
 		back = (ImageView) findViewById(R.id.back);
 		back.setOnClickListener(this);
-		detail_zan_type = (TextView) findViewById(R.id.detail_zan_type);
 		title_iv= (ImageView) findViewById(R.id.title_iv);
 		title_iv.setImageDrawable(getResources().getDrawable(R.drawable.traveldetail_delect));
 		title_iv.setVisibility(View.VISIBLE);
@@ -305,6 +279,12 @@ private void getDatas(final boolean ifcomment) {
 	}
 
 	@Override
+	protected void onResume() {
+		super.onResume();
+		getData(false);
+	}
+
+	@Override
 	public void onClick(View v) {
 		if(v==back){
 			finish();
@@ -315,7 +295,7 @@ private void getDatas(final boolean ifcomment) {
 		if (v == tiaozhuan_ll){
 			Intent intent = new Intent(ImageViewPagerActivity.this,
 					TravelDetailActivity.class);
-           intent.putExtra("qubie","tupian");
+            intent.putExtra("qubie","tupian");
 			intent.putExtra("id", travelModel.getId());
 			startActivity(intent);
 		}
@@ -400,66 +380,6 @@ private void getDatas(final boolean ifcomment) {
 		}
 		return false;
 	}
-
-	// class ViewPagerAdapter extends PagerAdapter {
-	// List<String> list;
-	//
-	// public ViewPagerAdapter(List<String> list) {
-	// this.list = list;
-	// }
-	//
-	// @Override
-	// public int getCount() {
-	//
-	// if (list != null && list.size() > 0) {
-	// return list.size();
-	// } else {
-	// return 0;
-	// }
-	// }
-	//
-	// @Override
-	// public boolean isViewFromObject(View arg0, Object arg1) {
-	// return arg0 == arg1;
-	// }
-	//
-	// @Override
-	// public void destroyItem(ViewGroup container, int position, Object object)
-	// {
-	// container.removeView((View) object);
-	// }
-	//
-	// // @Override
-	// // public Object instantiateItem(ViewGroup container, int position) {
-	// // View imageLayout = getLayoutInflater().inflate(
-	// // R.layout.phone_view_layout, container, false);
-	// // PhotoView imageView = (PhotoView) imageLayout
-	// // .findViewById(R.id.photo_view_image);// photociew在此用到了
-	// //
-	// // imageView.setId(position);
-	// // String image_url = list.get(position);
-	// // ImageLoader.getInstance().displayImage(image_url, imageView);
-	// //
-	// // LogUtil.e("", "11111111111-------------111111111111111111");
-	// // imageView.setTag(position);
-	// // imageView.setOnClickListener(new OnClickListener() {
-	// //
-	// // @Override
-	// // public void onClick(View v) {
-	// // LogUtil.e("", "0000000-0000000----000000");
-	// // ImageViewPagerActivity.this.finish();
-	// // }
-	// // });
-	// // ((ViewPager) container).addView(imageLayout, 0);
-	// //
-	// // return imageLayout;
-	// // }
-	//
-	// @Override
-	// public int getItemPosition(Object object) {
-	// return POSITION_NONE;
-	// }
-	// }
 
 	class ViewPageAdpter extends PagerAdapter // 装载view的适配器
 	{

@@ -112,6 +112,7 @@ public class FiltrateActivity extends AppCompatActivity implements OnClickListen
 			}
 		}
 	};
+	private String is_car;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -150,7 +151,7 @@ public class FiltrateActivity extends AppCompatActivity implements OnClickListen
 				carList.add(carModel);
 			}else if (i == 1){
 				CarModel carModel = new CarModel();
-				carModel.setId("2");
+				carModel.setId("0");
 				carModel.setName("无");
 				carList.add(carModel);
 			}
@@ -218,7 +219,8 @@ public class FiltrateActivity extends AppCompatActivity implements OnClickListen
 		age_str=data.getStringExtra("age_str");
 		car = data.getStringExtra("car");
 		car_str = data.getStringExtra("car_str");
-		
+		is_car = data.getStringExtra("is_car");
+
 		if(TextUtils.equals(is_at, "0")){
 			is_at="1";
 		}else if(TextUtils.equals(is_at, "1")){
@@ -358,6 +360,7 @@ public class FiltrateActivity extends AppCompatActivity implements OnClickListen
 			intent.putExtra("age_str", age_str);
 			intent.putExtra("car", car);
 			intent.putExtra("car_str", car_str);
+			intent.putExtra("is_car",is_car);
 			setResult(101, intent);
 			onBackPressed();
 		}

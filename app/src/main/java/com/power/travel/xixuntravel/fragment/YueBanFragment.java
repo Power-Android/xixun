@@ -58,8 +58,8 @@ public class YueBanFragment extends Fragment implements View.OnClickListener {
         addaddress_title.setOnClickListener(this);
         locaton_tv = (TextView)view.findViewById(R.id.locaton_tv);
         locaton_tv.setOnClickListener(this);
-//        locaton_tv.setText(spLocation.getString(XZContranst.location_city, ""));
-        locaton_tv.setText("全部");
+        locaton_tv.setText(spLocation.getString(XZContranst.location_city, ""));
+//        locaton_tv.setText("全部");
 
         iv_to_youji = (ClickImageView) view.findViewById(R.id.iv_to_youji);
         iv_to_yueban = (ClickImageView) view.findViewById(R.id.iv_to_yueban);

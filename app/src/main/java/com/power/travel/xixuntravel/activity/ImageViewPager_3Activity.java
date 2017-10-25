@@ -17,11 +17,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.power.travel.xixuntravel.R;
 import com.power.travel.xixuntravel.app.MyApplication;
 import com.power.travel.xixuntravel.event.MyTravelDetailEvent;
 import com.power.travel.xixuntravel.model.AllTravelModel;
+import com.power.travel.xixuntravel.model.TravelDetailCommentModel;
 import com.power.travel.xixuntravel.net.HttpClientPostUpload;
 import com.power.travel.xixuntravel.net.HttpUrl;
 import com.power.travel.xixuntravel.utils.ConfigApp;
@@ -58,7 +60,14 @@ public class ImageViewPager_3Activity extends Activity implements View.OnClickLi
     private String TAG="ImageViewPagerActivity",info;
     SharedPreferences sp;
     private ProgressDialogUtils pd;
+    private String is_zan,is_zan1;//是否点赞
+    private String zan;
+
+
     private Handler handler = new Handler() {
+
+        private int zan_num2;
+
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -72,30 +81,36 @@ public class ImageViewPager_3Activity extends Activity implements View.OnClickLi
                 ToastUtil.showToast(getApplicationContext(), info);
             }else if (msg.what == 2) {// 成功点赞
                 ToastUtil.showToast(getApplicationContext(), info);
-                if (TextUtils.equals(travelModel.getZanIf(), "1")) {// 赞变不赞
-                    travelModel.setZanIf("0");
-                    travelModel.setZan(String.valueOf(Integer
-                            .valueOf(travelModel.getZan()) - 1));
-                    ToastUtil.showToast(ImageViewPager_3Activity.this, "取消成功");
-                    detail_zan.setText("赞");
+                if (TextUtils.equals(is_zan, "1")) {// 赞变不赞
+//                    ToastUtil.showToast(ImageViewPager_3Activity.this, "取消成功");
+//                    detail_zan.setText("赞");
+                    getData(false);
 
                 } else {// 不赞变赞
-                    travelModel.setZanIf("1");
-                    travelModel.setZan(String.valueOf(Integer
-                            .valueOf(travelModel.getZan()) + 1));
-                    ToastUtil.showToast(ImageViewPager_3Activity.this, "点赞成功");
-                    detail_zan.setText("取消");
+//                    ToastUtil.showToast(ImageViewPager_3Activity.this, "点赞成功");
+//                    detail_zan.setText("取消");
+                    getData(false);
                 }
             }else if (msg.what == -2) {// 失败点赞
                 ToastUtil.showToast(getApplicationContext(), info);
             } else if (msg.what == -3) {// 评论失败
                 ToastUtil.showToast(getApplicationContext(), info);
+            }else if (msg.what == 4){
+                String zan = travelModel.getZan();
+                praise_type.setText(zan);
+                String is_zan = travelModel.getZanIf();
+                if (TextUtils.equals(is_zan, "1")) {// 赞变不赞
+                    detail_zan.setText("取消");
+                }else {// 不赞变赞
+                    detail_zan.setText("赞");
+                }
             }
             if (pd != null && ImageViewPager_3Activity.this != null) {
                 pd.dismiss();
             }
         }
     };
+
 
     // ArrayList<Fragment> listFragment = new ArrayList<Fragment>();
 
@@ -127,6 +142,15 @@ public class ImageViewPager_3Activity extends Activity implements View.OnClickLi
         mList_pic = getIntent().getStringArrayListExtra("pic_list");
         mSeleteItem = getIntent().getIntExtra("position", 0);
         travelModel=(AllTravelModel) getIntent().getExtras().getSerializable("model");
+        zan = travelModel.getZan();
+//        is_zan1 = travelModel.getIs_zan();//是否点赞
+//        is_zan = travelModel.getZanIf();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData(false);
     }
 
     private void initView() {
@@ -240,6 +264,60 @@ public class ImageViewPager_3Activity extends Activity implements View.OnClickLi
             startActivity(intent);
         }
     }
+
+
+    //TODO
+    private void getData(final boolean ifcomment) {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                JSONObject data = new JSONObject();
+                try {
+                    data.put("mid", sp.getString(XZContranst.id, null));
+                    data.put("id", travelModel.getId());
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+
+                String url = HttpUrl.all_triaveldetail;
+                String json = StringUtils.setJSON(data);
+
+                LogUtil.e(TAG, "详情提交的数据" + json);
+                String request = HttpClientPostUpload.Upload(json, url);
+
+                JSONObject jsonj = null;
+                String status = null;
+
+                try {
+                    jsonj = new JSONObject(request);
+                    LogUtil.e(TAG, "详情返回的数据" + jsonj.toString());
+
+                    status = jsonj.getString("status");
+                    info = jsonj.getString("info");
+                    JSONObject jsond = jsonj.getJSONObject("data");
+                    travelModel = JSON.parseObject(jsond.toString(),
+                            AllTravelModel.class);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    LogUtil.e(TAG, "解析错误" + e.toString());
+                }
+
+                if (TextUtils.equals(status, "1")) {
+                    handler.sendEmptyMessage(4);
+
+                } else if (TextUtils.equals(status, "0")) {
+                    handler.sendEmptyMessage(0);
+                } else {
+                    handler.sendEmptyMessage(-1);
+                }
+
+            }
+        }).start();
+    }
+
 
     /**
      * 赞
