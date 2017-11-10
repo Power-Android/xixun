@@ -30,13 +30,12 @@ import android.widget.RelativeLayout;
  * @author fan
  * 
  */
-public class ImageViewListAdapter extends BaseAdapter
-		 {
+public class ImageViewListAdapter extends BaseAdapter {
 
 	private LayoutInflater inflater;
 	Context context;
 	DisplayImageOptions options;
-	private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();// �Լ�д��һ����
+	private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 	ImageLoader imageLoader = ImageLoader.getInstance();
 	String list ;
 	private DisplayMetrics dm;
@@ -49,14 +48,13 @@ public class ImageViewListAdapter extends BaseAdapter
 		inflater = LayoutInflater.from(context);
 
 		options = new DisplayImageOptions.Builder()
-				.showStubImage(R.drawable.imaleloadlogo)// ����ͼƬ�������ڼ���ʾ��ͼƬ
-				.showImageForEmptyUri(R.drawable.imaleloadlogo)// ����ͼƬUriΪ�ջ��Ǵ����ʱ����ʾ��ͼƬ
-				.showImageOnFail(R.drawable.imaleloadlogo)// ����ͼƬ����/�������д���ʱ����ʾ��ͼƬ
-				// .cacheInMemory(true)// �Ƿ񾏴涼�ȴ���
-				.cacheOnDisc(true)// �Ƿ񾏴浽sd����
-				.imageScaleType(ImageScaleType.EXACTLY_STRETCHED)// ����ͼƬ����εı��뷽ʽ��ʾ
-				.bitmapConfig(Bitmap.Config.RGB_565)// ����ͼƬ�Ľ�������//
-				.displayer(new RoundedBitmapDisplayer(10))// �����û�����ͼƬtask(������Բ��ͼƬ��ʾ)
+				.showStubImage(R.drawable.imaleloadlogo)
+				.showImageForEmptyUri(R.drawable.imaleloadlogo)
+				.showImageOnFail(R.drawable.imaleloadlogo)
+				.cacheOnDisc(true)
+				.imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
+				.bitmapConfig(Bitmap.Config.RGB_565)
+				.displayer(new RoundedBitmapDisplayer(10))
 				.build();
 		imageLoader.init(ImageLoaderConfiguration.createDefault(context));
 

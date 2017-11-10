@@ -11,6 +11,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.power.travel.xixuntravel.R;
 import com.power.travel.xixuntravel.activity.Apply_driverActivity;
 import com.power.travel.xixuntravel.activity.Apply_guideActivity;
+import com.power.travel.xixuntravel.activity.FuJinRenActivity;
 import com.power.travel.xixuntravel.activity.LoginActivity;
 import com.power.travel.xixuntravel.activity.MessageActivity;
 import com.power.travel.xixuntravel.activity.MyFollowActivity;
@@ -18,6 +19,8 @@ import com.power.travel.xixuntravel.activity.MyTravelActivity;
 import com.power.travel.xixuntravel.activity.MyTripListActivity;
 import com.power.travel.xixuntravel.activity.SettingActivity;
 import com.power.travel.xixuntravel.activity.UserInfoActivity;
+import com.power.travel.xixuntravel.activity.ZuCheActivity;
+import com.power.travel.xixuntravel.activity.ZuFangActivity;
 import com.power.travel.xixuntravel.model.FollowModel;
 import com.power.travel.xixuntravel.model.MessageModel;
 import com.power.travel.xixuntravel.net.HttpClientPostUpload;
@@ -58,7 +61,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import io.rong.imkit.RongIM;
-import io.rong.imkit.manager.IUnReadMessageObserver;
 import io.rong.imlib.model.Conversation;
 
 
@@ -105,6 +107,9 @@ public class PersionalCenterFragment extends Fragment implements OnClickListener
 			pd.dismiss();
 		}
 	};
+	private RelativeLayout fujinre_rl;
+	private RelativeLayout zufang_rl;
+	private RelativeLayout yueche_rl;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
@@ -169,6 +174,11 @@ public class PersionalCenterFragment extends Fragment implements OnClickListener
 		my_head=(ImageView)view.findViewById(R.id.my_head);
 		my_name= (TextView)view.findViewById(R.id.my_name);
 		my_id= (TextView)view.findViewById(R.id.my_id);
+
+		fujinre_rl = view.findViewById(R.id.fujinren_rl);
+		zufang_rl = view.findViewById(R.id.zufang_rl);
+		yueche_rl = view.findViewById(R.id.yueche_rl);
+
 		my_apply_guide_type= (TextView)view.findViewById(R.id.my_apply_guide_type);
 		my_apply_driver_type= (TextView)view.findViewById(R.id.my_apply_driver_type);
 		my_message= (TextView)view.findViewById(R.id.my_message);
@@ -191,6 +201,9 @@ public class PersionalCenterFragment extends Fragment implements OnClickListener
 		my_trip.setOnClickListener(this);
 		my_attention.setOnClickListener(this);
 		title_iv.setOnClickListener(this);
+		fujinre_rl.setOnClickListener(this);
+		zufang_rl.setOnClickListener(this);
+		yueche_rl.setOnClickListener(this);
 	}
 
 	private void getData(boolean ifshow) {
@@ -428,6 +441,12 @@ public class PersionalCenterFragment extends Fragment implements OnClickListener
 			hashMap.put(Conversation.ConversationType.SYSTEM.getName(),true);
 			RongIM.getInstance().startConversationList(getActivity(),hashMap);
 
+		}else if (v == fujinre_rl){//附近人
+			startActivity(new Intent(getActivity(),FuJinRenActivity.class));
+		}else if (v == zufang_rl){//租房发布
+			startActivity(new Intent(getActivity(),ZuFangActivity.class));
+		}else if (v == yueche_rl){//租车发布
+			startActivity(new Intent(getActivity(),ZuCheActivity.class));
 		}
 	}
 

@@ -16,12 +16,11 @@ import com.power.travel.xixuntravel.R;
 
 public class MenuGridViewAdapter extends BaseAdapter {
 	
-	private Integer[] img = new Integer[] { R.drawable.service_guide,
-			R.drawable.service_car, R.drawable.service_knowledge, R.drawable.service_rescuenews,
-			R.drawable.service_rentcar, R.drawable.service_viewspot, R.drawable.service_hospital
-			, R.drawable.service_police, R.drawable.service_master, R.drawable.service_contactus};// 存放图片
+	private Integer[] img = new Integer[] {
+			R.drawable.service_guide, R.drawable.service_car, R.drawable.service_knowledge, R.drawable.service_rescuenews,
+			R.drawable.service_viewspot, R.drawable.yueche1, R.drawable.zufang1, R.drawable.service_contactus};// 存放图片
 
-	private String[] name = new String[] { "导游", "司机", "常识", "救援", "租车","景区", "医院","派出所","地主达人","联系我们" };
+	private String[] name = new String[] { "导游", "司机", "常识", "救援", "景区", "约车","房屋租赁","联系我们" };
 	
 	Context context;
 

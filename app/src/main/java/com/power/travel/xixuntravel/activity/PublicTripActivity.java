@@ -541,19 +541,17 @@ public class PublicTripActivity extends BaseActivity implements OnCheckedChangeL
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_CODE) {
 			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//				 Permission Granted
 				path = null;
 				photo();
 			} else {
-				// Permission Denied
+
 			}
 		} else if (requestCode == READ_EXTERNAL_STORAGE_REQUEST_CODE) {
 			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				// Permission Granted
 				startActivity(new Intent(PublicTripActivity.this,
 						SelectPicMainActivity.class));
 			} else {
-				// Permission Denied
+
 			}
 		}
 	}

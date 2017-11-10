@@ -21,6 +21,160 @@ public class MasterModel implements Serializable {
 	private String cityName;
 	private String area;
 	private String mid;
+	private String coordinate_x;
+	private String coordinate_y;
+	private String distance;
+	private String title;
+	private String brand;
+	private String models;
+	private String age;
+	private String money;
+	private String displacement;
+	private String position;
+	private String contacts;
+	private String img;
+	private String content;
+	private String addtime;
+	private String layoutRoom;
+	private String layoutOffice;
+	private String measure;
+
+
+	public String getLayoutRoom() {
+		return layoutRoom;
+	}
+
+	public void setLayoutRoom(String layoutRoom) {
+		this.layoutRoom = layoutRoom;
+	}
+
+	public String getLayoutOffice() {
+		return layoutOffice;
+	}
+
+	public void setLayoutOffice(String layoutOffice) {
+		this.layoutOffice = layoutOffice;
+	}
+
+	public String getMeasure() {
+		return measure;
+	}
+
+	public void setMeasure(String measure) {
+		this.measure = measure;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public String getModels() {
+		return models;
+	}
+
+	public void setModels(String models) {
+		this.models = models;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getMoney() {
+		return money;
+	}
+
+	public void setMoney(String money) {
+		this.money = money;
+	}
+
+	public String getDisplacement() {
+		return displacement;
+	}
+
+	public void setDisplacement(String displacement) {
+		this.displacement = displacement;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public String getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(String contacts) {
+		this.contacts = contacts;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getAddtime() {
+		return addtime;
+	}
+
+	public void setAddtime(String addtime) {
+		this.addtime = addtime;
+	}
+
+	public String getCoordinate_x() {
+		return coordinate_x;
+	}
+
+	public void setCoordinate_x(String coordinate_x) {
+		this.coordinate_x = coordinate_x;
+	}
+
+	public String getCoordinate_y() {
+		return coordinate_y;
+	}
+
+	public void setCoordinate_y(String coordinate_y) {
+		this.coordinate_y = coordinate_y;
+	}
+
+	public String getDistance() {
+		return distance;
+	}
+
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
 
 	public String getMid() {
 		return mid;

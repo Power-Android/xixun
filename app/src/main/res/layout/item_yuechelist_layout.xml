@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/edittext_graybg"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="10dp" >
+
+    <ImageView
+        android:id="@+id/item_master_face"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:id="@+id/item_master_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_alignTop="@+id/item_master_face"
+        android:layout_marginLeft="5dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:layout_toRightOf="@+id/item_master_face"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_big_size" />
+
+    <TextView
+        android:id="@+id/item_master_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_master_nickname"
+        android:layout_toLeftOf="@+id/item_master_chat"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:text="adadas "
+        android:layout_toRightOf="@+id/item_master_face"
+        android:textColor="@color/text_color_gray1"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/item_master_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="3dp"
+        android:layout_alignBottom="@+id/item_master_face"
+        android:layout_toRightOf="@+id/item_master_face"
+        android:layout_marginLeft="5dp"
+        android:drawableLeft="@drawable/distance"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_mid_size" />
+    <TextView
+        android:id="@+id/item_master_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1520元/天"
+        android:textColor="@color/yellow"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/item_master_nickname"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp" />
+
+</RelativeLayout>

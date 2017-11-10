@@ -139,7 +139,7 @@
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
                             android:clickable="false"
-                            android:src="@drawable/my_travel"></ImageView>
+                            android:src="@drawable/my_travel" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -149,7 +149,7 @@
                             android:layout_toRightOf="@+id/my_trip_iv"
                             android:text="行程"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/text_big_size"></TextView>
+                            android:textSize="@dimen/text_big_size" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -180,7 +180,7 @@
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
                             android:clickable="false"
-                            android:src="@drawable/my_tirps"></ImageView>
+                            android:src="@drawable/my_tirps" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -190,7 +190,7 @@
                             android:layout_toRightOf="@+id/my_travel_iv"
                             android:text="游记"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/text_big_size"></TextView>
+                            android:textSize="@dimen/text_big_size" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -203,6 +203,130 @@
 
                     <View
                         style="@style/LineStyle"
+                        android:layout_marginTop="10dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/fujinren_rl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/fujinren_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:clickable="false"
+                            android:src="@drawable/fujinre2_iv" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/fujinren_iv"
+                            android:text="附近人"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:clickable="false"
+                            android:src="@drawable/right" />
+                    </RelativeLayout>
+
+                    <View
+                        style="@style/LineStyle"
+                        android:layout_marginTop="10dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/zufang_rl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/zufang_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:clickable="false"
+                            android:src="@drawable/zufang2_iv" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/zufang_iv"
+                            android:text="租房"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:clickable="false"
+                            android:src="@drawable/right" />
+                    </RelativeLayout>
+
+                    <View
+                        style="@style/LineStyle"
+                        android:layout_marginTop="10dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/yueche_rl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/yueche_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:clickable="false"
+                            android:src="@drawable/yueche2_iv" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/yueche_iv"
+                            android:text="约车"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_big_size" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:clickable="false"
+                            android:src="@drawable/right" />
+                    </RelativeLayout>
+
+                    <View
+                        style="@style/LineStyle"
+                        android:layout_height="2dp"
                         android:layout_marginTop="10dp" />
 
                     <RelativeLayout
@@ -221,7 +345,7 @@
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
                             android:clickable="false"
-                            android:src="@drawable/my_apply_guide"></ImageView>
+                            android:src="@drawable/my_apply_guide" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -231,7 +355,7 @@
                             android:layout_toRightOf="@+id/my_apply_guide_iv"
                             android:text="成为导游"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/text_big_size"></TextView>
+                            android:textSize="@dimen/text_big_size" />
 
                         <TextView
                             android:id="@+id/my_apply_guide_type"
@@ -243,7 +367,7 @@
                             android:text="待审核"
                             android:textColor="@color/text_color_gray2"
                             android:textSize="@dimen/text_mid2_size"
-                            android:visibility="gone"></TextView>
+                            android:visibility="gone" />
 
                         <ImageView
                             android:id="@+id/my_apply_guide_iv2"
@@ -275,7 +399,7 @@
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
                             android:clickable="false"
-                            android:src="@drawable/my_apply_driver"></ImageView>
+                            android:src="@drawable/my_apply_driver"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -285,7 +409,7 @@
                             android:layout_toRightOf="@+id/my_apply_driver_iv"
                             android:text="成为司机"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/text_big_size"></TextView>
+                            android:textSize="@dimen/text_big_size"/>
 
                         <TextView
                             android:id="@+id/my_apply_driver_type"
@@ -297,7 +421,7 @@
                             android:text="待审核"
                             android:textColor="@color/text_color_gray2"
                             android:textSize="@dimen/text_mid2_size"
-                            android:visibility="gone"></TextView>
+                            android:visibility="gone"/>
 
                         <ImageView
                             android:id="@+id/my_apply_driver_iv2"
@@ -330,7 +454,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:clickable="false"
-                        android:src="@drawable/my_setting"></ImageView>
+                        android:src="@drawable/my_setting"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -340,7 +464,7 @@
                         android:layout_toRightOf="@+id/my_setting_iv"
                         android:text="设置"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_big_size"></TextView>
+                        android:textSize="@dimen/text_big_size"/>
 
                     <ImageView
                         android:id="@+id/my_setting_iv2"

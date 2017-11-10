@@ -36,7 +36,6 @@ public interface XZContranst {
 	public static String zhendong="zhendong";//
 	public static String sound="sound";//
 	public static String adress="adress";//筛选地址
-	
 	public static int apply_guide_name=10;
 	public static int apply_guide_nation=11;
 	
@@ -46,8 +45,6 @@ public interface XZContranst {
 	public static String addcar="恭喜您，商品已添加至购物车！";
 	public static String no_net="网络连接失败， 请确认网络连接!";
 	
-	public static String[] caragelist={"1","2","3","4","5","6","7","8","9","10"
-		,"11","12","13","14","15","16","17","18","19","20",
-		"21","22","23","24","25","26","27","28","29","30"};
+	public static String[] caragelist={"1-3","4-5","6-10","10-100"};
 
 }

@@ -25,7 +25,34 @@ public class TripDetailCommentModel implements Serializable {
 	private String if_guide;//
 	private String if_driver;//
 	private String list;
-	
+	private String type;
+	private String r_id;
+	private String upname;
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getR_id() {
+		return r_id;
+	}
+
+	public void setR_id(String r_id) {
+		this.r_id = r_id;
+	}
+
+	public String getUpname() {
+		return upname;
+	}
+
+	public void setUpname(String upname) {
+		this.upname = upname;
+	}
+
 	public String getId() {
 		return id;
 	}

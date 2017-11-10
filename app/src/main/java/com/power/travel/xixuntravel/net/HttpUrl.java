@@ -68,5 +68,15 @@ public class HttpUrl {
 	public static String age=Url+"/Api/Service/age.html";//年龄 驾龄获取
 	public static String nation=Url+"/Api/Service/nation.html";//民族获取
 	public static String download=Url+"/Api/Service/download.html";//app自动升级
-
+	public static String nearbyPeople=Url+"/Api/OauthMember/NearbyPeople";//附近人
+	public static String addcarRental=Url+"/Api/CarRental/AddTo";//发布租车
+	public static String addRental = Url+"/Api/Rental/AddTo";//发布租房
+	public static String carRentalList = Url+"/Api/CarRental/lists"; //租车列表
+	public static String rentalList = Url+"/Api/Rental/lists"; //租房列表
+	public static String carRentalFollow = Url+"/Api/CarRental/follow";//租车关注
+	public static String carRentalContent = Url+"/Api/CarRental/content";//租车详情
+	public static String rentalContent = Url+"/Api/Rental/content";//租房详情
+	public static String rentalFollow = Url+"/Api/Rental/follow";//租房关注
+	public static String carRentalComment = Url+"/Api/CarRental/comment";//租车评论列表
+	public static String carRentalCommentAdd = Url+"/Api/CarRental/commentAdd";//租车发布评论
 }

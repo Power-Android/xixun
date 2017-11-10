@@ -11,20 +11,31 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.power.travel.xixuntravel.R;
 import com.power.travel.xixuntravel.activity.ContactUsActivity;
 import com.power.travel.xixuntravel.activity.DriverListActivity;
 import com.power.travel.xixuntravel.activity.GuideListActivity;
 import com.power.travel.xixuntravel.activity.HospitalActivity;
 import com.power.travel.xixuntravel.activity.KnowledgeActivity;
+import com.power.travel.xixuntravel.activity.LoginActivity;
 import com.power.travel.xixuntravel.activity.MasterListActivity;
 import com.power.travel.xixuntravel.activity.PoliceActivity;
 import com.power.travel.xixuntravel.activity.RentCarActivity;
 import com.power.travel.xixuntravel.activity.RescueActivity;
 import com.power.travel.xixuntravel.activity.RouteDetailActivity;
+import com.power.travel.xixuntravel.activity.UserCenterActivity;
 import com.power.travel.xixuntravel.activity.ViewspotListActivity;
+import com.power.travel.xixuntravel.activity.YueCheListActivity;
+import com.power.travel.xixuntravel.activity.ZuFangListActivity;
 import com.power.travel.xixuntravel.adapter.MenuGridViewAdapter;
 import com.power.travel.xixuntravel.adapter.RouteListAdapter;
+import com.power.travel.xixuntravel.model.MasterModel;
 import com.power.travel.xixuntravel.model.RouteModel;
 import com.power.travel.xixuntravel.net.HttpClientPostUpload;
 import com.power.travel.xixuntravel.net.HttpUrl;
@@ -33,11 +44,13 @@ import com.power.travel.xixuntravel.utils.ProgressDialogUtils;
 import com.power.travel.xixuntravel.utils.StringUtils;
 import com.power.travel.xixuntravel.utils.ToastUtil;
 import com.power.travel.xixuntravel.utils.XZContranst;
+import com.power.travel.xixuntravel.views.AnimateFirstDisplayListener;
 import com.power.travel.xixuntravel.weight.MyGridView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
@@ -54,9 +67,12 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import io.rong.imkit.RongIM;
 
 public class ServiceFragment extends Fragment implements OnClickListener,
         OnItemClickListener, OnRefreshListener2<ListView> {
@@ -66,9 +82,15 @@ public class ServiceFragment extends Fragment implements OnClickListener,
 	MenuGridViewAdapter adapter;
 	private MyGridView gridview;
 	private PullToRefreshListView mListView;
-	List<RouteModel> adapterList = new ArrayList<RouteModel>();
-	List<RouteModel> adapterListMore = new ArrayList<RouteModel>();
-	RouteListAdapter mAdapter;
+//	List<RouteModel> adapterList = new ArrayList<RouteModel>();
+//	List<RouteModel> adapterListMore = new ArrayList<RouteModel>();
+	List<MasterModel> adapterList = new ArrayList<MasterModel>();
+	List<MasterModel> adapterListMore = new ArrayList<MasterModel>();
+//	RouteListAdapter mAdapter;
+	MasterAdapter mAdapter;
+	SharedPreferences spLocation;
+
+
 
 	private String data, TAG = "ServiceFragment", info, mobile;
 	private ProgressDialogUtils pd;
@@ -83,7 +105,7 @@ public class ServiceFragment extends Fragment implements OnClickListener,
 			if (msg.what == 1) {// 成功
 				adapterList.addAll(adapterListMore);
 				if (page == 1) {
-					mAdapter = new RouteListAdapter(getActivity(), adapterList);
+					mAdapter = new MasterAdapter(getActivity(), adapterList);
 					mListView.setAdapter(mAdapter);
 				} else {
 					adapter.notifyDataSetChanged();
@@ -120,8 +142,20 @@ public class ServiceFragment extends Fragment implements OnClickListener,
 			ToastUtil.showToast(getActivity().getApplicationContext(),
 					XZContranst.no_net);
 		}
-		
+
 		mListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+									int position, long id) {
+				MasterModel mMasterModel=adapterList.get(position-1);
+				Intent intent=new Intent(getActivity(),UserCenterActivity.class);
+				intent.putExtra("model", mMasterModel);
+				startActivity(intent);
+			}
+		});
+		
+		/*mListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -130,7 +164,7 @@ public class ServiceFragment extends Fragment implements OnClickListener,
 				intent.putExtra("id", adapterList.get(position-1).getId());
 				startActivity(intent);
 			}
-		});
+		});*/
 
 		return view;
 	}
@@ -138,6 +172,8 @@ public class ServiceFragment extends Fragment implements OnClickListener,
 	private void init(View view) {
 		sp = getActivity().getSharedPreferences(
 				XZContranst.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE);
+		spLocation= getActivity().getSharedPreferences(XZContranst.MAIN_SHARED_PREFERENCES_LO,
+				Context.MODE_PRIVATE);
 		pd = ProgressDialogUtils.show(getActivity(), "获取数据...");
 		back = (ImageView) view.findViewById(R.id.back);
 		back.setVisibility(View.GONE);
@@ -179,22 +215,16 @@ public class ServiceFragment extends Fragment implements OnClickListener,
 		case 3:// 救援
 			startActivity(new Intent(getActivity(), RescueActivity.class));
 			break;
-		case 4:// 租车
-			startActivity(new Intent(getActivity(), RentCarActivity.class));
-			break;
-		case 5:// 景区
+		case 4:// 景区
 			startActivity(new Intent(getActivity(), ViewspotListActivity.class));
 			break;
-		case 6:// 医院
-			startActivity(new Intent(getActivity(), HospitalActivity.class));
+		case 5:// 约车
+			startActivity(new Intent(getActivity(), YueCheListActivity.class));
 			break;
-		case 7:// 派出所
-			startActivity(new Intent(getActivity(), PoliceActivity.class));
+		case 6:// 租房
+			startActivity(new Intent(getActivity(), ZuFangListActivity.class));
 			break;
-		case 8:// 地主达人
-			startActivity(new Intent(getActivity(), MasterListActivity.class));
-			break;
-		case 9:// 联系我们
+		case 7:// 联系我们
 			startActivity(new Intent(getActivity(), ContactUsActivity.class));
 			break;
 		default:
@@ -241,8 +271,187 @@ public class ServiceFragment extends Fragment implements OnClickListener,
 		}
 		return false;
 	}// isConnect
-	
+
 	private void getData(boolean ifshow) {
+		if (ifshow) {
+			pd.show();
+		}
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				JSONObject data = new JSONObject();
+				try {
+					data.put("page", page);
+					data.put("mid",sp.getString(XZContranst.id, null));
+					data.put("coordinate_x", spLocation.getString(XZContranst.coordinate_x, ""));
+					data.put("coordinate_y", spLocation.getString(XZContranst.coordinate_y, ""));
+				} catch (JSONException e1) {
+					e1.printStackTrace();
+				}
+
+				String url = HttpUrl.master;
+				String json = StringUtils.setJSON(data);
+
+				LogUtil.e(TAG, "地主达人提交的数据" + json);
+				String request = HttpClientPostUpload.Upload(json, url);
+
+				JSONObject jsonj = null;
+				String status = null;
+
+				try {
+					jsonj = new JSONObject(request);
+					LogUtil.e(TAG, "地主达人返回的数据" + jsonj.toString());
+
+					status = jsonj.getString("status");
+					info = jsonj.getString("info");
+					if(TextUtils.equals(status, "1")){
+						JSONArray arry = jsonj.getJSONArray("data");
+						adapterListMore = JSON.parseArray(arry.toString(),
+								MasterModel.class);
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+					LogUtil.e(TAG, "解析错误" + e.toString());
+				}
+
+				if (TextUtils.equals(status, "1")) {
+					handler.sendEmptyMessage(1);
+				} else if (TextUtils.equals(status, "0")) {
+					handler.sendEmptyMessage(0);
+				} else {
+					handler.sendEmptyMessage(-1);
+				}
+
+			}
+		}).start();
+	}
+
+	public class MasterAdapter extends BaseAdapter implements View.OnClickListener {
+
+		private LayoutInflater inflater;
+		Context context;
+		int mPosition;
+		DisplayImageOptions options;
+		private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();// ???��???????
+		ImageLoader imageLoader = ImageLoader.getInstance();
+		List<MasterModel> list = new ArrayList<MasterModel>();
+		SharedPreferences sp;
+		ViewHolder holder = null;
+
+		private String info;
+
+
+		public MasterAdapter(Context context, List<MasterModel> list) {
+			super();
+			this.context = context;
+			this.list = list;
+			inflater = LayoutInflater.from(context);
+
+			options = new DisplayImageOptions.Builder()
+					.cacheOnDisc(true)
+					.imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
+					.bitmapConfig(Bitmap.Config.RGB_565)
+					.displayer(new RoundedBitmapDisplayer(20))
+					.build();
+			imageLoader.init(ImageLoaderConfiguration.createDefault(context));
+
+		}
+
+		public int getCount() {
+			return list.size();
+		}
+
+		public Object getItem(int position) {
+			return null;
+		}
+
+		public long getItemId(int position) {
+			return 0;
+		}
+
+		public void setUpdate(int mPosition) {
+			this.mPosition = mPosition;
+			super.notifyDataSetChanged();
+		}
+
+		public View getView(int position, View convertView, ViewGroup parent) {
+
+
+			if (convertView == null) {
+				holder = new ViewHolder();
+				convertView = inflater.inflate(R.layout.item_master_layout, null, false);
+
+				holder.nickname = (TextView) convertView
+						.findViewById(R.id.item_master_nickname);
+				holder.title = (TextView) convertView
+						.findViewById(R.id.item_master_title);
+				holder.address = (TextView) convertView
+						.findViewById(R.id.item_master_address);
+				holder.distance = (TextView) convertView
+						.findViewById(R.id.item_master_distance);
+				holder.sex = (ImageView) convertView
+						.findViewById(R.id.item_master_sex);
+				holder.face = (ImageView) convertView
+						.findViewById(R.id.item_master_face);
+				holder.item_master_chat = (ImageView) convertView
+						.findViewById(R.id.item_master_chat);
+				holder.item_master_attentin = (ImageView) convertView.findViewById(R.id.item_master_attentin);
+				convertView.setTag(holder);
+			} else {
+				holder = (ViewHolder) convertView.getTag();
+			}
+			//list.get(position).getFace()
+			imageLoader.displayImage(list.get(position).getFace(),
+					holder.face, options, animateFirstListener);
+
+			holder.nickname.setText(list.get(position).getNickname());
+			holder.title.setText(list.get(position).getSignature());
+			holder.address.setText(list.get(position).getAddress());
+			holder.distance.setText(list.get(position).getApart());
+			holder.item_master_attentin.setVisibility(View.GONE);
+
+			if (TextUtils.equals(list.get(position).getIs_follow(), "1")) {
+				holder.item_master_attentin.setImageDrawable(context.getResources().getDrawable(R.drawable.praise_red));
+			} else {
+				holder.item_master_attentin.setImageDrawable(context.getResources().getDrawable(R.drawable.praise_black));
+			}
+			holder.item_master_attentin.setOnClickListener(this);
+			holder.item_master_attentin.setTag(position);
+
+			if (TextUtils.equals(list.get(position).getSex(), "1")) {
+				holder.sex.setImageDrawable(context.getResources().getDrawable(R.drawable.my_boy));
+			} else if (TextUtils.equals(list.get(position).getSex(), "2")) {
+				holder.sex.setImageDrawable(context.getResources().getDrawable(R.drawable.my_girle));
+			}
+			holder.item_master_chat.setOnClickListener(this);
+			holder.item_master_chat.setTag(position);
+			return convertView;
+		}
+
+		@Override
+		public void onClick(View v) {
+			int posi=(Integer)v.getTag();
+			if(v.getId()==R.id.item_master_chat){
+				SharedPreferences sp;
+				sp = context.getSharedPreferences(XZContranst.MAIN_SHARED_PREFERENCES,
+						Context.MODE_PRIVATE);
+				if (sp.getBoolean(XZContranst.if_login, false)) {
+
+					RongIM.getInstance().startPrivateChat(context,list.get(posi).getId() , list.get(posi).getNickname());
+
+				} else {
+					context.startActivity(new Intent(context, LoginActivity.class));
+				}
+			}
+		}
+
+		final class ViewHolder {
+			TextView nickname, title, address, distance;
+			ImageView sex, face, item_master_chat, item_master_attentin;
+		}
+
+	/*private void getData(boolean ifshow) {
 		if (ifshow) {
 			pd.show();
 		}
@@ -295,6 +504,6 @@ public class ServiceFragment extends Fragment implements OnClickListener,
 
 			}
 		}).start();
+	}*/
 	}
-
 }
