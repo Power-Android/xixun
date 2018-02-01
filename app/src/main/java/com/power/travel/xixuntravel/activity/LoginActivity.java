@@ -66,7 +66,6 @@ public class LoginActivity extends BaseActivity implements Callback,
 	SharedPreferences sp,spLocation;
 	public LocationClient mLocationClient = null;
 	public BDLocationListener myListener = new MyLocationListener();
-	private List<Friend> userIdList;
 
 	private static final int MSG_ACTION_CCALLBACK = 2;
 
@@ -80,14 +79,15 @@ public class LoginActivity extends BaseActivity implements Callback,
 			super.handleMessage(msg);
 
 			if (msg.what == 1) {// 成功
-				LogUtil.e(TAG, "token得知"+sp.getString(XZContranst.token, ""));
-				if(!TextUtils.isEmpty(sp.getString(XZContranst.token, ""))){
-					connectRongServer(sp.getString(XZContranst.token, ""));
-					RongIM.setUserInfoProvider(LoginActivity.this, true);
-				}
+//				LogUtil.e(TAG, "token得知融云"+sp.getString(XZContranst.token, ""));
+//				if(!TextUtils.isEmpty(sp.getString(XZContranst.token, ""))){
+//					connectRongServer(sp.getString(XZContranst.token, ""));
+//					RongIM.setUserInfoProvider(LoginActivity.this, true);
+//				}
 //				ToastUtil.showToast(getApplicationContext(), info);
 				
 //				if (TextUtils.isEmpty(mycenter)) {
+					startActivity(new Intent(LoginActivity.this,MainActivity.class));
 					finish();
 //				} else {
 //					Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -157,9 +157,9 @@ public class LoginActivity extends BaseActivity implements Callback,
 				editor.putString("loginnickname", sp.getString(XZContranst.nickname, ""));
 				editor.putString("loginPortrait", sp.getString(XZContranst.face, ""));
 				editor.apply();
-				userIdList = new ArrayList<Friend>();
+//				userIdList = new ArrayList<Friend>();
 				//id  名字  头像
-				userIdList.add(new Friend(userid,sp.getString(XZContranst.nickname, ""),sp.getString(XZContranst.face, "")));
+//				userIdList.add(new Friend(userid,sp.getString(XZContranst.nickname, ""),sp.getString(XZContranst.face, "")));
 				/**
 				 * 设置当前用户信息，
 				 * @param userInfo 当前用户信息
@@ -184,12 +184,12 @@ public class LoginActivity extends BaseActivity implements Callback,
 	@Override
 	public UserInfo getUserInfo(String userId) {
 
-		for (com.power.travel.xixuntravel.model.Friend i : userIdList) {
+		/*for (com.power.travel.xixuntravel.model.Friend i : userIdList) {
 			if (i.getUserId().equals(userId)) {
 				Log.e(TAG, "---------返回的用户信息-----------" + i.getPortraitUri());
 				return new UserInfo(i.getUserId(),i.getUserName(), Uri.parse(i.getPortraitUri()));
 			}
-		}
+		}*/
 		return null;
 	}
 

@@ -54,9 +54,11 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:background="@color/edittext_bg_color_shen"
+        android:layout_toLeftOf="@+id/item_master_sex"
+        android:background="#e8e8e8"
         android:maxLines="4"
         android:minWidth="120dp"
+        android:maxWidth="200dp"
         android:minLines="4"
         android:ellipsize="end" />
 </RelativeLayout>

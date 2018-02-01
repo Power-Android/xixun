@@ -59,7 +59,7 @@ import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.UserInfo;
 
 
-public class MainActivity extends BaseActivity implements RongIM.UserInfoProvider{
+public class MainActivity extends BaseActivity implements RongIM.UserInfoProvider {
 
 	private long exitTime = 0;
 	private LinearLayout tab_yueban_layout, tab_recomment_layout,
@@ -85,7 +85,7 @@ public class MainActivity extends BaseActivity implements RongIM.UserInfoProvide
 	private List<Friend> userIdList;
 	private Dialog_Update dialog_Update;
 	private int listtype=1;// 1约伴（行程）2游记
-	
+
 	Handler handler = new Handler() {
 		@SuppressLint("HandlerLeak")
 		public void handleMessage(Message msg) {
@@ -122,14 +122,15 @@ public class MainActivity extends BaseActivity implements RongIM.UserInfoProvide
 		} catch (Exception e) {
 			Log.e("", "EventBus注册错误" + e.toString());
 		}
-
+		if (sp.getBoolean(XZContranst.if_login, false)) {
+			LogUtil.e(TAG, "token得知"+sp.getString(XZContranst.token, ""));
+			if(!TextUtils.isEmpty(sp.getString(XZContranst.token, ""))){
+				connectRongServer(sp.getString(XZContranst.token, ""));
+			}
+		}
 		setTabSelection(0);//进入页面后显示约伴fragment
 		
-		LogUtil.e(TAG, "token得知"+sp.getString(XZContranst.token, ""));
-		if(!TextUtils.isEmpty(sp.getString(XZContranst.token, ""))){
-			connectRongServer(sp.getString(XZContranst.token, ""));
-	         RongIM.setUserInfoProvider(this, true);
-		}
+
 		GetVersion();
 		
 	}
@@ -536,12 +537,14 @@ public class MainActivity extends BaseActivity implements RongIM.UserInfoProvide
 				 * 设置当前用户信息，
 				 * @param userInfo 当前用户信息
 				 */
-				RongIM.getInstance().setCurrentUserInfo(getUserInfo(userid));
+//				RongIM.getInstance().setCurrentUserInfo(new UserInfo(userid,sp.getString(XZContranst.nickname, ""),Uri.parse(sp.getString(XZContranst.face, ""))));
 				/**
 				 * 设置消息体内是否携带用户信息。
 				 * @param state 是否携带用户信息，true 携带，false 不携带。
 				 */
-				RongIM.getInstance().setMessageAttachedUserInfo(true);
+//				RongIM.getInstance().setMessageAttachedUserInfo(true);
+
+				RongIM.setUserInfoProvider(MainActivity.this, true);
 
 			}
 
@@ -556,7 +559,7 @@ public class MainActivity extends BaseActivity implements RongIM.UserInfoProvide
 	@Override
 	public UserInfo getUserInfo(String userId) {
 
-		for (com.power.travel.xixuntravel.model.Friend i : userIdList) {
+		for (Friend i : userIdList) {
 			if (i.getUserId().equals(userId)) {
 				Log.e(TAG, "---------返回的用户信息-----------" + i.getPortraitUri());
 				return new UserInfo(i.getUserId(),i.getUserName(), Uri.parse(i.getPortraitUri()));

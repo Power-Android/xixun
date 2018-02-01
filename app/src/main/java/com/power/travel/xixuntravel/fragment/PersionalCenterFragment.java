@@ -320,7 +320,7 @@ public class PersionalCenterFragment extends Fragment implements OnClickListener
 				String url = HttpUrl.index;
 				String json = StringUtils.setJSON(data);
 
-				LogUtil.e(TAG, "用户基本信息提交的数据" + json);
+//				LogUtil.e(TAG, "用户基本信息提交的数据" + json);
 				String request = HttpClientPostUpload.Upload(json, url);
 
 				JSONObject jsonj = null;
@@ -328,7 +328,7 @@ public class PersionalCenterFragment extends Fragment implements OnClickListener
 
 				try {
 					jsonj = new JSONObject(request);
-					LogUtil.e(TAG, "用户基本信息返回的数据" + jsonj.toString());
+//					LogUtil.e(TAG, "用户基本信息返回的数据" + jsonj.toString());
 					status = jsonj.getString("status");
 					weiducount = jsonj.getInt("weiducount");
 					followcount = jsonj.getString("followcount");

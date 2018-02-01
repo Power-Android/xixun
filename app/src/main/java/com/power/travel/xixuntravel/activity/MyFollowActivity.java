@@ -1,6 +1,7 @@
 package com.power.travel.xixuntravel.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -10,6 +11,7 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,12 +22,14 @@ import com.power.travel.xixuntravel.app.BaseActivity;
 import com.power.travel.xixuntravel.app.MyApplication;
 import com.power.travel.xixuntravel.impl.MyFollowOnItemOnClickListener;
 import com.power.travel.xixuntravel.model.FollowModel;
+import com.power.travel.xixuntravel.model.MasterModel;
 import com.power.travel.xixuntravel.model.PhoneModel;
 import com.power.travel.xixuntravel.net.HttpClientPostUpload;
 import com.power.travel.xixuntravel.net.HttpUrl;
 import com.power.travel.xixuntravel.utils.CharacterParser;
 import com.power.travel.xixuntravel.utils.LogUtil;
 import com.power.travel.xixuntravel.utils.PinyinComparator;
+import com.power.travel.xixuntravel.utils.PinyinUtils;
 import com.power.travel.xixuntravel.utils.ProgressDialogUtils;
 import com.power.travel.xixuntravel.utils.StringUtils;
 import com.power.travel.xixuntravel.utils.ToastUtil;
@@ -53,7 +57,7 @@ public class MyFollowActivity extends BaseActivity implements MyFollowOnItemOnCl
 	private ProgressDialogUtils pd;
 	private int delectID;
 	ListView mListView;
-	List<FollowModel> adapterList = new ArrayList<FollowModel>();
+	List<MasterModel> adapterList = new ArrayList<MasterModel>();
 	SharedPreferences sp;
 	SideBar sideBar;
 	MyFollowAdapter adapter;
@@ -78,7 +82,7 @@ public class MyFollowActivity extends BaseActivity implements MyFollowOnItemOnCl
 				SourceDateList = filledData(adapterList);
 				// 根据a-z进行排序源数据
 				Collections.sort(SourceDateList, pinyinComparator);
-				adapter = new MyFollowAdapter(MyFollowActivity.this, SourceDateList,dm.widthPixels);
+				adapter = new MyFollowAdapter(MyFollowActivity.this, SourceDateList,dm.widthPixels,adapterList);
 				adapter.OnItemListener(MyFollowActivity.this);
 				mListView.setAdapter(adapter);
 			} else if (msg.what == 10) {// 失败
@@ -173,7 +177,7 @@ public class MyFollowActivity extends BaseActivity implements MyFollowOnItemOnCl
 	 *
 	 * @return
 	 */
-	private List<PhoneModel> filledData(List<FollowModel> list) {
+	private List<PhoneModel> filledData(List<MasterModel> list) {
 		List<PhoneModel> mSortList = new ArrayList<PhoneModel>();
 
 		for (int i = 0; i < list.size(); i++) {
@@ -185,7 +189,9 @@ public class MyFollowActivity extends BaseActivity implements MyFollowOnItemOnCl
 			sortModel.setUserID(list.get(i).getFollow_id());
 
 			// 汉字转换成拼音
-			String pinyin = characterParser.getSelling(list.get(i)
+			/*String pinyin = characterParser.getSelling(list.get(i)
+					.getNickname());*/
+			String pinyin = PinyinUtils.getPingYin(list.get(i)
 					.getNickname());
 			String sortString = null;
 			if(!TextUtils.isEmpty(list.get(i).getNickname())){
@@ -240,7 +246,7 @@ public class MyFollowActivity extends BaseActivity implements MyFollowOnItemOnCl
 					if (TextUtils.equals(status, "1")) {
 						JSONArray arry = jsonj.getJSONArray("data");
 						adapterList = JSON.parseArray(arry.toString(),
-								FollowModel.class);
+								MasterModel.class);
 					}
 
 				} catch (JSONException e) {

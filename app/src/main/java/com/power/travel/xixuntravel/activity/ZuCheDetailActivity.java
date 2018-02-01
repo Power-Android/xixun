@@ -45,6 +45,12 @@ import com.power.travel.xixuntravel.utils.ToastUtil;
 import com.power.travel.xixuntravel.utils.XZContranst;
 import com.power.travel.xixuntravel.views.AnimateFirstDisplayListener;
 import com.power.travel.xixuntravel.weight.MyListView;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -74,6 +80,8 @@ public class ZuCheDetailActivity extends BaseActivity {
     private String id,info;
     private String TAG = "ZuCheDetailActivity";
     private TextView guanzhu_tv;
+    private UMWeb umWeb;
+    private UMImage image;
 
 
 
@@ -107,6 +115,7 @@ public class ZuCheDetailActivity extends BaseActivity {
         }
     };
     private String contacts;
+    private ImageView title_share;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +129,8 @@ public class ZuCheDetailActivity extends BaseActivity {
                 Context.MODE_PRIVATE);
         back = findViewById(R.id.back);
         title = findViewById(R.id.title);
+        title_share = findViewById(R.id.title_share);
+        title_share.setVisibility(View.VISIBLE);
         scrollView = findViewById(R.id.scrollView);
         zuche_title_tv = findViewById(R.id.zuche_title_tv);
         guanzhu_iv = findViewById(R.id.guanzhu_iv);
@@ -140,9 +151,25 @@ public class ZuCheDetailActivity extends BaseActivity {
 
         pd = ProgressDialogUtils.show(this, "加载数据...");
         back.setOnClickListener(this);
+        title_share.setOnClickListener(this);
         guanzhu_iv.setOnClickListener(this);
         call_phone_ll.setOnClickListener(this);
         tripdetail_comment_layout.setOnClickListener(this);
+
+        image = new UMImage(this, R.drawable.logo);
+        image.setThumb(image);
+
+        /*//大小压缩
+        image.compressStyle = UMImage.CompressStyle.SCALE;
+        //质量压缩
+        image.compressStyle = UMImage.CompressStyle.QUALITY;
+        */
+        String url = "https://www.baidu.com/";
+        umWeb = new UMWeb(url);
+        umWeb.setTitle("这是标题！！！");
+        umWeb.setThumb(image);
+        umWeb.setDescription("这是内容~~~~~~~~");
+
         getIntentData();
     }
 
@@ -154,6 +181,7 @@ public class ZuCheDetailActivity extends BaseActivity {
                 JSONObject data = new JSONObject();
                 try {
                     data.put("id",id);
+                    data.put("mid",sp.getString(XZContranst.id, null));
                 } catch (JSONException e1) {
                     e1.printStackTrace();
                 }
@@ -206,8 +234,8 @@ public class ZuCheDetailActivity extends BaseActivity {
         zuche_content_tv.setText(mMasterModel.getContent());
         pinpai_tv.setText("品牌："+ mMasterModel.getBrand());
         chexing_tv.setText("车型："+ mMasterModel.getModels());
-        cheling_tv.setText("车龄："+ mMasterModel.getAge());
-        pailiang_tv.setText("排量："+ mMasterModel.getDisplacement());
+        cheling_tv.setText("车龄："+ mMasterModel.getAge()+"年");
+        pailiang_tv.setText("排量："+ mMasterModel.getDisplacement()+"L");
         weizhi_tv.setText("位置："+ mMasterModel.getPosition());
         location_tv.setText(mMasterModel.getPosition());
         if(!TextUtils.isEmpty(mMasterModel.getImg())){
@@ -226,14 +254,49 @@ public class ZuCheDetailActivity extends BaseActivity {
         if (v == back){
             finish();
         }else if (v == guanzhu_iv){
-            getGuanZhu();
+            getGuanZhu(true);
         }else if (v == call_phone_ll){
             showEnsure("拨打电话:"+contacts,contacts);
         }else if (v == tripdetail_comment_layout){
             Intent intent = new Intent(ZuCheDetailActivity.this,ZuCheDetilCommentActivity.class);
             intent.putExtra("tid",mMasterModel.getId());
             startActivity(intent);
+        }else if (v == title_share){
+            new ShareAction(ZuCheDetailActivity.this).setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE,
+                    SHARE_MEDIA.QQ,SHARE_MEDIA.SINA)
+                    .withMedia(image)
+                    .withMedia(umWeb)
+                    .setCallback(umShareListener)
+                    .open();
         }
+    }
+
+    private UMShareListener umShareListener = new UMShareListener() {
+        @Override
+        public void onStart(SHARE_MEDIA share_media) {
+
+        }
+
+        @Override
+        public void onResult(SHARE_MEDIA share_media) {
+            ToastUtil.showToast(getApplicationContext(),"分享成功");
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+            ToastUtil.showToast(getApplicationContext(),"分享失败");
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA share_media) {
+            ToastUtil.showToast(getApplicationContext(),"分享取消");
+        }
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 
     protected void showEnsure(String message, final String phone){
@@ -250,7 +313,11 @@ public class ZuCheDetailActivity extends BaseActivity {
         });
     }
 
-    private void getGuanZhu() {
+    private void getGuanZhu(boolean ifshow) {
+        if (ifshow) {
+            pd = ProgressDialogUtils.show(this, "加载数据...");
+            pd.show();
+        }
         new Thread(new Runnable() {
 
             @Override
@@ -278,9 +345,7 @@ public class ZuCheDetailActivity extends BaseActivity {
 
                     status = jsonj.getString("status");
                     info = jsonj.getString("info");
-                    if(TextUtils.equals(status, "1")){
 
-                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                     LogUtil.e(TAG, "解析错误" + e.toString());

@@ -43,6 +43,12 @@ import com.power.travel.xixuntravel.utils.ToastUtil;
 import com.power.travel.xixuntravel.utils.XZContranst;
 import com.power.travel.xixuntravel.views.AnimateFirstDisplayListener;
 import com.power.travel.xixuntravel.weight.MyListView;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,11 +69,13 @@ public class ZuFangDetailActivity extends BaseActivity {
     private TextView location_tv;
     private MyListView myListView;
     private TextView guanzhu_tv;
-    private EditText tripdetail_comment_edit;
+    private TextView tripdetail_comment_edit;
     MasterModel mMasterModel;
     private ScrollView scrollView;
     private String id,info;
     private String TAG = "ZuFangDetailActivity";
+    private UMWeb umWeb;
+    private UMImage image;
 
     private Handler handler = new Handler() {
         @Override
@@ -92,9 +100,6 @@ public class ZuFangDetailActivity extends BaseActivity {
                 getData();
             }else if (msg.what == -2) {// 关注失败
                 ToastUtil.showToast(getApplicationContext(), info);
-            }else if (msg.what == 3){
-                ToastUtil.showToast(getApplicationContext(),info);
-                getData();
             }
             if (pd != null && ZuFangDetailActivity.this != null) {
                 pd.dismiss();
@@ -103,6 +108,8 @@ public class ZuFangDetailActivity extends BaseActivity {
     };
     private String contacts;
     private LinearLayout tripdetail_comment_layout2;
+    private ImageView title_share;
+    private LinearLayout call_phone_ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +123,8 @@ public class ZuFangDetailActivity extends BaseActivity {
                 Context.MODE_PRIVATE);
         back = findViewById(R.id.back);
         title = findViewById(R.id.title);
+        title_share = findViewById(R.id.title_share);
+        title_share.setVisibility(View.VISIBLE);
         scrollView = findViewById(R.id.scrollView);
         zuche_title_tv = findViewById(R.id.zuche_title_tv);
         guanzhu_iv = findViewById(R.id.guanzhu_iv);
@@ -126,6 +135,7 @@ public class ZuFangDetailActivity extends BaseActivity {
         fangxing_tv = findViewById(R.id.fangxing_tv);
         location_tv = findViewById(R.id.location_tv);
         myListView = findViewById(R.id.zuche_listview);
+        call_phone_ll = findViewById(R.id.call_phone_ll);
         tripdetail_comment_edit = findViewById(R.id.tripdetail_comment_edit);
         tripdetail_comment_layout2 = findViewById(R.id.tripdetail_comment_layout2);
 
@@ -133,9 +143,11 @@ public class ZuFangDetailActivity extends BaseActivity {
 
         pd = ProgressDialogUtils.show(this, "加载数据...");
         back.setOnClickListener(this);
+        title_share.setOnClickListener(this);
         guanzhu_iv.setOnClickListener(this);
         tripdetail_comment_edit.setOnClickListener(this);
         tripdetail_comment_layout2.setOnClickListener(this);
+        call_phone_ll.setOnClickListener(this);
         getIntentData();
     }
 
@@ -147,6 +159,7 @@ public class ZuFangDetailActivity extends BaseActivity {
                 JSONObject data = new JSONObject();
                 try {
                     data.put("id",id);
+                    data.put("mid",sp.getString(XZContranst.id, null));
                 } catch (JSONException e1) {
                     e1.printStackTrace();
                 }
@@ -208,6 +221,20 @@ public class ZuFangDetailActivity extends BaseActivity {
         id = mMasterModel.getId();
         contacts = mMasterModel.getContacts();
 
+        image = new UMImage(this, R.drawable.logo);
+        image.setThumb(image);
+
+        /*//大小压缩
+        image.compressStyle = UMImage.CompressStyle.SCALE;
+        //质量压缩
+        image.compressStyle = UMImage.CompressStyle.QUALITY;
+        */
+        String url = "https://www.baidu.com/";
+        umWeb = new UMWeb(url);
+        umWeb.setTitle("这是标题！！！");
+        umWeb.setThumb(image);
+        umWeb.setDescription("这是内容~~~~~~~~");
+
         getData();
     }
 
@@ -217,10 +244,53 @@ public class ZuFangDetailActivity extends BaseActivity {
         if (v == back){
             finish();
         }else if (v == guanzhu_iv){
-            getGuanZhu();
-        }else if (v == tripdetail_comment_layout2){
+            getGuanZhu(true);
+        }else if (v == call_phone_ll){
             showEnsure("拨打电话:"+contacts,contacts);
+        } else if (v == tripdetail_comment_layout2){
+            Intent intent = new Intent(ZuFangDetailActivity.this,ZuFangDetilCommentActivity.class);
+            intent.putExtra("tid",mMasterModel.getId());
+            startActivity(intent);
+        }else if (v == tripdetail_comment_edit){
+            Intent intent = new Intent(ZuFangDetailActivity.this,ZuFangDetilCommentActivity.class);
+            intent.putExtra("tid",mMasterModel.getId());
+            startActivity(intent);
+        }else if (v == title_share){
+            new ShareAction(ZuFangDetailActivity.this).setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE,
+                    SHARE_MEDIA.QQ,SHARE_MEDIA.SINA)
+                    .withMedia(image)
+                    .withMedia(umWeb)
+                    .setCallback(umShareListener)
+                    .open();
         }
+    }
+
+    private UMShareListener umShareListener = new UMShareListener() {
+        @Override
+        public void onStart(SHARE_MEDIA share_media) {
+
+        }
+
+        @Override
+        public void onResult(SHARE_MEDIA share_media) {
+            ToastUtil.showToast(getApplicationContext(),"分享成功");
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+            ToastUtil.showToast(getApplicationContext(),"分享失败");
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA share_media) {
+            ToastUtil.showToast(getApplicationContext(),"分享取消");
+        }
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 
     protected void showEnsure(String message, final String phone){
@@ -237,7 +307,11 @@ public class ZuFangDetailActivity extends BaseActivity {
         });
     }
 
-    private void getGuanZhu() {
+    private void getGuanZhu(boolean ifshow) {
+        if (ifshow) {
+            pd = ProgressDialogUtils.show(this, "加载数据...");
+            pd.show();
+        }
         new Thread(new Runnable() {
 
             @Override
@@ -265,9 +339,6 @@ public class ZuFangDetailActivity extends BaseActivity {
 
                     status = jsonj.getString("status");
                     info = jsonj.getString("info");
-                    if(TextUtils.equals(status, "1")){
-                        JSONArray arry = jsonj.getJSONArray("data");
-                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                     LogUtil.e(TAG, "解析错误" + e.toString());

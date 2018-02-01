@@ -20,11 +20,9 @@ import com.alibaba.fastjson.JSON;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.power.travel.xixuntravel.R;
-import com.power.travel.xixuntravel.adapter.TripDetailCommentAdapter;
 import com.power.travel.xixuntravel.adapter.ZuCheCommentAdapter;
 import com.power.travel.xixuntravel.app.BaseActivity;
 import com.power.travel.xixuntravel.app.MyApplication;
-import com.power.travel.xixuntravel.impl.AllTripDetailComment_replayOnItemOnClickListener;
 import com.power.travel.xixuntravel.model.TripDetailCommentModel;
 import com.power.travel.xixuntravel.net.HttpClientPostUpload;
 import com.power.travel.xixuntravel.net.HttpUrl;
@@ -41,9 +39,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ZuCheDetilCommentActivity extends BaseActivity  implements
+public class ZuFangDetilCommentActivity extends BaseActivity implements
         PullToRefreshBase.OnRefreshListener2<ListView> {
-
     private ImageView back;
     private TextView title,comment;
     private EditText comment_edit;
@@ -64,7 +61,7 @@ public class ZuCheDetilCommentActivity extends BaseActivity  implements
 
             if (msg.what == 1) {// 成功
                 if (page == 1) {
-                    adapter = new ZuCheCommentAdapter(ZuCheDetilCommentActivity.this, adapterList);
+                    adapter = new ZuCheCommentAdapter(ZuFangDetilCommentActivity.this, adapterList);
                     mListView.setAdapter(adapter);
                 } else {
                     adapter.notifyDataSetChanged();
@@ -74,11 +71,12 @@ public class ZuCheDetilCommentActivity extends BaseActivity  implements
                 ToastUtil.showToast(getApplicationContext(), info);
             } else if (msg.what == -1) {//
                 ToastUtil.showToast(getApplicationContext(), info);
+
             }
-            if (pd != null && ZuCheDetilCommentActivity.this != null) {
+            if (pd != null && ZuFangDetilCommentActivity.this != null) {
                 pd.dismiss();
             }
-            if (ZuCheDetilCommentActivity.this != null && mListView != null) {
+            if (ZuFangDetilCommentActivity.this != null && mListView != null) {
                 mListView.onRefreshComplete();
             }
         }
@@ -88,7 +86,7 @@ public class ZuCheDetilCommentActivity extends BaseActivity  implements
         public void handleMessage(Message msg) {
             if (msg.what == 3) {// 评论成功
                 ToastUtil.showToast(getApplicationContext(), info);
-                if (pd != null && ZuCheDetilCommentActivity.this != null) {
+                if (pd != null && ZuFangDetilCommentActivity.this != null) {
                     pd.dismiss();
                 }
                 if(adapterList!=null){
@@ -101,14 +99,12 @@ public class ZuCheDetilCommentActivity extends BaseActivity  implements
                 page=1;
                 getData(true);
             }
-        }
+        };
     };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_zu_che_detil_comment);
-
+        setContentView(R.layout.activity_zu_fang_detil_comment);
         MyApplication.getInstance().addActivity(this);
 
         initView();
@@ -212,7 +208,7 @@ public class ZuCheDetilCommentActivity extends BaseActivity  implements
                     e1.printStackTrace();
                 }
 
-                String url = HttpUrl.carRentalComment;
+                String url = HttpUrl.rentalComment;
                 String json = StringUtils.setJSON(data);
 
                 LogUtil.e(TAG, "评论提交的数据" + json);
@@ -272,7 +268,7 @@ public class ZuCheDetilCommentActivity extends BaseActivity  implements
                     e1.printStackTrace();
                 }
 
-                String url = HttpUrl.carRentalCommentAdd;
+                String url = HttpUrl.centalCommentAdd;
                 String json = StringUtils.setJSON(data);
 
                 LogUtil.e(TAG, "评论提交的数据" + json);

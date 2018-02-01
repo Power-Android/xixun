@@ -11,6 +11,7 @@ import com.power.travel.xixuntravel.R;
 import com.power.travel.xixuntravel.activity.LoginActivity;
 import com.power.travel.xixuntravel.impl.DriverListOnItemOnClickListener;
 import com.power.travel.xixuntravel.model.DriverModel;
+import com.power.travel.xixuntravel.model.Friend;
 import com.power.travel.xixuntravel.utils.XZContranst;
 import com.power.travel.xixuntravel.views.AnimateFirstDisplayListener;
 
@@ -18,7 +19,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 
 /**
  * 司机
@@ -150,7 +154,7 @@ public class DriverListAdapter extends BaseAdapter implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		int posi=(Integer)v.getTag();
+		final int posi=(Integer)v.getTag();
 		if(v.getId()==R.id.item_driver_chat){
 //			onItemOnClickListener.OnItemClick(1, posi);
 			SharedPreferences sp;
@@ -160,7 +164,25 @@ public class DriverListAdapter extends BaseAdapter implements OnClickListener {
 				/**
 				 * 进入融云
 				 */
-				 RongIM.getInstance().startPrivateChat(context,list.get(posi).getMid() , list.get(posi).getNickname());
+//				RongIM.getInstance().setCurrentUserInfo(new UserInfo(list.get(posi).getId(),list.get(posi).getNickname(), Uri.parse(list.get(posi).getFace())));
+//				RongIM.getInstance().setMessageAttachedUserInfo(true);
+//				List<Friend> list1 = new ArrayList<>();
+//				list1.add(new Friend(list.get(posi).getId(),list.get(posi).getNickname(),list.get(posi).getFace()));
+				/*final List<Friend> list1 = new ArrayList<>();
+				list1.add(new Friend(list.get(posi).getId(),list.get(posi).getNickname(),list.get(posi).getFace()));
+				RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
+					@Override
+					public UserInfo getUserInfo(String s) {
+						for (Friend i : list1) {
+							if (i.getUserId().equals(list.get(posi).getMid())) {
+								Log.e("TAG", "---------返回的用户信息-----------" + i.getPortraitUri());
+								return new UserInfo(i.getUserId(),i.getUserName(), Uri.parse(i.getPortraitUri()));
+							}
+						}
+						return null;
+					}
+				}, true);*/
+				RongIM.getInstance().startPrivateChat(context,list.get(posi).getMid() , list.get(posi).getNickname());
 				} else {
 					context.startActivity(new Intent(context, LoginActivity.class));
 				}

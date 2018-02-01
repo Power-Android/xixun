@@ -13,28 +13,28 @@
 
         <include layout="@layout/item_title_layout" />
 
-            <com.handmark.pulltorefresh.library.PullToRefreshListView
-                android:id="@+id/knowledge_listview"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/edittext_graybg"
-                android:cacheColorHint="#00000000"
-                android:divider="@null"
-                android:scrollbars="none"
-                android:dividerHeight="10dp"
-                android:fadingEdge="none"
-                android:fastScrollEnabled="false"
-                android:footerDividersEnabled="true"
-                android:headerDividersEnabled="false"
-                android:listSelector="@android:color/transparent"
-                android:smoothScrollbar="true" >
-            </com.handmark.pulltorefresh.library.PullToRefreshListView>
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/knowledge_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_graybg"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"
+            android:scrollbars="none"
+            android:dividerHeight="10dp"
+            android:fadingEdge="none"
+            android:fastScrollEnabled="false"
+            android:footerDividersEnabled="true"
+            android:headerDividersEnabled="false"
+            android:listSelector="@android:color/transparent"
+            android:smoothScrollbar="true" >
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
 
         <RelativeLayout
             android:id="@+id/tripldetail_comment_layout"
@@ -59,7 +59,7 @@
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="@dimen/text_mid_size" />
 
             <TextView
                 android:id="@+id/tripldetail_comment"
@@ -79,3 +79,4 @@
     </LinearLayout>
 
 </LinearLayout>
+

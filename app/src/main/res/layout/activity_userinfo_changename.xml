@@ -71,6 +71,7 @@
                 android:background="@null"
                 android:gravity="top"
                 android:hint=""
+                android:singleLine="true"
                 android:paddingBottom="15dp"
                 android:paddingTop="15dp"
                 android:textColor="@color/black"

@@ -257,23 +257,23 @@ public class Apply_driverActivity extends BaseActivity implements
 			}
 		} else if (v == pinpai_tv) {// 品牌
 			clickType = 1;
-			if (adapterList.isEmpty()) {// 第一次
+//			if (adapterList.isEmpty()) {// 第一次
 				getData("0");
-			} else {
-				initmPopupWindowView(clickType);
-				popupWindow.showAsDropDown(pinpai_tv, 0, 0);
-			}
+//			} else {
+//				initmPopupWindowView(clickType);
+//				popupWindow.showAsDropDown(pinpai_tv, 0, 0);
+//			}
 		} else if (v == chexing_tv) {// 车型
 			if (TextUtils.isEmpty(pinpai)) {
 				ToastUtil.showToast(getApplicationContext(), "请选择品牌！");
 			} else {
 				clickType = 2;
-				if (CarTypeList.isEmpty()) {
+//				if (CarTypeList.isEmpty()) {
 					getData(pinpaiid);
-				} else {
-					initmPopupWindowView(clickType);
-					popupWindow.showAsDropDown(chexing_tv, 0, 0);
-				}
+//				} else {
+//					initmPopupWindowView(clickType);
+//					popupWindow.showAsDropDown(chexing_tv, 0, 0);
+//				}
 			}
 		} else if (v == carage_tv) {// 车龄
 			clickType = 3;

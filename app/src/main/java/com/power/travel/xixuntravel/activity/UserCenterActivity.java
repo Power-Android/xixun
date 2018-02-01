@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -37,6 +39,7 @@ import com.power.travel.xixuntravel.adapter.UserCenterTravelAdapter;
 import com.power.travel.xixuntravel.adapter.UserCenterTripListAdapter;
 import com.power.travel.xixuntravel.app.BaseActivity;
 import com.power.travel.xixuntravel.app.MyApplication;
+import com.power.travel.xixuntravel.model.Friend;
 import com.power.travel.xixuntravel.model.MasterModel;
 import com.power.travel.xixuntravel.model.MyTravelModel;
 import com.power.travel.xixuntravel.model.MyTripModel;
@@ -57,6 +60,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 
 /**
  * 用户个人中心
@@ -171,6 +175,7 @@ public class UserCenterActivity extends BaseActivity implements
 		}
 	};
 	private ImageView praise_iv;
+	private String guanzhu_mid = "";
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -299,8 +304,13 @@ public class UserCenterActivity extends BaseActivity implements
 	
 	private void initGetIntent() {
 		Intent intent=getIntent();
-		mMasterModel=(MasterModel) intent.getExtras().getSerializable("model");
-		mid = mMasterModel.getMid();
+		if (intent.getStringExtra("guanzhu_mid")!= null){
+			guanzhu_mid = intent.getStringExtra("guanzhu_mid");
+			mid = guanzhu_mid;
+		}else {
+			mMasterModel=(MasterModel) intent.getExtras().getSerializable("model");
+			mid = mMasterModel.getMid();
+		}
 	}
 	
 	private void setData(){
@@ -335,11 +345,7 @@ public class UserCenterActivity extends BaseActivity implements
 			praise_iv.setImageDrawable(getResources().getDrawable(R.drawable.praise_black));
 		}
 		if (mMasterModel.getCityName() != null){
-			if (mMasterModel.getCityName().equals("中国")){
-				usercenter_distance.setText(mMasterModel.getCityName());
-			}else {
-				usercenter_distance.setText(mMasterModel.getCityName() + "市");
-			}
+			usercenter_distance.setText(mMasterModel.getCityName());
 		}
 
 		usercenter_sign.setText(mMasterModel.getSignature());
@@ -355,6 +361,25 @@ public class UserCenterActivity extends BaseActivity implements
 			/**
 			 * 进入融云
 			 */
+//			RongIM.getInstance().setCurrentUserInfo(new UserInfo(mMasterModel.getId(),mMasterModel.getNickname(), Uri.parse(mMasterModel.getFace())));
+//			LogUtil.e("rongyunlog","融云打印："+mMasterModel.getId()+mMasterModel.getNickname()+mMasterModel.getFace());
+//			RongIM.getInstance().setMessageAttachedUserInfo(true);
+//			List<Friend> list = new ArrayList<>();
+//			list.add(new Friend(mMasterModel.getId(),mMasterModel.getNickname(),mMasterModel.getFace()));
+			/*final List<Friend> list = new ArrayList<>();
+			list.add(new Friend(mMasterModel.getId(),mMasterModel.getNickname(),mMasterModel.getFace()));
+			RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
+				@Override
+				public UserInfo getUserInfo(String s) {
+					for (Friend i : list) {
+						if (i.getUserId().equals(mMasterModel.getId())) {
+							Log.e(TAG, "---------返回的用户信息-----------" + i.getPortraitUri());
+							return new UserInfo(i.getUserId(),i.getUserName(), Uri.parse(i.getPortraitUri()));
+						}
+					}
+					return null;
+				}
+			}, true);*/
 			RongIM.getInstance().startPrivateChat(this,mMasterModel.getId() , mMasterModel.getNickname());
 		}
 		if (v==praise_iv){

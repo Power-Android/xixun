@@ -70,6 +70,26 @@
             android:src="@drawable/my_message"
             android:visibility="gone" />
         <ImageView
+            android:id="@+id/title_share"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/share_iv"
+            android:visibility="gone" />
+        <ImageView
+            android:id="@+id/title_dian"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/diandiandian"
+            android:visibility="gone" />
+        <ImageView
             android:id="@+id/title_iv2"
             android:layout_width="50dp"
             android:layout_height="20dp"

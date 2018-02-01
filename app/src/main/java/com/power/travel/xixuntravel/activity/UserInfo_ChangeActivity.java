@@ -59,7 +59,7 @@ public class UserInfo_ChangeActivity extends BaseActivity implements TextWatcher
 				if (type == 11) {// 修改昵称
 					editor.putString("nickname", name_ed.getText().toString());// 昵称
 				} else {
-					editor.putString("work", name_ed.getText().toString());// 职位
+					editor.putString("work", name_ed.getText().toString().trim());// 职位
 				}
 				editor.commit();
 

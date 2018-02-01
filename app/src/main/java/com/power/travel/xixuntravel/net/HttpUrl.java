@@ -79,4 +79,7 @@ public class HttpUrl {
 	public static String rentalFollow = Url+"/Api/Rental/follow";//租房关注
 	public static String carRentalComment = Url+"/Api/CarRental/comment";//租车评论列表
 	public static String carRentalCommentAdd = Url+"/Api/CarRental/commentAdd";//租车发布评论
+    public static String rentalComment = Url+"/Api/Rental/comment";//租房评论列表
+    public static String centalCommentAdd = Url+"/Api/Rental/commentAdd";//租房发布评论
+	public static String rentdata = Url+"/Api/Oauth/rentdata";//租金区间
 }

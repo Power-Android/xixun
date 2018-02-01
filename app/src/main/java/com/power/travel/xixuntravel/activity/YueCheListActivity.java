@@ -9,11 +9,14 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -53,7 +56,7 @@ import io.rong.imkit.RongIM;
 public class YueCheListActivity extends BaseActivity implements PullToRefreshBase.OnRefreshListener2<ListView> {
 
     private ImageView back;
-    private LinearLayout search;
+    private EditText search;
     private TextView filtrate_tv;
     private PullToRefreshListView mListView;
     private ProgressDialogUtils pd;
@@ -72,11 +75,17 @@ public class YueCheListActivity extends BaseActivity implements PullToRefreshBas
             super.handleMessage(msg);
 
             if (msg.what == 1) {// 成功
-                adapterList.addAll(adapterListMore);
+
                 if (page == 1) {
+                    if(!adapterList.isEmpty()){
+                        adapterList.clear();
+                    }
+                    adapterList.addAll(adapterListMore);
                     adapter = new MasterAdapter(YueCheListActivity.this, adapterList);
                     mListView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
                 } else {
+                    adapterList.addAll(adapterListMore);
                     adapter.notifyDataSetChanged();
                 }
                 page=page+1;
@@ -94,6 +103,13 @@ public class YueCheListActivity extends BaseActivity implements PullToRefreshBas
             }
         }
     };
+    private String brand;
+    private String models;
+    private String age;
+    private String money;
+    private String city;
+    private String area;
+    private String title = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +122,27 @@ public class YueCheListActivity extends BaseActivity implements PullToRefreshBas
         }else{
             ToastUtil.showToast(getApplicationContext(), XZContranst.no_net);
         }
+        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
+
+                if (arg1 == EditorInfo.IME_ACTION_SEARCH
+                        || (arg2 != null && arg2.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+
+                    if (!TextUtils.isEmpty(search.getText().toString())) {
+                        page = 1;
+                        title = search.getText().toString();
+                        getData(true);
+                    }else {
+                        page = 1;
+                        title = "";
+                        getData(true);
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void initView() {
@@ -119,7 +156,6 @@ public class YueCheListActivity extends BaseActivity implements PullToRefreshBas
         mListView.setMode(PullToRefreshBase.Mode.BOTH);// 刷新加载更多都有
         pd = ProgressDialogUtils.show(this, "加载数据...");
         back.setOnClickListener(this);
-        search.setOnClickListener(this);
         filtrate_tv.setOnClickListener(this);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -164,13 +200,45 @@ public class YueCheListActivity extends BaseActivity implements PullToRefreshBas
             finish();
         } else if (v == filtrate_tv) {// 筛选
             //
-            Intent intent = new Intent(YueCheListActivity.this, FiltrateActivity.class);
-            startActivityForResult(intent, 11);
+            Intent intent = new Intent(YueCheListActivity.this, FiltrateTwoActivity.class);
+            intent.putExtra("brand",brand);
+            intent.putExtra("models",models);
+            intent.putExtra("age",age);
+            LogUtil.e(TAG,age+"bbbbbbbbbbbb");
+            intent.putExtra("money",money);
+            LogUtil.e(TAG,money+"111111111");
+            intent.putExtra("city",city);
+            intent.putExtra("area",area);
+            startActivityForResult(intent, 12);
             this.overridePendingTransition(R.anim.bottom_to_top,
                     R.anim.alpha_go);
-        } else if (v == search) {// 搜索
+        } /*else if (v == search) {// 搜索
             Intent intent = new Intent(YueCheListActivity.this, SearchActivity.class);
             startActivity(intent);
+        }*/
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data!=null){
+            if(requestCode==12){
+                brand = data.getStringExtra("brand");
+                models = data.getStringExtra("models");
+                age = data.getStringExtra("age");
+                money = data.getStringExtra("money");
+                LogUtil.e(TAG,money+"444444444");
+                city = data.getStringExtra("city");
+                area = data.getStringExtra("area");
+
+//				scroll.getRefreshableView().smoothScrollTo(0,0);//防止scrollView 跳到listview位置
+                if (!adapterList.isEmpty()) {
+                    adapterList.clear();
+                    adapter.notifyDataSetChanged();
+                }
+                page=1;
+                getData(true);
+            }
         }
     }
 
@@ -185,6 +253,14 @@ public class YueCheListActivity extends BaseActivity implements PullToRefreshBas
                 JSONObject data = new JSONObject();
                 try {
                     data.put("page", page);
+                    data.put("brand",brand);
+                    data.put("models",models);
+                    data.put("age",age);
+                    data.put("money",money);
+                    data.put("city",city);
+                    data.put("area",area);
+                    data.put("title",title);
+
                 } catch (JSONException e1) {
                     e1.printStackTrace();
                 }
@@ -299,7 +375,7 @@ public class YueCheListActivity extends BaseActivity implements PullToRefreshBas
 
             holder.nickname.setText(list.get(position).getTitle());
             holder.title.setText(list.get(position).getBrand()+" | "+list.get(position).getModels()+" | "+
-                    list.get(position).getDisplacement()+"排量");
+                    list.get(position).getDisplacement()+"L排量");
             holder.distance.setText(list.get(position).getPosition());
             holder.item_master_price.setText(list.get(position).getMoney()+"元/天");
 

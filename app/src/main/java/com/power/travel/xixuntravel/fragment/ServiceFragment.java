@@ -35,6 +35,7 @@ import com.power.travel.xixuntravel.activity.YueCheListActivity;
 import com.power.travel.xixuntravel.activity.ZuFangListActivity;
 import com.power.travel.xixuntravel.adapter.MenuGridViewAdapter;
 import com.power.travel.xixuntravel.adapter.RouteListAdapter;
+import com.power.travel.xixuntravel.model.Friend;
 import com.power.travel.xixuntravel.model.MasterModel;
 import com.power.travel.xixuntravel.model.RouteModel;
 import com.power.travel.xixuntravel.net.HttpClientPostUpload;
@@ -55,12 +56,14 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,6 +76,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 
 public class ServiceFragment extends Fragment implements OnClickListener,
         OnItemClickListener, OnRefreshListener2<ListView> {
@@ -407,7 +411,7 @@ public class ServiceFragment extends Fragment implements OnClickListener,
 
 			holder.nickname.setText(list.get(position).getNickname());
 			holder.title.setText(list.get(position).getSignature());
-			holder.address.setText(list.get(position).getAddress());
+			holder.address.setText(list.get(position).getCityName());
 			holder.distance.setText(list.get(position).getApart());
 			holder.item_master_attentin.setVisibility(View.GONE);
 
@@ -431,14 +435,28 @@ public class ServiceFragment extends Fragment implements OnClickListener,
 
 		@Override
 		public void onClick(View v) {
-			int posi=(Integer)v.getTag();
+			final int posi=(Integer)v.getTag();
 			if(v.getId()==R.id.item_master_chat){
 				SharedPreferences sp;
 				sp = context.getSharedPreferences(XZContranst.MAIN_SHARED_PREFERENCES,
 						Context.MODE_PRIVATE);
 				if (sp.getBoolean(XZContranst.if_login, false)) {
-
-					RongIM.getInstance().startPrivateChat(context,list.get(posi).getId() , list.get(posi).getNickname());
+					LogUtil.e("TAG","融云打印："+list.get(posi).getMid() + list.get(posi).getNickname());
+					/*final List<Friend> list1 = new ArrayList<>();
+					list1.add(new Friend(list.get(posi).getId(),list.get(posi).getNickname(),list.get(posi).getFace()));
+					RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
+						@Override
+						public UserInfo getUserInfo(String s) {
+							for (Friend i : list1) {
+								if (i.getUserId().equals(list.get(posi).getMid())) {
+									Log.e("TAG", "---------返回的用户信息-----------" + i.getPortraitUri());
+									return new UserInfo(i.getUserId(),i.getUserName(), Uri.parse(i.getPortraitUri()));
+								}
+							}
+							return null;
+						}
+					}, true);*/
+					RongIM.getInstance().startPrivateChat(context,list.get(posi).getMid() , list.get(posi).getNickname());
 
 				} else {
 					context.startActivity(new Intent(context, LoginActivity.class));

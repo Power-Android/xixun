@@ -51,6 +51,7 @@
         android:layout_alignBottom="@+id/item_master_face"
         android:layout_toRightOf="@+id/item_master_face"
         android:layout_marginLeft="5dp"
+        android:singleLine="true"
         android:drawableLeft="@drawable/distance"
         android:textColor="@color/black"
         android:textSize="@dimen/text_mid_size" />

@@ -108,7 +108,6 @@ public class SetSoundActivity extends BaseActivity implements
 				
 				} else {
 					voice();
-					
 				}
 				Editor edit = sp.edit();
 				edit.putBoolean(XZContranst.sound, true);

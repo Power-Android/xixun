@@ -223,7 +223,7 @@ public class ZuFangActivity extends BaseActivity {
                 Context.MODE_PRIVATE);
         back = (ImageView) findViewById(R.id.back);
         title = (TextView) findViewById(R.id.title);
-        title.setText("发布租车");
+        title.setText("发布租房");
         biaoti_tv = findViewById(R.id.biaoti_tv);
         shi_tv = findViewById(R.id.shi_tv);
         ting_tv = findViewById(R.id.ting_tv);
@@ -272,7 +272,7 @@ public class ZuFangActivity extends BaseActivity {
             initmPopupWindowView(clickType);
             popupWindow.showAsDropDown(shi_tv, 0, 0);
 
-        } else if (v == ting_tv) {// 车型
+        } else if (v == ting_tv) {// 厅
             clickType = 2;
             initmPopupWindowView(clickType);
             popupWindow.showAsDropDown(ting_tv, 0, 0);
@@ -374,11 +374,11 @@ public class ZuFangActivity extends BaseActivity {
             ToastUtil.showToast(getApplicationContext(), "请输入标题");
             return false;
         }
-        if (TextUtils.isEmpty(shi_tv.getText().toString())){
+        if (TextUtils.equals("室",shi_tv.getText().toString())){
             ToastUtil.showToast(getApplicationContext(), "请输入室");
             return false;
         }
-        if (TextUtils.isEmpty(ting_tv.getText().toString())){
+        if (TextUtils.equals("厅",ting_tv.getText().toString())){
             ToastUtil.showToast(getApplicationContext(), "请输入厅");
             return false;
         }

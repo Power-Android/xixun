@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +34,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.power.travel.xixuntravel.R;
 import com.power.travel.xixuntravel.app.BaseActivity;
 import com.power.travel.xixuntravel.app.MyApplication;
+import com.power.travel.xixuntravel.model.Friend;
 import com.power.travel.xixuntravel.model.MasterModel;
 import com.power.travel.xixuntravel.net.HttpClientPostUpload;
 import com.power.travel.xixuntravel.net.HttpUrl;
@@ -50,6 +53,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 
 /**
  * 地主达人
@@ -353,9 +357,12 @@ public class MasterListActivity extends BaseActivity implements
 				sp = context.getSharedPreferences(XZContranst.MAIN_SHARED_PREFERENCES,
 						Context.MODE_PRIVATE);
 				if (sp.getBoolean(XZContranst.if_login, false)) {
-
-					RongIM.getInstance().startPrivateChat(context,list.get(posi).getId() , list.get(posi).getNickname());
-
+//					RongIM.getInstance().setCurrentUserInfo(new UserInfo(list.get(posi).getId(),list.get(posi).getNickname(), Uri.parse(list.get(posi).getFace())));
+//					RongIM.getInstance().setMessageAttachedUserInfo(true);
+//                    List<Friend> list1 = new ArrayList<>();
+//                    list1.add(new Friend(list.get(posi).getId(),list.get(posi).getNickname(),list.get(posi).getFace()));
+					LogUtil.e("TAG","融云打印："+list.get(posi).getMid() + list.get(posi).getNickname());
+					RongIM.getInstance().startPrivateChat(context,list.get(posi).getMid() , list.get(posi).getNickname());
 				} else {
 					context.startActivity(new Intent(context, LoginActivity.class));
 				}

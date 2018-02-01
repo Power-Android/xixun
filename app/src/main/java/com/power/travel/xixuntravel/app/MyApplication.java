@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.net.Uri;
 import android.support.multidex.MultiDex;
+import android.util.Log;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -12,6 +14,8 @@ import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.power.travel.xixuntravel.utils.LogUtil;
+import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 
@@ -19,8 +23,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.Message;
+import io.rong.imlib.model.MessageContent;
+import io.rong.imlib.model.UserInfo;
 
-public class MyApplication extends Application {
+public class MyApplication extends Application implements RongIMClient.OnReceiveMessageListener{
 	public static final String PHONEREGX = "^((\\+86)|(86))?(13[0-9]|15[012356789]|18[0-9]|14[57])[0-9]{8}";
 
 	private static MyApplication instance,mApplication;
@@ -80,13 +88,14 @@ public class MyApplication extends Application {
 				.tasksProcessingOrder(QueueProcessingType.LIFO)//
 				.build();
 		ImageLoader.getInstance().init(config);
-		
+
+		Config.DEBUG = true;
 		UMShareAPI.get(this);
 		PlatformConfig.setWeixin("wxd88a738cb740ae9d","dae6b185503646782d35570b09863019");
 		PlatformConfig.setQQZone("101357534","72605552a02a54aa2f874cf77d198fa2");
 		PlatformConfig.setSinaWeibo("4251148960","8c6984a8aebbec08a5fea5848d25cc5c","http://sns.whalecloud.com");
-
 		RongIM.init(this);
+		RongIM.setOnReceiveMessageListener(this);
 	}
 
 	public boolean isRun() {
@@ -97,4 +106,11 @@ public class MyApplication extends Application {
 		this.isRun = isRun;
 	}
 
+	@Override
+	public boolean onReceived(Message message, int i) {
+		Uri portraitUri = message.getContent().getUserInfo().getPortraitUri();
+		String name = message.getContent().getUserInfo().getName();
+		LogUtil.e("TAG","name："+name+"portraitUri："+portraitUri.toString());
+		return false;
+	}
 }

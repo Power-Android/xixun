@@ -452,15 +452,15 @@ public class ZuCheActivity extends BaseActivity {
             ToastUtil.showToast(getApplicationContext(), "请输入标题");
             return false;
         }
-        if (TextUtils.isEmpty(pinpai_tv.getText().toString())){
+        if (TextUtils.equals("品牌",pinpai_tv.getText().toString())){
             ToastUtil.showToast(getApplicationContext(), "请输入品牌");
             return false;
         }
-        if (TextUtils.isEmpty(chexing_tv.getText().toString())){
+        if (TextUtils.equals("车型",chexing_tv.getText().toString())){
             ToastUtil.showToast(getApplicationContext(), "请输入车型");
             return false;
         }
-        if (TextUtils.isEmpty(cheling_tv.getText().toString())){
+        if (TextUtils.equals("车龄",cheling_tv.getText().toString())){
             ToastUtil.showToast(getApplicationContext(), "请输入车龄");
             return false;
         }

@@ -31,6 +31,7 @@
                 android:textSize="@dimen/text_mid2_size" />
 
             <LinearLayout
+                android:id="@+id/item_ll"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/catalog"

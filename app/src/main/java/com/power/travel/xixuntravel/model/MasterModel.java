@@ -38,7 +38,24 @@ public class MasterModel implements Serializable {
 	private String layoutRoom;
 	private String layoutOffice;
 	private String measure;
+	private String fid;//
+	private String m_id;
 
+	public String getM_id() {
+		return m_id;
+	}
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
+
+	public String getFid() {
+		return fid;
+	}
+
+	public void setFid(String fid) {
+		this.fid = fid;
+	}
 
 	public String getLayoutRoom() {
 		return layoutRoom;

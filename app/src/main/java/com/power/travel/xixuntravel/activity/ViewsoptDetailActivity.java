@@ -284,6 +284,7 @@ public class ViewsoptDetailActivity extends BaseActivity {
 	private void initListener() {
 		back.setOnClickListener(this);
 		comment.setOnClickListener(this);
+		search.setOnClickListener(this);
 		viewsport_daohang.setOnClickListener(this);
 		description_more.setOnClickListener(this);
 	}

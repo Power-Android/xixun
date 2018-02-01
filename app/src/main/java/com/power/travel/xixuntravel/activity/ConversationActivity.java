@@ -21,15 +21,25 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import com.alibaba.fastjson.JSON;
 import com.power.travel.xixuntravel.R;
+import com.power.travel.xixuntravel.adapter.UserCenterTripListAdapter;
 import com.power.travel.xixuntravel.app.BaseRongCloudActivity;
 import com.power.travel.xixuntravel.model.Friend;
+import com.power.travel.xixuntravel.model.MasterModel;
+import com.power.travel.xixuntravel.net.HttpClientPostUpload;
+import com.power.travel.xixuntravel.net.HttpUrl;
+import com.power.travel.xixuntravel.utils.LogUtil;
+import com.power.travel.xixuntravel.utils.StringUtils;
+import com.power.travel.xixuntravel.utils.ToastUtil;
+import com.power.travel.xixuntravel.utils.XZContranst;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import io.rong.eventbus.EventBus;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.location.RealTimeLocationConstant;
@@ -74,6 +84,9 @@ public class ConversationActivity extends BaseRongCloudActivity implements View.
 
     private Button mRinghtButton;
     private List<Friend> userIdList;
+    private String info;
+    MasterModel mMasterModel;
+
 
     @SuppressLint("NewApi")
     @Override
@@ -97,10 +110,8 @@ public class ConversationActivity extends BaseRongCloudActivity implements View.
         title = intent.getData().getQueryParameter("title");
 
         setActionBarTitle(mConversationType, mTargetId);
-        userIdList = new ArrayList<Friend>();
-        //id  名字  头像
-        userIdList.add(new Friend(mTargetId,title,""));
-        RongIM.setUserInfoProvider(this, true);
+        getData();
+
         if (mConversationType.equals(Conversation.ConversationType.GROUP)) {
             mRinghtButton.setBackground(getResources().getDrawable(R.drawable.icon2_menu));
         } else if (mConversationType.equals(Conversation.ConversationType.PRIVATE) | mConversationType.equals(Conversation.ConversationType.PUBLIC_SERVICE) | mConversationType.equals(Conversation.ConversationType.DISCUSSION)) {
@@ -323,13 +334,84 @@ public class ConversationActivity extends BaseRongCloudActivity implements View.
 
     @Override
     public UserInfo getUserInfo(String userId) {
+
         for (Friend i : userIdList) {
-            if (i.getUserId().equals(userId)) {
+            if (!i.getUserId().equals(sp.getString(XZContranst.id, null))) {
                 Log.e(TAG, i.getPortraitUri());
+                RongIM.getInstance().refreshUserInfoCache(new UserInfo(i.getUserId(),i.getUserName(),Uri.parse(i.getPortraitUri())));
                 return new UserInfo(i.getUserId(),i.getUserName(), Uri.parse(i.getPortraitUri()));
             }
         }
         return null;
     }
 
+    private void getData() {
+//		pd.show();
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                JSONObject data = new JSONObject();
+                try {
+                    data.put("mid",mTargetId);
+
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+
+                String url = HttpUrl.index;
+                String json = StringUtils.setJSON(data);
+
+                LogUtil.e(TAG, "获取信息提交的数据" + json);
+                String request = HttpClientPostUpload.Upload(json, url);
+
+                JSONObject jsonj = null;
+                String status = null;
+
+                try {
+                    jsonj = new JSONObject(request);
+                    LogUtil.e(TAG, "获取信息返回的数据" + jsonj.toString());
+
+                    status = jsonj.getString("status");
+                    info = jsonj.getString("info");
+
+                    JSONObject djson = jsonj.getJSONObject("data");
+                    mMasterModel= JSON.parseObject(djson.toString(), MasterModel.class);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    LogUtil.e(TAG, "解析错误" + e.toString());
+                }
+
+                if (TextUtils.equals(status, "1")) {
+                    handler.sendEmptyMessage(2);
+                } else if (TextUtils.equals(status, "0")) {
+                    handler.sendEmptyMessage(-2);
+                } else {
+                    handler.sendEmptyMessage(-1);
+                }
+
+            }
+        }).start();
+    }
+    private Handler handler = new Handler() {
+        @SuppressLint("NewApi")
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            if (msg.what ==2) {//获取用户信息正确
+                String nickname = mMasterModel.getNickname();
+                String face = mMasterModel.getFace();
+                userIdList = new ArrayList<>();
+                userIdList.add(new Friend(mTargetId,nickname,face));
+                RongIM.setUserInfoProvider(ConversationActivity.this, true);
+
+            }else if (msg.what ==-2) {//获取用户信息失败
+                ToastUtil
+                        .showToast(getApplicationContext(), info);
+            }
+        }
+    };
 }

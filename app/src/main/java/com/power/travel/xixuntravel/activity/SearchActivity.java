@@ -191,6 +191,7 @@ public class SearchActivity extends BaseActivity {
                                     int position, long id) {
 				Intent intent=new Intent(SearchActivity.this,TripDetailActivity.class);
 				intent.putExtra("id", tripList.get(position).getId());
+				intent.putExtra("mid", tripList.get(position).getMid());
 				startActivity(intent);
 			}
 		});

@@ -4,17 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -38,6 +43,8 @@ import com.power.travel.xixuntravel.utils.StringUtils;
 import com.power.travel.xixuntravel.utils.ToastUtil;
 import com.power.travel.xixuntravel.utils.XZContranst;
 import com.power.travel.xixuntravel.views.AnimateFirstDisplayListener;
+import com.power.travel.xixuntravel.widget.WheelView;
+import com.power.travel.xixuntravel.widget.adapters.ArrayWheelAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -59,6 +66,12 @@ public class FuJinRenActivity extends BaseActivity implements
     List<MasterModel> adapterListMore = new ArrayList<MasterModel>();
     int page = 1;
     FujinrenAdapter adapter;
+    private LinearLayout addaddress_wheel;
+    private TextView  addaddress_wheel_cancel,addaddress_wheel_title, addaddress_wheel_sure;
+    private WheelView mProvince;// 省的WheelView控件
+    private String[] mProvinceDatas;// 所有省
+    private String mCurrentProviceName;// 当前省的名称
+    private int posi;
 
     private Handler handler = new Handler() {
         @Override
@@ -66,6 +79,9 @@ public class FuJinRenActivity extends BaseActivity implements
             super.handleMessage(msg);
 
             if (msg.what == 1) {// 成功
+                if(!adapterList.isEmpty()){
+                    adapterList.clear();
+                }
                 adapterList.addAll(adapterListMore);
                 if (page == 1) {
                     adapter = new FujinrenAdapter(FuJinRenActivity.this, adapterList);
@@ -77,8 +93,7 @@ public class FuJinRenActivity extends BaseActivity implements
             } else if (msg.what == 0) {// 失败
                 ToastUtil.showToast(getApplicationContext(), info);
             } else if (msg.what == -1) {//
-//				ToastUtil.showToast(getApplicationContext(), info);
-
+				ToastUtil.showToast(getApplicationContext(), info);
             }
             if (pd != null && FuJinRenActivity.this != null) {
                 pd.dismiss();
@@ -88,6 +103,8 @@ public class FuJinRenActivity extends BaseActivity implements
             }
         }
     };
+    private ImageView title_dian;
+    private String sex;
 
 
     @Override
@@ -111,6 +128,8 @@ public class FuJinRenActivity extends BaseActivity implements
         pd = ProgressDialogUtils.show(this, "加载数据...");
         back = (ImageView) findViewById(R.id.back);
         title = (TextView) findViewById(R.id.title);
+        title_dian = findViewById(R.id.title_dian);
+        title_dian.setVisibility(View.VISIBLE);
         title.setText("附近人");
         mListView = (PullToRefreshListView) findViewById(R.id.fujinren_listview);
         mListView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
@@ -131,6 +150,7 @@ public class FuJinRenActivity extends BaseActivity implements
 
     private void initListener() {
         back.setOnClickListener(this);
+        title_dian.setOnClickListener(this);
     }
 
     @Override
@@ -138,6 +158,83 @@ public class FuJinRenActivity extends BaseActivity implements
         super.onClick(v);
         if (v == back) {
             finish();
+        }else if (v == title_dian){
+            new PopAgeOrSex(this, title_dian, 1);
+            mProvince.setViewAdapter(new ArrayWheelAdapter<String>(this,
+                    mProvinceDatas));
+        }
+    }
+
+    // 选性别年龄
+    public class PopAgeOrSex extends PopupWindow {
+
+        public PopAgeOrSex(Context mContext, View parent, final int type) {
+
+            View view = View.inflate(mContext, R.layout.item_popsexorage, null);
+            view.startAnimation(AnimationUtils.loadAnimation(mContext,
+                    R.anim.fade_ins));
+            addaddress_wheel = (LinearLayout) view
+                    .findViewById(R.id.addaddress_wheel_layout);
+            addaddress_wheel.startAnimation(AnimationUtils.loadAnimation(
+                    mContext, R.anim.push_bottom_in_2));
+
+            setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+            setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+            setBackgroundDrawable(new BitmapDrawable());
+            setFocusable(true);
+            setOutsideTouchable(true);
+            setContentView(view);
+            showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+            update();
+            addaddress_wheel_title= (TextView) view
+                    .findViewById(R.id.addaddress_wheel_title);
+            addaddress_wheel_cancel = (TextView) view
+                    .findViewById(R.id.addaddress_wheel_cancel);
+            addaddress_wheel_sure = (TextView) view
+                    .findViewById(R.id.addaddress_wheel_sure);
+            mProvince = (WheelView) view.findViewById(R.id.id_wheelview);
+            // 添加change事件
+            // 省市区各显示几个数据
+            mProvince.setVisibleItems(5);
+            if (type == 1) {// 性别
+                addaddress_wheel_title.setText("");
+                mProvinceDatas = new String[] { "只看男生", "只看女生", "查看全部" };
+            }
+
+            addaddress_wheel_cancel.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+
+                    dismiss();
+                }
+            });
+            addaddress_wheel_sure.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    try {
+                        int pCurrent = mProvince.getCurrentItem();
+                        mCurrentProviceName = mProvinceDatas[pCurrent];
+
+                        if (isConnect()) {
+                            if (type == 1) {//
+                                LogUtil.e(TAG,pCurrent+"--------");
+                                if (TextUtils.equals("0",pCurrent+"")){
+                                    sex = "1";
+                                }
+                                if (TextUtils.equals("1",pCurrent+"")){
+                                    sex = "2";
+                                }
+                                if (TextUtils.equals("2",pCurrent+"")){
+                                    sex = "0";
+                                }
+                                getData(true);
+                            }
+                        }else{
+                            ToastUtil.showToast(getApplicationContext(),getResources().getString(R.string.notnetwork));
+                        }
+                    } catch (Exception e) {
+                    }
+                    dismiss();
+                }
+            });
         }
     }
 
@@ -174,8 +271,9 @@ public class FuJinRenActivity extends BaseActivity implements
             public void run() {
                 JSONObject data = new JSONObject();
                 try {
-                    data.put("coordinate_x", spLocation.getString(XZContranst.coordinate_x, ""));
-                    data.put("coordinate_y", spLocation.getString(XZContranst.coordinate_y, ""));
+                    data.put("x", spLocation.getString(XZContranst.coordinate_x, ""));
+                    data.put("y", spLocation.getString(XZContranst.coordinate_y, ""));
+                    data.put("sex",sex);
                 } catch (JSONException e1) {
                     e1.printStackTrace();
                 }

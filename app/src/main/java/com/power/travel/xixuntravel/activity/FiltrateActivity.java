@@ -437,6 +437,11 @@ public class FiltrateActivity extends AppCompatActivity implements OnClickListen
 	private void clearList(int type) {
 		switch (type) {
 		case 1:// 清理 city country
+			provinceList.clear();
+			province_id = "";
+			province = "";
+			trips_province.setText("省");
+
 			cityList.clear();
 			city = "";
 			city_id = "";

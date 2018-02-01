@@ -1,5 +1,6 @@
 package com.power.travel.xixuntravel.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -9,11 +10,16 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.power.travel.xixuntravel.R;
+import com.power.travel.xixuntravel.activity.MyFollowActivity;
+import com.power.travel.xixuntravel.activity.UserCenterActivity;
 import com.power.travel.xixuntravel.impl.MyFollowOnItemOnClickListener;
+import com.power.travel.xixuntravel.model.MasterModel;
 import com.power.travel.xixuntravel.model.PhoneModel;
+import com.power.travel.xixuntravel.utils.LogUtil;
 import com.power.travel.xixuntravel.views.AnimateFirstDisplayListener;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -25,6 +31,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
@@ -42,6 +49,7 @@ public class MyFollowAdapter extends BaseAdapter implements OnClickListener,
 	Context context;
 	private boolean ifCan;
 	int mScreentWidth;
+	List<MasterModel> adapterList = new ArrayList<MasterModel>();
 
 	MyFollowOnItemOnClickListener OnItemListener;
 
@@ -50,10 +58,11 @@ public class MyFollowAdapter extends BaseAdapter implements OnClickListener,
 	private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();// 自己写的一个类
 
 	public MyFollowAdapter(Context context, List<PhoneModel> list,
-                           int screenWidth) {
+						   int screenWidth, List<MasterModel> list1) {
 		super();
 		this.context = context;
 		this.list = list;
+		this.adapterList = list1;
 		this.mScreentWidth = screenWidth;
 		inflater = LayoutInflater.from(context);
 		inflaterpop = LayoutInflater.from(context);
@@ -115,6 +124,7 @@ public class MyFollowAdapter extends BaseAdapter implements OnClickListener,
 			holder.tvHead = (ImageView) convertView.findViewById(R.id.head_img);
 			holder.tvTitle = (TextView) convertView.findViewById(R.id.title);
 			holder.tvLetter = (TextView) convertView.findViewById(R.id.catalog);
+			holder.item_ll = convertView.findViewById(R.id.item_ll);
 			// 整个item的水平滚动层
 			holder.itemHorizontalScrollView = (HorizontalScrollView) convertView
 					.findViewById(R.id.hsv);
@@ -154,6 +164,15 @@ public class MyFollowAdapter extends BaseAdapter implements OnClickListener,
 		holder.shanchu.setTag(position);
 		holder.shanchu.setOnClickListener(this);
 		holder.itemHorizontalScrollView.setOnClickListener(this);
+		holder.item_ll.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				LogUtil.e(TAG,"hahahahaha"+position);
+				Intent intent=new Intent(context,UserCenterActivity.class);
+				intent.putExtra("guanzhu_mid",adapterList.get(position).getM_id());
+				context.startActivity(intent);
+			}
+		});
 
 		// 设置监听事件
 		convertView.setOnTouchListener(new View.OnTouchListener() {
@@ -179,7 +198,6 @@ public class MyFollowAdapter extends BaseAdapter implements OnClickListener,
 						viewHolder.itemHorizontalScrollView
 								.smoothScrollTo(0, 0);
 					} else if (scrollX == 0) {// 没有移动距离实现单机操作
-
 						// OnItemListener.OnItemClick(2, position);
 					} else {// 否则的话显示操作区域
 						viewHolder.itemHorizontalScrollView.smoothScrollTo(
@@ -204,6 +222,7 @@ public class MyFollowAdapter extends BaseAdapter implements OnClickListener,
 		ImageView tvHead;
 		TextView tvLetter;
 		TextView tvTitle;
+		LinearLayout item_ll;
 		View normalItemContentLayout;
 		HorizontalScrollView itemHorizontalScrollView;
 		View actionLayout;

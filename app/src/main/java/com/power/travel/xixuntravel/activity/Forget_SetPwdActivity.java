@@ -120,14 +120,14 @@ public class Forget_SetPwdActivity extends BaseActivity {
 			showEnsure("密码格式不正确！");
 			return false;
 		}
-		if(n.matches() == false){
+		/*if(n.matches()){
 			regist_setpwd.setFocusableInTouchMode(true);
 			regist_setpwd.requestFocus();
 			regist_setpwd.findFocus();
 			LogUtil.e(TAG,"------------------------------------");
 			showEnsure("密码格式不正确！");
 			return false;
-		}
+		}*/
 		if (TextUtils.isEmpty(regist_setpwd.getText().toString())) {
 			regist_setpwd.setFocusableInTouchMode(true);
 			regist_setpwd.requestFocus();

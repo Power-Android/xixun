@@ -32,7 +32,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_toLeftOf="@+id/forgetpwd_getcode"
                     android:background="@null"
-                    android:hint="!请输入注册时所使用的手机号码"
+                    android:hint="请输入手机号码"
                     android:inputType="phone"
                     android:padding="5dp"
                     android:singleLine="true"

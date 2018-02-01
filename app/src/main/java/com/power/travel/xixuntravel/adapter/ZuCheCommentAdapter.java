@@ -34,7 +34,7 @@ import java.util.List;
  * Created by Administrator on 2017/11/10.
  */
 
-public class ZuCheCommentAdapter extends BaseAdapter implements View.OnClickListener {
+public class ZuCheCommentAdapter extends BaseAdapter{
 
     private LayoutInflater inflater;
     Context context;
@@ -131,13 +131,5 @@ public class ZuCheCommentAdapter extends BaseAdapter implements View.OnClickList
     final class ViewHolder {
         TextView sendname,sendtime,comment;
         ImageView face;
-    }
-
-    @Override
-    public void onClick(View v) {
-        int posi=(Integer)v.getTag();
-        if(v.getId()==R.id.item_tripdetailcomment_replay){
-            onItemClick.OnItemClick(1, posi);
-        }
     }
 }

@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile files('libs/pinyin4j-2.5.0.jar')
 }
 android {
     lintOptions {

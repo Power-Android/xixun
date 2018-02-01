@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +13,7 @@ import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver;
@@ -34,6 +36,7 @@ import com.power.travel.xixuntravel.adapter.ImageViewListAdapter;
 import com.power.travel.xixuntravel.app.MyApplication;
 import com.power.travel.xixuntravel.app.SystemBarTintManager;
 import com.power.travel.xixuntravel.model.AllTripModel;
+import com.power.travel.xixuntravel.model.Friend;
 import com.power.travel.xixuntravel.model.MasterModel;
 import com.power.travel.xixuntravel.net.HttpClientPostUpload;
 import com.power.travel.xixuntravel.net.HttpUrl;
@@ -50,8 +53,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
+import io.rong.imlib.model.UserInfo;
 
 /**
  * 行程（约伴）详情
@@ -420,7 +427,24 @@ public class TripDetailActivity extends FragmentActivity implements GradationScr
 			startActivity(intent);
 		}else if(v==title_iv){//聊天
 			if (sp.getBoolean(XZContranst.if_login, false)) {
-
+//				RongIM.getInstance().setCurrentUserInfo(new UserInfo(allTripModel.getId(),allTripModel.getNickname(), Uri.parse(allTripModel.getFace())));
+//				RongIM.getInstance().setMessageAttachedUserInfo(true);
+//				List<Friend> list = new ArrayList<>();
+//				list.add(new Friend(allTripModel.getId(),allTripModel.getNickname(),allTripModel.getFace()));
+				/*final List<Friend> list = new ArrayList<>();
+				list.add(new Friend(allTripModel.getId(),allTripModel.getNickname(),allTripModel.getFace()));
+				RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
+					@Override
+					public UserInfo getUserInfo(String s) {
+						for (Friend i : list) {
+							if (i.getUserId().equals(allTripModel.getId())) {
+								Log.e(TAG, "---------返回的用户信息-----------" + i.getPortraitUri());
+								return new UserInfo(i.getUserId(),i.getUserName(), Uri.parse(i.getPortraitUri()));
+							}
+						}
+						return null;
+					}
+				}, true);*/
 				RongIM.getInstance().startPrivateChat(this,allTripModel.getMid() , allTripModel.getNickname());
 
 			} else {
