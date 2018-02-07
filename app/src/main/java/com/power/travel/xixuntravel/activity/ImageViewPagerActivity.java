@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -36,6 +37,9 @@ import com.power.travel.xixuntravel.utils.XZContranst;
 import com.power.travel.xixuntravel.views.PhotoView;
 import com.power.travel.xixuntravel.views.ViewSwitcherHelper;
 import com.power.travel.xixuntravel.weight.HackyViewPager;
+import com.wevey.selector.dialog.DialogInterface;
+import com.wevey.selector.dialog.NormalAlertDialog;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -290,7 +294,7 @@ public class ImageViewPagerActivity extends Activity implements OnClickListener 
 			finish();
 		}
 		if(v==title_iv){//删除
-			delectData();
+			showTips();
 		}
 		if (v == tiaozhuan_ll){
 			Intent intent = new Intent(ImageViewPagerActivity.this,
@@ -314,6 +318,34 @@ public class ImageViewPagerActivity extends Activity implements OnClickListener 
 			intent.putExtra("id", travelModel.getId());
 			startActivity(intent);
 		}
+	}
+
+	private void showTips() {
+		new NormalAlertDialog.Builder(this)
+				.setTitleVisible(true).setTitleText("提示")
+				.setTitleTextColor(R.color.text_color)
+				.setContentText("是否删除")
+				.setContentTextColor(R.color.text_color)
+				.setLeftButtonText("是")
+				.setLeftButtonTextColor(R.color.text_color)
+				.setRightButtonText("否")
+				.setRightButtonTextColor(R.color.text_color)
+				.setCanceledOnTouchOutside(false)
+				.setOnclickListener(new DialogInterface.OnLeftAndRightClickListener<NormalAlertDialog>() {
+					@Override
+					public void clickLeftButton(NormalAlertDialog dialog, View view) {
+						delectData();
+						dialog.dismiss();
+					}
+
+					@Override
+					public void clickRightButton(NormalAlertDialog dialog, View view) {
+
+						dialog.dismiss();
+					}
+				})
+				.build()
+				.show();
 	}
 
 	/**

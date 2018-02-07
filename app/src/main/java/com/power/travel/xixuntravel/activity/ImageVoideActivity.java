@@ -37,6 +37,8 @@ import com.power.travel.xixuntravel.utils.ToastUtil;
 import com.power.travel.xixuntravel.utils.XZContranst;
 import com.power.travel.xixuntravel.video.BaseActivity;
 import com.power.travel.xixuntravel.video.SurfaceVideoView;
+import com.wevey.selector.dialog.DialogInterface;
+import com.wevey.selector.dialog.NormalAlertDialog;
 import com.yixia.weibo.sdk.util.DeviceUtils;
 
 import org.json.JSONArray;
@@ -250,7 +252,7 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 			finish();
 		}
 		if(v==title_iv){//删除
-			delectData();
+			showTips();
 		}
 		if (v == detail_zan){
 			if (sp.getBoolean(XZContranst.if_login, false)) {
@@ -273,6 +275,34 @@ public class ImageVoideActivity extends BaseActivity implements SurfaceVideoView
 			intent.putExtra("id", travelModel.getId());
 			startActivity(intent);
 		}
+	}
+
+	private void showTips() {
+		new NormalAlertDialog.Builder(this)
+				.setTitleVisible(true).setTitleText("提示")
+				.setTitleTextColor(R.color.text_color)
+				.setContentText("是否删除")
+				.setContentTextColor(R.color.text_color)
+				.setLeftButtonText("是")
+				.setLeftButtonTextColor(R.color.text_color)
+				.setRightButtonText("否")
+				.setRightButtonTextColor(R.color.text_color)
+				.setCanceledOnTouchOutside(false)
+				.setOnclickListener(new DialogInterface.OnLeftAndRightClickListener<NormalAlertDialog>() {
+					@Override
+					public void clickLeftButton(NormalAlertDialog dialog, View view) {
+						delectData();
+						dialog.dismiss();
+					}
+
+					@Override
+					public void clickRightButton(NormalAlertDialog dialog, View view) {
+
+						dialog.dismiss();
+					}
+				})
+				.build()
+				.show();
 	}
 
 	/**
