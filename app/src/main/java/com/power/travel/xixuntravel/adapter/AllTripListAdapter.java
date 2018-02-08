@@ -118,7 +118,7 @@ public class AllTripListAdapter extends BaseAdapter implements OnClickListener {
 
 		ViewHolder holder = null;
 
-		if (convertView == null) {
+//		if (convertView == null) {
 			holder = new ViewHolder();
 			convertView = inflater.inflate(R.layout.item_alltrip_layout, null,
 					false);
@@ -169,9 +169,9 @@ public class AllTripListAdapter extends BaseAdapter implements OnClickListener {
 			holder.item_alltrip_pic3 =(ImageView) convertView.findViewById(R.id.item_alltrip_pic3);
 
 			convertView.setTag(holder);
-		} else {
+		/*} else {
 			holder = (ViewHolder) convertView.getTag();
-		}
+		}*/
 
 //		holder.pic.setLayoutParams(imagebtn_params);
 //		holder.pic.setScaleType(ScaleType.CENTER_CROP);
@@ -189,8 +189,8 @@ public class AllTripListAdapter extends BaseAdapter implements OnClickListener {
 					imageLoader.displayImage(
 							list.get(position).getArr_img().split(",")[0], holder.item_alltrip_pic1,
 							options, animateFirstListener);
-//					holder.item_iv2.setVisibility(View.INVISIBLE);
-//					holder.item_iv3.setVisibility(View.INVISIBLE);
+//					holder.item_alltrip_pic2.setVisibility(View.INVISIBLE);
+//					holder.item_alltrip_pic3.setVisibility(View.INVISIBLE);
 				}
 				if (listpic.length == 2){
 					imageLoader.displayImage(
@@ -199,7 +199,7 @@ public class AllTripListAdapter extends BaseAdapter implements OnClickListener {
 					imageLoader.displayImage(
 							list.get(position).getArr_img().split(",")[1], holder.item_alltrip_pic2,
 							options, animateFirstListener);
-//					holder.item_iv3.setVisibility(View.INVISIBLE);
+//					holder.item_alltrip_pic3.setVisibility(View.INVISIBLE);
 				}
 				if (listpic.length >= 3){
 					imageLoader.displayImage(

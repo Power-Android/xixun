@@ -192,6 +192,7 @@ public class MyTripListActivity extends BaseActivity implements
 		case 1:// 进入详情
 			Intent intent = new Intent(this, TripDetailActivity.class);
 			intent.putExtra("id", adapterList.get(position).getId());
+			intent.putExtra("mid", adapterList.get(position).getMid());
 			startActivity(intent);
 			break;
 		case 2:// 取消
