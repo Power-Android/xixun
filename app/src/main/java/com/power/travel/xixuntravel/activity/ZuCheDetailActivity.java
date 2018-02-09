@@ -166,9 +166,9 @@ public class ZuCheDetailActivity extends BaseActivity {
         */
         String url = "https://www.baidu.com/";
         umWeb = new UMWeb(url);
-        umWeb.setTitle("这是标题！！！");
+        umWeb.setTitle("西寻旅游");
         umWeb.setThumb(image);
-        umWeb.setDescription("这是内容~~~~~~~~");
+        umWeb.setDescription("西寻是噶玛文化传播有限公司旗下一款以西部旅游行为主题的手机应用软件，内容以西部旅行资讯为主，提供当地的一切旅行相关公益性服务信息平台。");
 
         getIntentData();
     }

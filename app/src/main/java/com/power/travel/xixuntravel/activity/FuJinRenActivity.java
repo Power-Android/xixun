@@ -93,6 +93,10 @@ public class FuJinRenActivity extends BaseActivity implements
             } else if (msg.what == 0) {// 失败
                 ToastUtil.showToast(getApplicationContext(), info);
             } else if (msg.what == -1) {//
+                if(!adapterList.isEmpty()){
+                    adapterList.clear();
+                    adapter.notifyDataSetChanged();
+                }
 				ToastUtil.showToast(getApplicationContext(), info);
             }
             if (pd != null && FuJinRenActivity.this != null) {
