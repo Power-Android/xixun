@@ -128,9 +128,9 @@ public class MainActivity extends BaseActivity implements RongIM.UserInfoProvide
 				connectRongServer(sp.getString(XZContranst.token, ""));
 			}
 		}
-		setTabSelection(0);//进入页面后显示约伴fragment
-		
+		fragmentmanager = getSupportFragmentManager();
 
+		setTabSelection(0);//进入页面后显示约伴fragment
 		GetVersion();
 		
 	}
@@ -156,7 +156,6 @@ public class MainActivity extends BaseActivity implements RongIM.UserInfoProvide
 		tab_service_tv = (TextView) findViewById(R.id.tab_service_tv);
 		tab_persionalcenter_iv = (ImageView) findViewById(R.id.tab_persionalcenter_iv);
 		tab_persionalcenter_tv = (TextView) findViewById(R.id.tab_persionalcenter_tv);
-		fragmentmanager = getSupportFragmentManager();
 	}
 
 	@Override
@@ -246,7 +245,7 @@ public class MainActivity extends BaseActivity implements RongIM.UserInfoProvide
 		switch (index) {
 		case 0:// 选中第一个
 			tab_yueban_iv.setImageDrawable(getResources().getDrawable(
-					R.drawable.tab_yueban_select));
+					R.drawable.tab_home_select));
 			tab_yueban_tv.setTextColor(this.getResources().getColor(
 					R.color.tab_text_select_color));
 			if (mYueBanFragment == null) {// 为空，创建一个并添加到界面
@@ -309,7 +308,7 @@ public class MainActivity extends BaseActivity implements RongIM.UserInfoProvide
 	 */
 	private void clearSelection() {
 		tab_yueban_iv.setImageDrawable(getResources().getDrawable(
-				R.drawable.tab_yueban_normal));
+				R.drawable.tab_home_nomal));
 		tab_yueban_tv.setTextColor(this.getResources().getColor(
 				R.color.tab_text_normal_color));
 		tab_recomment_iv.setImageDrawable(getResources().getDrawable(
@@ -339,7 +338,6 @@ public class MainActivity extends BaseActivity implements RongIM.UserInfoProvide
 		if (mServiceFragment != null) {
 			transaction.hide(mServiceFragment);
 		}
-
 		if (mPersionalCenterFragment != null) {
 			transaction.hide(mPersionalCenterFragment);
 		}

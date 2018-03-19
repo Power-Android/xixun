@@ -76,7 +76,6 @@ public class MyApplication extends Application implements RongIMClient.OnReceive
 	public void onCreate() {
 		super.onCreate();
 		mApplication=this;
-		MultiDex.install(this);
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
 				getApplicationContext())
 				.threadPoolSize(3)//
@@ -112,5 +111,11 @@ public class MyApplication extends Application implements RongIMClient.OnReceive
 		String name = message.getContent().getUserInfo().getName();
 		LogUtil.e("TAG","name："+name+"portraitUri："+portraitUri.toString());
 		return false;
+	}
+
+	@Override
+	protected void attachBaseContext(Context base) {
+		super.attachBaseContext(base);
+		MultiDex.install(this);
 	}
 }

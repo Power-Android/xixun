@@ -167,9 +167,8 @@ public class MyFollowAdapter extends BaseAdapter implements OnClickListener,
 		holder.item_ll.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				LogUtil.e(TAG,"hahahahaha"+position);
 				Intent intent=new Intent(context,UserCenterActivity.class);
-				intent.putExtra("guanzhu_mid",adapterList.get(position).getM_id());
+				intent.putExtra("guanzhu_mid",list.get(position).getMid());
 				context.startActivity(intent);
 			}
 		});

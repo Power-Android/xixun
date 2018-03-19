@@ -9,6 +9,7 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.Scroller;
 
 /**
@@ -119,6 +120,7 @@ public class VerticalLinearLayout extends ViewGroup
 
 			mScrollStart = getScrollY();
 			mLastY = y;
+			Log.e("111111","11111");
 			break;
 		case MotionEvent.ACTION_MOVE:
 
@@ -136,11 +138,17 @@ public class VerticalLinearLayout extends ViewGroup
 				dy = -scrollY;
 			}
 			// 已经到达底部，上拉多少，就往下滚动多少
+//			Log.e("TAG","dy---"+dy+"\n"+"getHeight---"+getHeight()+"\n"+"mScreenHeight---"+mScreenHeight);
+			Log.e("111111","11111222222");
+
 			if (dy > 0 && scrollY + dy > getHeight() - mScreenHeight)
 			{
 				dy = getHeight() - mScreenHeight - scrollY;
-			}
+				Log.e("111111","1111122222233333333");
 
+			}
+			Log.e("111111","1111122222233333333444444444");
+			Log.e("111111",dy + "");
 			scrollBy(0, dy);
 			mLastY = y;
 			break;
@@ -233,9 +241,8 @@ public class VerticalLinearLayout extends ViewGroup
 			postInvalidate();
 		} else
 		{
-
 			int position = getScrollY() / mScreenHeight;
-
+			Log.e("xxx",getScrollY()+"---------"+mScreenHeight);
 			Log.e("xxx", position + "," + currentPage);
 			if (position != currentPage)
 			{

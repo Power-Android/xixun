@@ -467,7 +467,7 @@ public class PublicTripActivity extends BaseActivity implements OnCheckedChangeL
 			return false;
 		}
 		if (!trips_car.isChecked() && !trips_pincar.isChecked()){
-			ToastUtil.showToast(getApplicationContext(),"请选择有车否者拼车");
+			ToastUtil.showToast(getApplicationContext(),"请选择有车或者拼车");
 			return false;
 		}
 		return true;

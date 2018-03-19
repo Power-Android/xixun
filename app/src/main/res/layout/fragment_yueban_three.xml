@@ -4,15 +4,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:background="@drawable/xmlbackground_color">
     <RelativeLayout
         android:id="@+id/addaddress_title"
         style="@style/Title_RelativeLayoutStyle"
         android:paddingBottom="5dp"
         android:paddingTop="5dp" >
-
-        <!-- android:drawableRight="@drawable/more_down" -->
-
         <TextView
             android:id="@+id/locaton_tv"
             android:layout_width="wrap_content"
@@ -24,7 +22,6 @@
             android:drawableRight="@drawable/button_nav_down"
             android:textColor="@color/white"
             android:textSize="@dimen/text_big_size" />
-
         <LinearLayout
             android:id="@+id/title"
             android:layout_width="match_parent"
@@ -54,17 +51,20 @@
                 android:textSize="@dimen/text_mid2_size" />
         </LinearLayout>
     </RelativeLayout>
+    <com.power.travel.xixuntravel.weight.RecyclerViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <LinearLayout
+    </com.power.travel.xixuntravel.weight.RecyclerViewPager>
+    <!--<LinearLayout
         android:id="@+id/tab_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:orientation="vertical" >
-
         <include
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/layout_first_welcome_splash" />
-    </LinearLayout>
+    </LinearLayout>-->
 </LinearLayout>

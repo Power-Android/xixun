@@ -124,7 +124,7 @@ public class ZuFangDetailActivity extends BaseActivity {
         back = findViewById(R.id.back);
         title = findViewById(R.id.title);
         title_share = findViewById(R.id.title_share);
-        title_share.setVisibility(View.VISIBLE);
+        title_share.setVisibility(View.GONE);
         scrollView = findViewById(R.id.scrollView);
         zuche_title_tv = findViewById(R.id.zuche_title_tv);
         guanzhu_iv = findViewById(R.id.guanzhu_iv);

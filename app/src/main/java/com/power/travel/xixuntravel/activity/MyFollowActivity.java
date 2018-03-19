@@ -184,6 +184,7 @@ public class MyFollowActivity extends BaseActivity implements MyFollowOnItemOnCl
 			PhoneModel sortModel = new PhoneModel();
 			sortModel.setImgSrc(list.get(i).getFace());
 			sortModel.setName(list.get(i).getNickname());
+			sortModel.setMid(list.get(i).getM_id());
 //			sortModel.setUserID(list.get(i).getId());
 //			sortModel.setUserID(list.get(i).getFid());
 			sortModel.setUserID(list.get(i).getFollow_id());

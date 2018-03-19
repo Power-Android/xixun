@@ -6,6 +6,15 @@ public class PhoneModel {
 	private String name; //
 	private String userID; //
 	private String sortLetters; //
+	private String mid;
+
+	public String getMid() {
+		return mid;
+	}
+
+	public void setMid(String mid) {
+		this.mid = mid;
+	}
 
 	public String getImgSrc() {
 		return imgSrc;
